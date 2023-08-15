@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+
+*
+{
+  font-family: 'wii-ntlg', 'shippori-antique-b1', 'Roboto';
+  word-spacing: 0.3em;
+}
+
+@font-face {
+  font-family: 'wii-ntlg';
+  src: url('assets/fonts/WiiNTLG/WiiNTLG-Regular.ttc');
+}
+
+@font-face {
+  font-family: 'shippori-antique-b1';
+  src: url('assets/fonts/Shippori_Antique_B1/ShipporiAntiqueB1-Regular.ttf');
+}
+
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+*
+{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    word-wrap: break-word;
+}
