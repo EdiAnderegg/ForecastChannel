@@ -4,6 +4,10 @@
 {
   font-family: 'wii-ntlg', 'shippori-antique-b1', 'Roboto';
   word-spacing: 0.3em;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  word-wrap: break-word;
 }
 
 @font-face {
@@ -20,10 +24,4 @@
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
-*
-{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    word-wrap: break-word;
-}
+

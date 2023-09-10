@@ -5,6 +5,7 @@ import { StartComponent } from './start/start.component';
 import { MainComponent } from './main/main.component';
 import { GlobeComponent } from './globe/globe.component';
 import { SettingsComponent } from './settings/settings.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -17,7 +18,8 @@ import { SettingsComponent } from './settings/settings.component';
   ],
   imports: [
     CommonModule,
-    FeaturesRoutingModule
+    FeaturesRoutingModule,
+    FontAwesomeModule
   ],
   exports:[
     FeaturesRoutingModule

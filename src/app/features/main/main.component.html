@@ -1,4 +1,14 @@
 <div class="screen">
+  <div class="header d-flex">
+    <div class="header-left"></div>
+    <div class="header-middle header-btn">
+      <div class="header-middle-content d-flex">
+        <div class="header-middle-icon"><fa-icon  [icon]="faSortUp"></fa-icon></div>
+        <h1 class="header-middle-text align-self-end">UV Index</h1>
+      </div>
+    </div>
+    <div class="header-right header-btn d-flex justify-content-center"><h1 class="header-right-content align-self-end">Settings</h1></div>
+  </div>
   <div class="body">
     <div class="body-header d-flex justify-content-between">
       <h1 class="body-title align-self-center">CURRENT</h1>
@@ -21,4 +31,13 @@
       <div class="body-footer-underline"></div>
     </div>
   </div>
+  <div class="footer d-flex">
+    <div class="footer-left footer-btn d-flex justify-content-center"><h1 class="footer-left-content align-self-start">Wii Menu</h1></div>
+    <div class="footer-middle footer-btn">
+      <div class="footer-middle-content d-flex">
+        <fa-icon class="footer-middle-icon" [icon]="faSortDown"></fa-icon>
+        <h1 class="footer-middle-text">Today</h1>
+    </div>
+  </div>
+  <div class="footer-right footer-btn d-flex justify-content-center"><h1 class="footer-right-content align-self-start">Globe</h1></div>
 </div>

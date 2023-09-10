@@ -3,6 +3,7 @@ import { take } from 'rxjs';
 import { Current } from 'src/app/shares/interfaces/current.interface';
 import { WeatherService } from 'src/app/shares/services/weather.service';
 import { IconService } from 'src/app/shares/services/icon.service';
+import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-main',
@@ -11,6 +12,8 @@ import { IconService } from 'src/app/shares/services/icon.service';
 })
 export class MainComponent implements OnInit {
 
+  faSortUp = faSortUp;
+  faSortDown = faSortDown;
 
   public Current : Current | undefined;
 

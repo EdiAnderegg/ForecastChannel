@@ -4,6 +4,104 @@
   background-image:linear-gradient(to right ,#4b9ced,#00038b);
   height: 100dvh;
 }
+
+/*==========Header================*/
+.header
+{
+  position: absolute;
+  top: -2dvh;
+  height: 15.5dvh;
+  width: 100%;
+}
+.header-left
+{
+  width: 29.6%;
+  border-bottom: 0.5dvh solid #a8a7b0;
+  background:  linear-gradient(#e6e6e6,#cbccc8 67%,#e6e6e6 0%);
+  box-shadow: inset -1.15dvw -1dvw 0 -1dvw black,
+              inset -0.80dvw -0.75dvw 0 -0.3dvw white;
+  transition: 200ms;
+}
+.header-middle
+{
+  position: relative;
+  width: 40.8%;
+  border-bottom: 0.5dvh solid #a8a7b0;
+  background:  linear-gradient(#e6e6e6,#cbccc8 67%,#e6e6e6 0%);
+  box-shadow: inset -1.15dvw -1dvw 0 -1dvw black,
+              inset 1.15dvw -1dvw 0 -1dvw black,
+              inset 0.5dvw 0 0.6dvw -0.3dvw black,
+              inset -0.80dvw -0.75dvw 0 -0.3dvw white;
+  transition: 200ms;
+}
+
+.header-middle-content
+{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-left: 6.4dvw;
+  gap: 5.5dvw;
+}
+.header-middle-icon
+{
+  z-index: 1;
+  margin-top: 3dvh;
+  padding: 0;
+  font-size: 14dvh;
+}
+.header-middle-text
+{
+  z-index: 1;
+  font-size: 5.5dvh;
+}
+
+.header-right
+{
+  position: relative;
+  width: 29.6%;
+  border-bottom: 0.5dvh solid #a8a7b0;
+  background:  linear-gradient(#e6e6e6,#cbccc8 67%,#e6e6e6 0%);
+  box-shadow: inset 1.15dvw -1dvw 0 -1dvw black,
+              inset 0.5dvw 0 0.6dvw -0.3dvw black,
+              inset 0 -0.75dvw 0 -0.3dvw white;
+  transition: 200ms;
+}
+.header-right-content
+{
+  z-index: 1;
+  font-size: 5.5dvh;
+}
+
+.header-btn:hover
+{
+  user-select: none;
+  cursor: pointer;
+  color:rgb(247, 254, 255);
+}
+.header-btn:hover:after
+{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 132, 255, 0.65);
+}
+
+.header-btn:active
+{
+ top: 2dvh;
+ border-bottom: none;
+}
+.header-btn:not(active)
+{
+  top: 0;
+  transition: 100ms;
+}
+
+/*==========Header Ends==========*/
+
+/*=========Body===========*/
 .body
 {
   position:relative;
@@ -98,8 +196,8 @@
 .body-footer
 {
   position:absolute;
-  bottom: 2.3dvh;
-  height: 4.7dvh;
+  bottom: 1.9dvh;
+  height: 5dvh;
   width: 100%;
   background: linear-gradient(to right, rgba(255, 255, 255, 0.2) 61%,rgba(163, 22, 22, 0.8)88%);
 }
@@ -146,3 +244,105 @@
   width: 100%;
   background: linear-gradient(to right, rgba(255, 255, 255, 0) 55%,rgba(169, 183, 198, 0.5));
 }
+/*=======================Body Ends==================*/
+
+/*==========Footer================*/
+.footer
+{
+  position: absolute;
+  bottom: 0;
+  height: 13.5dvh;
+  width: 100%;
+}
+.footer-left
+{
+  position: relative;
+  width: 29.6%;
+  border-top: 0.5dvh solid #a8a7b0;
+  background:  linear-gradient(#e6e6e6 40%,#cbccc8 0%,#e6e6e6);
+  box-shadow: inset -1.15dvw -1dvw 0 -1dvw black,
+              inset -0.80dvw 0.75dvw 0 -0.3dvw white;
+  transition: 200ms;
+
+}
+
+.footer-left-content
+{
+  z-index: 1;
+  font-size: 5.5dvh;
+}
+
+.footer-middle
+{
+  position: relative;
+  width: 40.8%;
+  border-top: 0.5dvh solid #a8a7b0;
+  background:  linear-gradient(#e6e6e6 40%,#cbccc8 0%,#e6e6e6);
+  box-shadow: inset -1.15dvw -1dvw 0 -1dvw black,
+              inset 1.15dvw -1dvw 0 -1dvw black,
+              inset 0.5dvw 0 0.6dvw -0.3dvw black,
+              inset -0.80dvw 0.75dvw 0 -0.3dvw white;
+  transition: 200ms;
+}
+
+.footer-middle-content
+{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-left: 6.4dvw;
+  gap: 5.5dvw;
+}
+.footer-middle-icon
+{
+  z-index: 1;
+  padding-bottom: 4%;
+  align-self: end;
+  font-size: 14dvh;
+}
+.footer-middle-text
+{
+  z-index: 1;
+  font-size: 5.5dvh;
+}
+.footer-right
+{
+  position: relative;
+  width: 29.6%;
+  border-top: 0.5dvh solid #a8a7b0;
+  background:  linear-gradient(#e6e6e6 40%,#cbccc8 0%,#e6e6e6);
+  box-shadow: inset 1.15dvw -1dvw 0 -1dvw black,
+              inset 0.5dvw 0 0.6dvw -0.3dvw black,
+              inset 0 0.75dvw 0 -0.3dvw white;
+  transition: 200ms;
+}
+.footer-right-content
+{
+  z-index: 1;
+  font-size: 5.5dvh;
+}
+.footer-btn:hover
+{
+  user-select: none;
+  cursor: pointer;
+  color:rgb(247, 254, 255);
+}
+.footer-btn:hover:after
+{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 132, 255, 0.65);
+}
+.footer-btn:active
+{
+ top: 2dvh;
+ border-top: none;
+}
+.footer-btn:not(active)
+{
+  top: 0;
+  transition: 100ms;
+}
+/*==========Footer Ends==========*/
