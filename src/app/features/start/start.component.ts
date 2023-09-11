@@ -29,6 +29,7 @@ export class StartComponent implements OnInit {
       this.weatherService.getCurrentWeather$()
       .pipe(take(1))
       .subscribe((data) =>{
+        console.log(data);
         this.Current = {...data};
         this.Current.icon = this.iconService.getIcon(this.Current.description);
         return this.Current;

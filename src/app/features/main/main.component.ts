@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
+import { Router } from '@angular/router';
 import { Current } from 'src/app/shares/interfaces/current.interface';
 import { WeatherService } from 'src/app/shares/services/weather.service';
 import { IconService } from 'src/app/shares/services/icon.service';
@@ -17,7 +18,14 @@ export class MainComponent implements OnInit {
 
   public Current : Current | undefined;
 
-  constructor(private readonly weatherService : WeatherService, private readonly iconService : IconService) {}
+  constructor(private readonly weatherService : WeatherService, 
+              private readonly iconService : IconService,
+              private readonly router : Router) 
+              {}
+
+  public btnClick(){
+    this.router.navigateByUrl('/start');
+  }
 
   ngOnInit(): void {
     if(navigator.geolocation){
