@@ -1,0 +1,27 @@
+<div class="body" *ngIf="Current$ | async as Current">
+  <div class="body-header d-flex justify-content-between">
+    <h1 class="body-title align-self-center">CURRENT</h1>
+    <div class="body-header-body align-self-center d-flex justify-content-end">
+      <h1 class="body-header-title align-self-center">{{Current?.location}}</h1>
+    </div>
+  </div>
+  <div class="body-content d-flex justify-content-around">
+    <div class="body-content-temperature d-flex flex-column justify-content-between">
+      <h1 class="temperature-title align-self-center">{{Current?.temperature | number:'1.0-0'}}&deg;</h1>
+      <h1 class="temperature-status align-self-center">{{Current?.description}}</h1>
+    </div>
+    <div class="body-content-symbol align-self-center">
+      <img class="symbol-image img-fluid" [src]="Current?.icon">
+    </div>
+  </div>
+  <div class="body-footer d-flex flex-column">
+    <div class="body-footer-up">
+      <h1 class="wind-info">{{Current?.wind?.deg | wind}} {{Current?.wind?.speed | speed:'metric'}}</h1>
+    </div>
+    <div class="body-footer-down d-flex justify-content-between">
+      <h2 class="body-footer-brand align-self-center">supported by OpenWeather</h2>
+      <h2 class="body-footer-date align-self-center">As of {{ Current?.time | date: 'h:mm a, dd/MM'}}</h2>
+      <div class="body-footer-underline"></div>
+    </div>
+  </div>
+  </div>

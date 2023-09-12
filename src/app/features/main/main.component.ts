@@ -4,27 +4,42 @@ import { Router } from '@angular/router';
 import { Current } from 'src/app/shares/interfaces/current.interface';
 import { WeatherService } from 'src/app/shares/services/weather.service';
 import { IconService } from 'src/app/shares/services/icon.service';
+import { SessionDataService } from 'src/app/shares/services/session-data.service';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
+import { slideInAnimation } from 'src/app/shares/animation/slide.animation';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
+  animations:[slideInAnimation]
 })
 export class MainComponent implements OnInit {
 
   faSortUp = faSortUp;
   faSortDown = faSortDown;
 
-  public Current : Current | undefined;
-
+  private Current : Current | undefined;
+  public actualSite: string[] = ['current','today','']
+  private index : number = 0;
   constructor(private readonly weatherService : WeatherService,
               private readonly iconService : IconService,
+              private readonly sessionDataService : SessionDataService,
               private readonly router : Router)
               {}
 
-  public btnClick(){
+  public btnstart(){
     this.router.navigateByUrl('/start');
+  }
+
+  public btndown(){
+    this.index++;
+    if(this.index == this.actualSite.length-1)
+    {
+      return this.router.navigateByUrl(`main/${this.actualSite[this.index -1]}`);
+    }else{
+      return this.router.navigateByUrl(`main/${this.actualSite[this.index]}`);
+    }
   }
 
   ngOnInit(): void {
@@ -36,7 +51,7 @@ export class MainComponent implements OnInit {
         .subscribe((data) =>{
           this.Current = {...data};
           this.Current.icon = this.iconService.getIcon(this.Current.description);
-          return this.Current;
+          this.sessionDataService.outputWeather(this.Current);
         })
       })
     }

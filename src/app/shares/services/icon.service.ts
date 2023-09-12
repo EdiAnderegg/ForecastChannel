@@ -25,9 +25,11 @@ export class IconService {
       case 'few clouds':
         return icon[1];
       case 'scattered clouds':
-        return icon[2];
+        return icon[3];
       case 'broken clouds':
         return icon[3];
+      case 'overcast clouds':
+        return icon[2];
       case 'light rain':
         return icon[4];
       case 'shower rain':

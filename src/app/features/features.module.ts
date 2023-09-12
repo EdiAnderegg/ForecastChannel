@@ -8,6 +8,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { WindPipe } from '../shares/pipes/wind.pipe';
 import { SpeedPipe } from '../shares/pipes/speed.pipe';
+import { CurrentComponent } from './main/current/current.component';
+import { TodayComponent } from './main/today/today.component';
 
 
 
@@ -18,7 +20,9 @@ import { SpeedPipe } from '../shares/pipes/speed.pipe';
     GlobeComponent,
     SettingsComponent,
     WindPipe,
-    SpeedPipe
+    SpeedPipe,
+    CurrentComponent,
+    TodayComponent,
   ],
   imports: [
     CommonModule,
