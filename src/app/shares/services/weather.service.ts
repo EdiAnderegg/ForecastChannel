@@ -29,7 +29,10 @@ export class WeatherService {
       const Current : Current = {
         location : res.name,
         temperature : res.main.temp,
-        wind : res.wind,
+        wind : { speed: res.wind.speed,
+                 deg: res.wind.deg,
+                 gust: res.wind.gust
+                },
         description : res.weather[0].description,
         icon : res.weather[0].main,
         time : date.getTime()

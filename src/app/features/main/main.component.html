@@ -25,12 +25,17 @@
         <img class="symbol-image img-fluid" [src]="Current?.icon">
       </div>
     </div>
-    <div class="body-footer d-flex justify-content-between">
-      <h2 class="body-footer-brand align-self-center">supported by OpenWeather</h2>
-      <h2 class="body-footer-date align-self-center">As of {{ Current?.time | date: 'h:mm a, dd/MM'}}</h2>
-      <div class="body-footer-underline"></div>
+    <div class="body-footer d-flex flex-column">
+      <div class="body-footer-up">
+        <h1 class="wind-info">{{Current?.wind?.deg | wind}} {{Current?.wind?.speed | speed:'metric'}}</h1>
+      </div>
+      <div class="body-footer-down d-flex justify-content-between">
+        <h2 class="body-footer-brand align-self-center">supported by OpenWeather</h2>
+        <h2 class="body-footer-date align-self-center">As of {{ Current?.time | date: 'h:mm a, dd/MM'}}</h2>
+        <div class="body-footer-underline"></div>
+      </div>
     </div>
-  </div>
+    </div>
   <div class="footer d-flex">
     <div class="footer-left footer-btn d-flex justify-content-center" (click)="btnClick()">
       <h1 class="footer-left-content align-self-start">Wii Menu</h1>

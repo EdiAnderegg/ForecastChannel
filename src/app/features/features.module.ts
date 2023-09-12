@@ -6,6 +6,8 @@ import { MainComponent } from './main/main.component';
 import { GlobeComponent } from './globe/globe.component';
 import { SettingsComponent } from './settings/settings.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { WindPipe } from '../shares/pipes/wind.pipe';
+import { SpeedPipe } from '../shares/pipes/speed.pipe';
 
 
 
@@ -14,7 +16,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     StartComponent,
     MainComponent,
     GlobeComponent,
-    SettingsComponent
+    SettingsComponent,
+    WindPipe,
+    SpeedPipe
   ],
   imports: [
     CommonModule,

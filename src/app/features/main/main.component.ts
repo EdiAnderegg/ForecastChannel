@@ -18,9 +18,9 @@ export class MainComponent implements OnInit {
 
   public Current : Current | undefined;
 
-  constructor(private readonly weatherService : WeatherService, 
+  constructor(private readonly weatherService : WeatherService,
               private readonly iconService : IconService,
-              private readonly router : Router) 
+              private readonly router : Router)
               {}
 
   public btnClick(){

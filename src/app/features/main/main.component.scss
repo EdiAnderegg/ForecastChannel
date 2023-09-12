@@ -196,9 +196,27 @@
 .body-footer
 {
   position:absolute;
-  bottom: 1.9dvh;
-  height: 5dvh;
   width: 100%;
+  bottom: 1.9dvh;
+}
+.body-footer-up
+{
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 52%,rgba(0, 0, 0, 0.3));
+}
+
+.wind-info
+{
+  text-align: end;
+  font-size: 6.6dvh;
+  color: rgb(247, 254, 255);
+  text-shadow: rgb(34, 34, 34) 0.05em 0.03em;
+  margin-bottom: 0dvh;
+  margin-right: 2.3rem;
+}
+
+.body-footer-down
+{
+  height: 5dvh;
   background: linear-gradient(to right, rgba(255, 255, 255, 0.2) 61%,rgba(163, 22, 22, 0.8)88%);
 }
 .body-footer-brand
@@ -214,7 +232,7 @@
   font-size: 3.8dvh;
   color: rgb(247, 254, 255);
   margin-bottom: 1dvh;
-  margin-right: 1.1em;
+  margin-right: 2.3rem;
 }
 .body-footer-underline
 {
