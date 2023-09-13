@@ -6,13 +6,14 @@ import { WeatherService } from 'src/app/shares/services/weather.service';
 import { IconService } from 'src/app/shares/services/icon.service';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
-import { slideInAnimation } from 'src/app/shares/animation/slide.animation';
+import { slideUpAnimation, slideDownAnimation} from 'src/app/shares/animation/slide.animation';
+
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  animations:[slideInAnimation]
+  animations:[slideUpAnimation,slideDownAnimation]
 })
 export class MainComponent implements OnInit {
 
@@ -20,8 +21,11 @@ export class MainComponent implements OnInit {
   faSortDown = faSortDown;
 
   private Current : Current | undefined;
-  public actualSite: string[] = ['current','today','']
-  private index : number = 0;
+  public Weather : any | undefined;
+  public actualSite: string[] = ['UV-Index','current','today','tomorrow','5-Day Forecast']
+  public currentIndex : number = 1;
+  public triggerUp: boolean = true;
+
   constructor(private readonly weatherService : WeatherService,
               private readonly iconService : IconService,
               private readonly sessionDataService : SessionDataService,
@@ -31,15 +35,16 @@ export class MainComponent implements OnInit {
   public btnstart(){
     this.router.navigateByUrl('/start');
   }
-
-  public btndown(){
-    this.index++;
-    if(this.index == this.actualSite.length-1)
-    {
-      return this.router.navigateByUrl(`main/${this.actualSite[this.index -1]}`);
-    }else{
-      return this.router.navigateByUrl(`main/${this.actualSite[this.index]}`);
+  public btnSlide(increment: number){
+    const newIndex = this.currentIndex + increment;
+    if (newIndex >= 1 && newIndex < this.actualSite.length) {
+      this.currentIndex = newIndex;
+      this.router.navigateByUrl(`main/${this.actualSite[newIndex]}`);
     }
+  }
+
+  isButtonDisabled(index: number) {
+    return index === 1 || index === this.actualSite.length - 1;
   }
 
   ngOnInit(): void {
@@ -51,6 +56,7 @@ export class MainComponent implements OnInit {
         .subscribe((data) =>{
           this.Current = {...data};
           this.Current.icon = this.iconService.getIcon(this.Current.description);
+          this.Weather = this.Current
           this.sessionDataService.outputWeather(this.Current);
         })
       })

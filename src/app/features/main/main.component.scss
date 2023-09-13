@@ -12,6 +12,7 @@
   top: -2dvh;
   height: 15.5dvh;
   width: 100%;
+  z-index: 1;
 }
 .header-left
 {
@@ -108,6 +109,7 @@
   top: 15dvh;
   height: 13.1dvh;
   width: 100%;
+  z-index: 1;
   background: linear-gradient(to right,#277116 4%,#47a433 13%,#277116 23%,#3c8e2a 98%);
   border-top: solid #3c8e2a;
   border-bottom: solid #3c8e2a;
@@ -157,7 +159,81 @@
   text-shadow: rgb(34, 34, 34) 0.05em 0.03em;
 }
 
-/*============BodyHeader Ends===========*/
+/*===============BodyHeader Ends=========*/
+
+/*===============BodyFooter=========*/
+.body-footer
+{
+  position:fixed;
+  width: 100%;
+  bottom: 15.5dvh;
+  z-index: 1;
+}
+.body-footer-up
+{
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 52%,rgba(0, 0, 0, 0.3));
+}
+
+.wind-info
+{
+  text-align: end;
+  font-size: 6.6dvh;
+  color: rgb(247, 254, 255);
+  text-shadow: rgb(34, 34, 34) 0.05em 0.03em;
+  margin-bottom: 0dvh;
+  margin-right: 2.3rem;
+}
+
+.body-footer-down
+{
+  height: 5dvh;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.2) 61%,rgba(163, 22, 22, 0.8)88%);
+}
+.body-footer-brand
+{
+  font-size: 3.3dvh;
+  font-weight: bold;
+  color: rgb(247, 254, 255);
+  margin-left: 1.3em;
+  text-shadow: rgb(34, 34, 34) 0.09em 0.06em;
+}
+.body-footer-date
+{
+  font-size: 3.8dvh;
+  color: rgb(247, 254, 255);
+  margin-bottom: 1dvh;
+  margin-right: 2.3rem;
+}
+.body-footer-underline
+{
+  position: absolute;
+  bottom: 0;
+  height: 0.55dvh;
+  width: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 60%,rgb(169, 183, 198) 80%);
+}
+.body-footer-underline::before,
+.body-footer-underline::after
+{
+  content: '';
+  position: absolute;
+}
+.body-footer-underline::before
+{
+  top: -0.15dvh;
+  height: 0.15dvh;
+  width: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 55%,rgba(169, 183, 198, 0.5));
+}
+.body-footer-underline::after
+{
+  bottom: -0.15dvh;
+  height: 0.15dvh;
+  width: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 55%,rgba(169, 183, 198, 0.5));
+}
+
+/*===============BodyFooter Ends=========*/
 
 /*==========Footer================*/
 .footer
@@ -258,5 +334,9 @@
 {
   top: 0;
   transition: 100ms;
+}
+.footer-btn[attr-disabled]
+{
+  pointer-events: none;
 }
 /*==========Footer Ends==========*/

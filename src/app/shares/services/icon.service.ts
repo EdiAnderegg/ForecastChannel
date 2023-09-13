@@ -38,6 +38,8 @@ export class IconService {
         return icon[4];
       case 'rain':
         return icon[5];
+      case 'heavy intensity rain':
+        return icon[5];
       case 'thunderstrom':
         return icon[6];
       case 'snow':
