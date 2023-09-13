@@ -1,10 +1,4 @@
 <div class="body" *ngIf="Current$ | async as Current">
-  <div class="body-header d-flex justify-content-between">
-    <h1 class="body-title align-self-center">CURRENT</h1>
-    <div class="body-header-body align-self-center d-flex justify-content-end">
-      <h1 class="body-header-title align-self-center">{{Current?.location}}</h1>
-    </div>
-  </div>
   <div class="body-content d-flex justify-content-around">
     <div class="body-content-temperature d-flex flex-column justify-content-between">
       <h1 class="temperature-title align-self-center">{{Current?.temperature | number:'1.0-0'}}&deg;</h1>
