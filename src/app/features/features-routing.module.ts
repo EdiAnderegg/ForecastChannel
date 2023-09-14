@@ -11,9 +11,9 @@ const routes: Routes = [
   {path: 'start', component: StartComponent },
   {path: 'main', component: MainComponent,
    children:[
-    {path: '', redirectTo: 'current', pathMatch: 'full'},
-    {path: 'current', component: CurrentComponent},
-    {path: 'today', component: TodayComponent}
+    {path: '', redirectTo: 'Current', pathMatch: 'full'},
+    {path: 'Current', component: CurrentComponent, data: { animation: 0 }},
+    {path: 'Today', component: TodayComponent, data: { animation: 1 }}
    ]
   },
   {path: 'settings', component: SettingsComponent },

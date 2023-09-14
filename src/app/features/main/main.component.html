@@ -1,10 +1,10 @@
-<div class="screen" [@slideUpAnimation]=" triggerUp ? o.activatedRoute : ''">
+<div class="screen"[@routeAnimations]="prepareRoute(outlet)" >
   <div class="header d-flex">
     <div class="header-left"></div>
     <div class="header-middle header-btn" (click)="btnSlide(-1)" [attr.disabled]="isButtonDisabled(currentIndex - 1)">
       <div class="header-middle-content d-flex">
         <div class="header-middle-icon"><fa-icon  [icon]="faSortUp"></fa-icon></div>
-        <h1 class="header-middle-text align-self-end">{{actualSite[currentIndex -1] | titlecase}}</h1>
+        <h1 class="header-middle-text align-self-end">{{actualSite[currentIndex -1]}}</h1>
       </div>
     </div>
     <div class="header-right header-btn d-flex justify-content-center"><h1 class="header-right-content align-self-end">Settings</h1></div>
@@ -15,7 +15,9 @@
       <h1 class="body-header-title align-self-center">{{Weather?.location}}</h1>
     </div>
   </div>
-  <router-outlet #o="outlet"></router-outlet>
+  <div class="body-screen">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
   <div class="body-footer d-flex flex-column">
     <div class="body-footer-up">
       <h1 class="wind-info">{{Weather?.wind?.deg | wind}} {{Weather?.wind?.speed | speed:'metric'}}</h1>
@@ -33,7 +35,7 @@
     <div class="footer-middle footer-btn" (click)="btnSlide(1)" [attr.disabled]="isButtonDisabled(currentIndex + 1)">
       <div class="footer-middle-content d-flex">
         <fa-icon class="footer-middle-icon" [icon]="faSortDown"></fa-icon>
-        <h1 class="footer-middle-text">{{actualSite[currentIndex +1] | titlecase}}</h1>
+        <h1 class="footer-middle-text">{{actualSite[currentIndex +1]}}</h1>
     </div>
   </div>
   <div class="footer-right footer-btn d-flex justify-content-center"><h1 class="footer-right-content align-self-start">Globe</h1></div>

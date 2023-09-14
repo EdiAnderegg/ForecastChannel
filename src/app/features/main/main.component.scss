@@ -3,6 +3,7 @@
   position: relative;
   background-image:linear-gradient(to right ,#4b9ced,#00038b);
   height: 100dvh;
+  overflow: hidden;
 }
 
 /*==========Header================*/
@@ -160,6 +161,15 @@
 }
 
 /*===============BodyHeader Ends=========*/
+
+/*===============Body Start============*/
+.body-screen
+{
+  position: absolute;
+  width: 100%;
+  height: 86.5%;
+}
+/*==============Body Ends=============*/
 
 /*===============BodyFooter=========*/
 .body-footer

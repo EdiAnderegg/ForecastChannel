@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { Current } from 'src/app/shares/interfaces/current.interface';
 import { WeatherService } from 'src/app/shares/services/weather.service';
 import { IconService } from 'src/app/shares/services/icon.service';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
-import { slideUpAnimation, slideDownAnimation} from 'src/app/shares/animation/slide.animation';
+import { slider } from 'src/app/shares/animation/slide.animation';
+
 
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  animations:[slideUpAnimation,slideDownAnimation]
+  animations:[slider]
 })
 export class MainComponent implements OnInit {
 
@@ -22,9 +23,10 @@ export class MainComponent implements OnInit {
 
   private Current : Current | undefined;
   public Weather : any | undefined;
-  public actualSite: string[] = ['UV-Index','current','today','tomorrow','5-Day Forecast']
+  public actualSite: string[] = ['UV-Index','Current','Today','Tomorrow','5-Day Forecast']
+  public urlTitle : string | undefined = '';
   public currentIndex : number = 1;
-  public triggerUp: boolean = true;
+
 
   constructor(private readonly weatherService : WeatherService,
               private readonly iconService : IconService,
@@ -32,6 +34,10 @@ export class MainComponent implements OnInit {
               private readonly router : Router)
               {}
 
+  public prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  }            
+  
   public btnstart(){
     this.router.navigateByUrl('/start');
   }
@@ -43,11 +49,13 @@ export class MainComponent implements OnInit {
     }
   }
 
+
   isButtonDisabled(index: number) {
     return index === 1 || index === this.actualSite.length - 1;
   }
 
   ngOnInit(): void {
+    this.urlTitle = this.router.url.split('/').pop();
     if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition((pos)=>{
         this.weatherService.setWeather(pos.coords.latitude,pos.coords.longitude,'metric','');

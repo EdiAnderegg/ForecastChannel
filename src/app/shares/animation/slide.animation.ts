@@ -1,44 +1,33 @@
 import { trigger, animate, transition, style, group, query } from '@angular/animations'
 
 
-export const slideUpAnimation = trigger('slideUpAnimation',[
-  //transition between any two states
-  transition('* <=> *',[
-    //Events to apply
-    //Defined style and animation function to apply
-    // Config object with optional set to true to handle when element not yet added to the DOM
-    query(':enter, :leave', style({position: 'fixed',width: '100%'}),{optional: true}),
-    //group block executes in parallel
-    group([
-      query(':enter',[
-        style({transform: 'translateY(100%)'}),
-        animate('0.6s cubic-bezier(0.1, 0.4, 0, 1)', style({transform: 'translateY(0%)'}))
-      ], {optional: true}),
-      query(':leave',[
-        style({transform: 'translateY(0%)'}),
-        animate('0.6s cubic-bezier(0.2, 1, 1, 1)', style({transform: 'translateY(-100%)'}))
-      ],{optional: true})
-    ])
-  ])
+
+export const slider = trigger('routeAnimations', [
+  transition(':increment', slideTo('top') ),
+  transition(':decrement', slideTo('bottom') ),
 ]);
 
-export const slideDownAnimation = trigger('slideDownAnimation',[
-  //transition between any two states
-  transition('* <=> *',[
-    //Events to apply
-    //Defined style and animation function to apply
-    // Config object with optional set to true to handle when element not yet added to the DOM
-    query(':enter, :leave', style({position: 'fixed',width: '100%'}),{optional: true}),
-    //group block executes in parallel
-    group([
-      query(':enter',[
-        style({transform: 'translateY(0%)'}),
-        animate('0.6s cubic-bezier(0.1, 0.4, 0, 1)', style({transform: 'translateY(100%)'}))
-      ], {optional: true}),
-      query(':leave',[
-        style({transform: 'translateY(-100%)'}),
-        animate('0.6s cubic-bezier(0.2, 1, 1, 1)', style({transform: 'translateY(00%)'}))
-      ],{optional: true})
-    ])
-  ])
-]);
+
+function slideTo(direction : string) {
+  const optional = { optional: true };
+  return [
+      query(':enter, :leave', [
+          style({
+              position: 'absolute',
+              width: '100%',
+              [direction]: 0
+          })
+      ], optional),
+      query(':enter', [
+          style({ [direction]: '100%'})
+      ]),
+      group([
+          query(':leave', [
+              animate('600ms cubic-bezier(0.2, 1, 1, 1)', style({ [direction]: '-100%'}))
+          ], optional),
+          query(':enter', [
+              animate('600ms cubic-bezier(0.1, 0.4, 0, 1)', style({ [direction]: '0%'}))
+          ])
+      ]),
+  ];
+}
