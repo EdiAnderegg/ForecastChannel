@@ -10,6 +10,7 @@ import { WindPipe } from '../shares/pipes/wind.pipe';
 import { SpeedPipe } from '../shares/pipes/speed.pipe';
 import { CurrentComponent } from './main/current/current.component';
 import { TodayComponent } from './main/today/today.component';
+import { TomorrowComponent } from './main/tomorrow/tomorrow.component';
 
 
 
@@ -23,6 +24,7 @@ import { TodayComponent } from './main/today/today.component';
     SpeedPipe,
     CurrentComponent,
     TodayComponent,
+    TomorrowComponent,
   ],
   imports: [
     CommonModule,

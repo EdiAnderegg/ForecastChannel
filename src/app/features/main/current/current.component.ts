@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
-import { Current } from 'src/app/shares/interfaces/current.interface';
+import { Current } from 'src/app/shares/interfaces/weather.interface';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-current',
@@ -15,7 +15,7 @@ export class CurrentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.Current$ = this.sessionDataService.getWeather$();
+    this.Current$ = this.sessionDataService.getCurrent$();
   }
 
 }

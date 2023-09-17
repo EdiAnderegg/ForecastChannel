@@ -8,4 +8,10 @@
       <img class="symbol-image img-fluid" [src]="Current?.icon">
     </div>
   </div>
+  <div class="body-footer-up">
+    <h1 class="wind-info">
+      {{Current?.wind?.deg | wind}}
+      {{Current?.wind?.speed | speed:'metric'}}
+    </h1>
+  </div>
   </div>

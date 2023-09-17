@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Current } from 'src/app/shares/interfaces/current.interface';
+import { Today } from 'src/app/shares/interfaces/weather.interface';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
 
 @Component({
@@ -11,13 +11,14 @@ import { SessionDataService } from 'src/app/shares/services/session-data.service
 })
 export class TodayComponent implements OnInit {
 
-  public Today$!: Observable<Current | undefined>;
+  public Today$!: Observable<Today | undefined>;
 
   constructor(private readonly sessionDataService: SessionDataService) { }
 
 
   ngOnInit(): void {
-    this.Today$ = this.sessionDataService.getWeather$();
+    this.Today$ = this.sessionDataService.getToday$();
+
   }
 
 }

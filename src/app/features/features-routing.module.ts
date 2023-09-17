@@ -6,6 +6,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { MainComponent } from './main/main.component';
 import { CurrentComponent } from './main/current/current.component';
 import { TodayComponent } from './main/today/today.component';
+import { TomorrowComponent } from './main/tomorrow/tomorrow.component';
 
 const routes: Routes = [
   {path: 'start', component: StartComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
    children:[
     {path: '', redirectTo: 'Current', pathMatch: 'full'},
     {path: 'Current', component: CurrentComponent, data: { animation: 0 }},
-    {path: 'Today', component: TodayComponent, data: { animation: 1 }}
+    {path: 'Today', component: TodayComponent, data: { animation: 1 }},
+    {path: 'Tomorrow', component: TomorrowComponent, data: { animation: 2 }}
    ]
   },
   {path: 'settings', component: SettingsComponent },

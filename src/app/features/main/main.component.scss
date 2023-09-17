@@ -47,6 +47,7 @@
 }
 .header-middle-icon
 {
+  position: absolute;
   z-index: 1;
   margin-top: 3dvh;
   padding: 0;
@@ -54,6 +55,11 @@
 }
 .header-middle-text
 {
+  position: absolute;
+  bottom: 0;
+  right: 16%;
+  width: 54%;
+  text-align: center;
   z-index: 1;
   font-size: 5.5dvh;
 }
@@ -107,7 +113,8 @@
 .body-header
 {
   position: fixed;
-  top: 15dvh;
+  padding: 0;
+  top: 14.8dvh;
   height: 13.1dvh;
   width: 100%;
   z-index: 1;
@@ -131,17 +138,25 @@
 }
 .body-title
 {
-  font-size: 8dvh;
+  position: absolute;
+  top: 6.2dvh;
+  text-align: center;
+  width: 28%;
+  font-size: 4.2dvw;
+  transform: translateY(-50%);
   letter-spacing: -0.02em;
   color: rgb(247, 254, 255);
-  margin: 0 0.7em;
   text-shadow: rgb(34, 34, 34) 0.08em 0.03em;
 
 }
 .body-header-body
 {
+  position: absolute;
   height: 11.5dvh;
-  width: 71.5%;
+  width: 72%;
+  top: 6.55dvh;
+  right: 0;
+  transform: translateY(-50%);
   border-radius: 5.75dvh 0 0 5.75dvh;
   background: linear-gradient(#3b9436 10%,#59e85d);
   border-top: solid rgb(38, 26, 133);
@@ -178,20 +193,6 @@
   width: 100%;
   bottom: 15.5dvh;
   z-index: 1;
-}
-.body-footer-up
-{
-  background: linear-gradient(to right, rgba(255, 255, 255, 0) 52%,rgba(0, 0, 0, 0.3));
-}
-
-.wind-info
-{
-  text-align: end;
-  font-size: 6.6dvh;
-  color: rgb(247, 254, 255);
-  text-shadow: rgb(34, 34, 34) 0.05em 0.03em;
-  margin-bottom: 0dvh;
-  margin-right: 2.3rem;
 }
 
 .body-footer-down
@@ -268,7 +269,11 @@
 
 .footer-left-content
 {
+  position: absolute;
+  width: 100%;
+  top: -0.5dvh;
   z-index: 1;
+  text-align: center;
   font-size: 5.5dvh;
 }
 
@@ -295,13 +300,19 @@
 }
 .footer-middle-icon
 {
+  position: absolute;
+  top: -11dvh;
   z-index: 1;
   padding-bottom: 4%;
-  align-self: end;
   font-size: 14dvh;
 }
 .footer-middle-text
 {
+  position: absolute;
+  top: -0.5dvh;
+  right: 16%;
+  width: 54%;
+  text-align: center;
   z-index: 1;
   font-size: 5.5dvh;
 }
@@ -318,6 +329,10 @@
 }
 .footer-right-content
 {
+  position: absolute;
+  width: 100%;
+  top: -0.5dvh;
+  text-align: center;
   z-index: 1;
   font-size: 5.5dvh;
 }

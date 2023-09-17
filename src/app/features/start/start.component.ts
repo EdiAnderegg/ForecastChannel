@@ -3,7 +3,7 @@ import { take} from 'rxjs';
 import { Router } from '@angular/router';
 import { WeatherService } from 'src/app/shares/services/weather.service';
 import { IconService } from './../../shares/services/icon.service';
-import { Current } from './../../shares/interfaces/current.interface';
+import { Current } from '../../shares/interfaces/weather.interface';
 
 @Component({
   selector: 'app-start',
@@ -29,8 +29,8 @@ export class StartComponent implements OnInit {
       this.weatherService.getCurrentWeather$()
       .pipe(take(1))
       .subscribe((data) =>{
-        this.Current = {...data};
-        this.Current.icon = this.iconService.getIcon(this.Current.description);
+        this.Current = {...data[0]};
+        this.Current!.icon = this.iconService.getIcon(this.Current!.description);
         return this.Current;
       })
     })

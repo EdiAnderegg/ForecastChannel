@@ -40,4 +40,21 @@
   margin-top: 8dvh;
   width: 32dvh;
 }
+.body-footer-up
+{
+  position: absolute;
+  width: 100%;
+  bottom: 7.1dvh;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 52%,rgba(0, 0, 0, 0.3));
+}
+
+.wind-info
+{
+  text-align: end;
+  font-size: 6.6dvh;
+  color: rgb(247, 254, 255);
+  text-shadow: rgb(34, 34, 34) 0.05em 0.03em;
+  margin-bottom: 0dvh;
+  margin-right: 2.3rem;
+}
 /*=======================Body Ends==================*/
