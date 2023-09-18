@@ -7,6 +7,10 @@ import { IconService } from 'src/app/shares/services/icon.service';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { slider } from 'src/app/shares/animation/slide.animation';
+import { fadeInAnimation }  from 'src/app/shares/animation/fade-in.animation';
+
+
+
 
 
 
@@ -14,7 +18,7 @@ import { slider } from 'src/app/shares/animation/slide.animation';
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  animations:[slider]
+  animations:[slider,fadeInAnimation]
 })
 export class MainComponent implements OnInit {
 
@@ -28,6 +32,7 @@ export class MainComponent implements OnInit {
   public actualSite: string[] = ['UV-Index','Current','Today','Tomorrow','5-Day Forecast'];
   public urlTitle : string | undefined = '';
   public currentIndex : number = 1;
+
 
 
   constructor(private readonly weatherService : WeatherService,
@@ -68,8 +73,9 @@ export class MainComponent implements OnInit {
   }
 
 
-  isButtonDisabled(index: number) {
-    return index === 1 || index === this.actualSite.length - 1;
+  isButtonDisabled(index: number): boolean {
+    if(index === 0 || index === this.actualSite.length - 1)return true
+    return false
   }
 
   ngOnInit(): void {

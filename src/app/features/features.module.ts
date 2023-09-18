@@ -14,6 +14,8 @@ import { TomorrowComponent } from './main/tomorrow/tomorrow.component';
 
 
 
+
+
 @NgModule({
   declarations: [
     StartComponent,
@@ -24,7 +26,7 @@ import { TomorrowComponent } from './main/tomorrow/tomorrow.component';
     SpeedPipe,
     CurrentComponent,
     TodayComponent,
-    TomorrowComponent,
+    TomorrowComponent
   ],
   imports: [
     CommonModule,

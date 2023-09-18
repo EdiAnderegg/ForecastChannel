@@ -1,17 +1,17 @@
-<div class="screen"[@routeAnimations]="prepareRoute(outlet)" >
+<div class="screen"[@routeAnimations]="prepareRoute(outlet)">
   <div class="header d-flex">
     <div class="header-left"></div>
-    <div class="header-middle header-btn" (click)="btnSlide(-1)" [attr.disabled]="isButtonDisabled(currentIndex - 1)">
+    <button class="header-middle header-btn" (click)="btnSlide(-1)" [disabled]="isButtonDisabled(currentIndex - 1)">
       <div class="header-middle-content">
         <div class="header-middle-icon"><fa-icon  [icon]="faSortUp"></fa-icon></div>
         <h1 class="header-middle-text">{{actualSite[currentIndex -1]}}</h1>
       </div>
-    </div>
+    </button>
     <div class="header-right header-btn d-flex justify-content-center"><h1 class="header-right-content align-self-end">Settings</h1></div>
   </div>
   <div class="body-header">
-    <h1 class="body-title">
-      {{actualSite[currentIndex] | uppercase}}
+    <h1 class="body-title" [@fadeIn]="'true'">
+      {{ actualSite[currentIndex] | uppercase }}
     </h1>
     <div class="body-header-body align-self-center d-flex justify-content-end">
       <h1 class="body-header-title align-self-center">
@@ -26,7 +26,7 @@
     <div class="body-footer-down d-flex justify-content-between">
       <h2 class="body-footer-brand align-self-center">supported by OpenWeather</h2>
       <h2 class="body-footer-date align-self-center">As of
-        {{ Weather?.time | date: 'h:mm a'}}
+        {{ Weather?.time | date: 'h:mm a'}},
         {{ Weather?.day | date: 'dd/MM'}}
         </h2>
       <div class="body-footer-underline"></div>
@@ -36,12 +36,12 @@
     <div class="footer-left footer-btn" (click)="btnstart()">
       <h1 class="footer-left-content align-self-start">Wii Menu</h1>
     </div>
-    <div class="footer-middle footer-btn" (click)="btnSlide(1)" [attr.disabled]="isButtonDisabled(currentIndex + 1)">
+    <button class="footer-middle footer-btn" (click)="btnSlide(1)" [disabled]="isButtonDisabled(currentIndex + 1)">
       <div class="footer-middle-content">
         <fa-icon class="footer-middle-icon" [icon]="faSortDown"></fa-icon>
         <h1 class="footer-middle-text">{{actualSite[currentIndex +1]}}</h1>
     </div>
-  </div>
+    </button>
   <div class="footer-right footer-btn">
     <h1 class="footer-right-content align-self-start">Globe</h1>
   </div>
