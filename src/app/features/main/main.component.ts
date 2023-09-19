@@ -7,7 +7,7 @@ import { IconService } from 'src/app/shares/services/icon.service';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { slider } from 'src/app/shares/animation/slide.animation';
-import { fadeInAnimation }  from 'src/app/shares/animation/fade-in.animation';
+
 
 
 
@@ -18,7 +18,7 @@ import { fadeInAnimation }  from 'src/app/shares/animation/fade-in.animation';
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  animations:[slider,fadeInAnimation]
+  animations:[slider]
 })
 export class MainComponent implements OnInit {
 

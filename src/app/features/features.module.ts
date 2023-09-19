@@ -11,6 +11,8 @@ import { SpeedPipe } from '../shares/pipes/speed.pipe';
 import { CurrentComponent } from './main/current/current.component';
 import { TodayComponent } from './main/today/today.component';
 import { TomorrowComponent } from './main/tomorrow/tomorrow.component';
+import { FadeInElDirective } from 'src/app/shares/directives/fade-in-el.directive';
+
 
 
 
@@ -26,7 +28,8 @@ import { TomorrowComponent } from './main/tomorrow/tomorrow.component';
     SpeedPipe,
     CurrentComponent,
     TodayComponent,
-    TomorrowComponent
+    TomorrowComponent,
+    FadeInElDirective
   ],
   imports: [
     CommonModule,
