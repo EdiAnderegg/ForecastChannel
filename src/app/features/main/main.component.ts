@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { take } from 'rxjs';
 import { Router, RouterOutlet } from '@angular/router';
 import { Current, Today, Tomorrow, Weather } from 'src/app/shares/interfaces/weather.interface';
@@ -7,6 +7,7 @@ import { IconService } from 'src/app/shares/services/icon.service';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { slider } from 'src/app/shares/animation/slide.animation';
+import { fadeInAnimation } from 'src/app/shares/animation/fade-in.animation';
 
 
 
@@ -18,9 +19,9 @@ import { slider } from 'src/app/shares/animation/slide.animation';
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  animations:[slider]
+  animations:[slider, fadeInAnimation]
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, AfterViewInit {
 
   faSortUp = faSortUp;
   faSortDown = faSortDown;
@@ -32,13 +33,14 @@ export class MainComponent implements OnInit {
   public actualSite: string[] = ['UV-Index','Current','Today','Tomorrow','5-Day Forecast'];
   public urlTitle : string | undefined = '';
   public currentIndex : number = 1;
-
+  public display : boolean = true;
 
 
   constructor(private readonly weatherService : WeatherService,
               private readonly iconService : IconService,
               private readonly sessionDataService : SessionDataService,
-              private readonly router : Router
+              private readonly router : Router,
+              private readonly cd : ChangeDetectorRef
               )
               {}
 
@@ -46,6 +48,13 @@ export class MainComponent implements OnInit {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 
+  private disableDisplay(){
+    this.display = false
+    setTimeout(()=>{
+      return this.display = true
+    },1);
+
+  }
   public btnstart(){
     this.router.navigateByUrl('/start');
   }
@@ -60,16 +69,17 @@ export class MainComponent implements OnInit {
       switch(this.actualSite[newIndex]){
         case'Current':
         this.Weather = this.Current;
-          return
+          break
         case 'Today':
           this.Weather = this.Today;
           this.Weather!.wind.speed = this.Today!.wind.gust
-          return
+          break
         case 'Tomorrow':
           this.Weather = this.Tomorrow;
-          return
+          break
       }
     }
+    this.disableDisplay()
   }
 
 
@@ -81,7 +91,6 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
 
     this.urlTitle = this.router.url.split('/').pop();
-
     if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition((pos)=>{
         this.weatherService.setWeather(pos.coords.latitude,pos.coords.longitude,'metric','');
@@ -125,6 +134,10 @@ export class MainComponent implements OnInit {
         });
       });
     };
+  }
+
+  ngAfterViewInit(): void {
+      this.cd.detectChanges();
   }
 
 }

@@ -79,7 +79,6 @@ export class WeatherService {
         time :  res.list[0].dt,
         day : date.getTime() + 86400000
       }
-      console.log(Tomorrow)
       return Tomorrow
     }));
   }

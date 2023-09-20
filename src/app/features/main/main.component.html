@@ -1,4 +1,4 @@
-<div class="screen"[@routeAnimations]="prepareRoute(outlet)">
+<div class="screen"></div>
   <div class="header d-flex">
     <div class="header-left"></div>
     <button class="header-middle header-btn" (click)="btnSlide(-1)" [disabled]="isButtonDisabled(currentIndex - 1)">
@@ -10,8 +10,8 @@
     <div class="header-right header-btn d-flex justify-content-center"><h1 class="header-right-content align-self-end">Settings</h1></div>
   </div>
   <div class="body-header">
-    <h1 class="body-title" [@fadeIn]="'true'">
-      {{ actualSite[currentIndex] | uppercase }}
+    <h1 class="body-title" *ngIf='display'>
+      <span [@fadeIn]>{{ actualSite[currentIndex] | uppercase }}</span>
     </h1>
     <div class="body-header-body align-self-center d-flex justify-content-end">
       <h1 class="body-header-title align-self-center">
@@ -19,7 +19,7 @@
       </h1>
     </div>
   </div>
-  <div class="body-screen">
+  <div class="body-screen"[@slider]="prepareRoute(outlet)">
     <router-outlet #outlet="outlet"></router-outlet>
   </div>
   <div class="body-footer">
@@ -46,4 +46,4 @@
     <h1 class="footer-right-content align-self-start">Globe</h1>
   </div>
 </div>
-</div>
+

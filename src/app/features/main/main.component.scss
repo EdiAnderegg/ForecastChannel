@@ -1,4 +1,6 @@
 
+
+
 /*===============Reset button==============*/
 button{
 	background: none;
@@ -11,14 +13,14 @@ button{
 }
 /*================button End=========*/
 
-
+/*================Background====================*/
 .screen
 {
   position: relative;
   background-image:linear-gradient(to right ,#4b9ced,#00038b);
   height: 100dvh;
-  overflow: hidden;
 }
+/*=================Background End==================*/
 
 /*==========Header================*/
 .header
@@ -171,7 +173,6 @@ button{
   letter-spacing: -0.02em;
   color: rgb(247, 254, 255);
   text-shadow: rgb(34, 34, 34) 0.08em 0.03em;
-
 }
 .body-header-body
 {
@@ -205,8 +206,10 @@ button{
 .body-screen
 {
   position: absolute;
+  top : 0;
   width: 100%;
   height: 86.5%;
+  overflow: hidden;
 }
 /*==============Body Ends=============*/
 

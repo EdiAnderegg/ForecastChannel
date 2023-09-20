@@ -11,11 +11,6 @@ import { SpeedPipe } from '../shares/pipes/speed.pipe';
 import { CurrentComponent } from './main/current/current.component';
 import { TodayComponent } from './main/today/today.component';
 import { TomorrowComponent } from './main/tomorrow/tomorrow.component';
-import { FadeInElDirective } from 'src/app/shares/directives/fade-in-el.directive';
-
-
-
-
 
 
 @NgModule({
@@ -29,7 +24,6 @@ import { FadeInElDirective } from 'src/app/shares/directives/fade-in-el.directiv
     CurrentComponent,
     TodayComponent,
     TomorrowComponent,
-    FadeInElDirective
   ],
   imports: [
     CommonModule,

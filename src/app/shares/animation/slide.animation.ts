@@ -2,7 +2,7 @@ import { trigger, animate, transition, style, group, query } from '@angular/anim
 
 
 
-export const slider = trigger('routeAnimations', [
+export const slider = trigger('slider', [
   transition(':increment', slideTo('top') ),
   transition(':decrement', slideTo('bottom') ),
 ]);
