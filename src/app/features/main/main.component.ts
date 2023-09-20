@@ -133,7 +133,7 @@ export class MainComponent implements OnInit, AfterViewInit {
         this.weatherService.getWeekWeather$()
         .pipe(take(1))
         .subscribe((data) =>{
-          this.Tomorrow = {...data};
+          this.Tomorrow = {...data[0]};
           this.Tomorrow!.icon = this.iconService.getIcon(this.Tomorrow!.description);
           this.sessionDataService.outputTomorrow(this.Tomorrow);
           switch(this.urlTitle){

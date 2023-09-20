@@ -10,7 +10,6 @@ export interface Weather {
   description: string;
   icon : string;
   time : number;
-  day : number;
 }
 
 
@@ -25,7 +24,6 @@ export interface Current {
   description: string;
   icon : string;
   time : number;
-  day : number;
 }
 
 
@@ -40,7 +38,6 @@ export interface Today {
   description: string;
   icon : string;
   time : number;
-  day : number;
 }
 
 
@@ -55,13 +52,13 @@ export interface Tomorrow {
   description: string;
   icon : string;
   time : number;
-  day : number;
+
 }
 
 export interface week {
   location : string;
-  tempHi : number;
-  tempLow : number;
+  temp1 : number;
+  temp2 : number;
   description : string;
   icon : string;
   day : number;
