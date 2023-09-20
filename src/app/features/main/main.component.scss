@@ -74,8 +74,8 @@ button{
 {
   position: absolute;
   bottom: 0;
-  right: 16%;
-  width: 54%;
+  right: 11%;
+  width: 60%;
   text-align: center;
   z-index: 1;
   font-size: 5.5dvh;
@@ -162,18 +162,31 @@ button{
   width: 25%;
   background: linear-gradient(to right, #277116,#74f940,#277116);
 }
+
 .body-title
 {
   position: absolute;
   top: 6.2dvh;
-  text-align: center;
   width: 28%;
+  text-align: center;
   font-size: 4.2dvw;
+  line-height: 80%;
   transform: translateY(-50%);
   letter-spacing: -0.02em;
   color: rgb(247, 254, 255);
   text-shadow: rgb(34, 34, 34) 0.08em 0.03em;
 }
+
+.small-title
+{
+  font-size: 3dvw;
+}
+
+.normal-title
+{
+  font-size: 4.2dvw;
+}
+
 .body-header-body
 {
   position: absolute;
@@ -338,8 +351,8 @@ button{
 {
   position: absolute;
   top: -0.5dvh;
-  right: 16%;
-  width: 54%;
+  right: 11%;
+  width: 60%;
   text-align: center;
   z-index: 1;
   font-size: 5.5dvh;
@@ -392,6 +405,7 @@ button{
 }
 .footer-btn[disabled]
 {
+  color: rgba(0,0,0,0);
   pointer-events: none;
   user-select: none;
 }

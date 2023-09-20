@@ -11,6 +11,8 @@ import { SpeedPipe } from '../shares/pipes/speed.pipe';
 import { CurrentComponent } from './main/current/current.component';
 import { TodayComponent } from './main/today/today.component';
 import { TomorrowComponent } from './main/tomorrow/tomorrow.component';
+import { WeekComponent } from './main/week/week.component';
+
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import { TomorrowComponent } from './main/tomorrow/tomorrow.component';
     CurrentComponent,
     TodayComponent,
     TomorrowComponent,
+    WeekComponent,
   ],
   imports: [
     CommonModule,

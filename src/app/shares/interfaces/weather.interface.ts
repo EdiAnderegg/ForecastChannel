@@ -57,3 +57,12 @@ export interface Tomorrow {
   time : number;
   day : number;
 }
+
+export interface week {
+  location : string;
+  tempHi : number;
+  tempLow : number;
+  description : string;
+  icon : string;
+  day : number;
+}

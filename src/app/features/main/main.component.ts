@@ -30,9 +30,10 @@ export class MainComponent implements OnInit, AfterViewInit {
   public Today : Today | undefined;
   public Tomorrow : Tomorrow | undefined;
   public Weather : Weather | undefined;
-  public actualSite: string[] = ['UV-Index','Current','Today','Tomorrow','5-Day Forecast'];
+  public actualSite: string[] = ['UV-Index','Current','Today','Tomorrow','5-Day Forecast',''];
   public urlTitle : string | undefined = '';
   public currentIndex : number = 1;
+  public textLength : boolean = false;
   public display : boolean = true;
 
 
@@ -53,7 +54,15 @@ export class MainComponent implements OnInit, AfterViewInit {
     setTimeout(()=>{
       return this.display = true
     },1);
+  }
 
+  private fontSize(){
+    let strLength = document.querySelector('.body-title');
+    if(strLength!.textContent!.length >= 10){
+      strLength?.classList.add('small-title');
+    } else{
+      strLength?.classList.add('normal-title');
+    }
   }
   public btnstart(){
     this.router.navigateByUrl('/start');
@@ -64,19 +73,25 @@ export class MainComponent implements OnInit, AfterViewInit {
     const newIndex = this.currentIndex + increment;
     if (newIndex >= 1 && newIndex < this.actualSite.length) {
       this.currentIndex = newIndex;
-      this.router.navigateByUrl(`main/${this.actualSite[newIndex]}`);
+      this.router.navigateByUrl(`main/${this.actualSite[newIndex].split(" ").join('.')}`);
 
       switch(this.actualSite[newIndex]){
         case'Current':
         this.Weather = this.Current;
+        this.textLength = false;
           break
         case 'Today':
           this.Weather = this.Today;
           this.Weather!.wind.speed = this.Today!.wind.gust
+          this.textLength = false;
           break
         case 'Tomorrow':
           this.Weather = this.Tomorrow;
+          this.textLength = false;
           break
+        case'5-Day Forecast':
+        this.Weather = this.Tomorrow;
+        this.textLength = true;
       }
     }
     this.disableDisplay()
@@ -126,9 +141,10 @@ export class MainComponent implements OnInit, AfterViewInit {
               this.Weather = this.Tomorrow;
               this.currentIndex = 3;
               return
-            case '5-Day Forecast':
+            case '5-Day.Forecast':
               this.Weather = this.Tomorrow;
               this.currentIndex = 4;
+              this.textLength = true;
               return
           }
         });
@@ -137,6 +153,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+      this.fontSize();
       this.cd.detectChanges();
   }
 

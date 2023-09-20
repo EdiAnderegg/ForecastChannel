@@ -7,6 +7,8 @@ import { MainComponent } from './main/main.component';
 import { CurrentComponent } from './main/current/current.component';
 import { TodayComponent } from './main/today/today.component';
 import { TomorrowComponent } from './main/tomorrow/tomorrow.component';
+import { WeekComponent } from './main/week/week.component';
+
 
 const routes: Routes = [
   {path: 'start', component: StartComponent },
@@ -15,7 +17,9 @@ const routes: Routes = [
     {path: '', redirectTo: 'Current', pathMatch: 'full'},
     {path: 'Current', component: CurrentComponent, data: { animation: 0 }},
     {path: 'Today', component: TodayComponent, data: { animation: 1 }},
-    {path: 'Tomorrow', component: TomorrowComponent, data: { animation: 2 }}
+    {path: 'Tomorrow', component: TomorrowComponent, data: { animation: 2 }},
+    {path: '5-Day.Forecast', component: WeekComponent, data: { animation: 3 }},
+    {path: '**', component: CurrentComponent}
    ]
   },
   {path: 'settings', component: SettingsComponent },
