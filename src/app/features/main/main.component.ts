@@ -1,7 +1,7 @@
 import { Component, OnInit,ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { take } from 'rxjs';
 import { Router, RouterOutlet } from '@angular/router';
-import { Current, Today, Tomorrow, Weather } from 'src/app/shares/interfaces/weather.interface';
+import { Current, Today, Tomorrow, Weather, weekArr } from 'src/app/shares/interfaces/weather.interface';
 import { WeatherService } from 'src/app/shares/services/weather.service';
 import { IconService } from 'src/app/shares/services/icon.service';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
@@ -29,6 +29,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   public Current : Current | undefined;
   public Today : Today | undefined;
   public Tomorrow : Tomorrow | undefined;
+  public Week : weekArr | undefined;
   public Weather : Weather | undefined;
   public actualSite: string[] = ['UV-Index','Current','Today','Tomorrow','5-Day Forecast',''];
   public urlTitle : string | undefined = '';
@@ -82,7 +83,6 @@ export class MainComponent implements OnInit, AfterViewInit {
           break
         case 'Today':
           this.Weather = this.Today;
-          this.Weather!.wind.speed = this.Today!.wind.gust
           this.textLength = false;
           break
         case 'Tomorrow':
@@ -90,7 +90,7 @@ export class MainComponent implements OnInit, AfterViewInit {
           this.textLength = false;
           break
         case'5-Day Forecast':
-        this.Weather = this.Tomorrow;
+        this.Weather = this.Week;
         this.textLength = true;
       }
     }
@@ -136,13 +136,19 @@ export class MainComponent implements OnInit, AfterViewInit {
           this.Tomorrow = {...data[0]};
           this.Tomorrow!.icon = this.iconService.getIcon(this.Tomorrow!.description);
           this.sessionDataService.outputTomorrow(this.Tomorrow);
+          this.Week = {...data[1]};
+          for(let i = 0; i <= 4; i++){
+            this.Week!.days[i]!.icon = this.iconService.getIcon(this.Week!.days[i]!.description);
+          }
+          this.sessionDataService.outputWeek(this.Week);
+
           switch(this.urlTitle){
             case'Tomorrow':
-              this.Weather = this.Tomorrow;
+            this.Weather = this.Tomorrow;
               this.currentIndex = 3;
               return
             case '5-Day.Forecast':
-              this.Weather = this.Tomorrow;
+              this.Weather = this.Week;
               this.currentIndex = 4;
               this.textLength = true;
               return

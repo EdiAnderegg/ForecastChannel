@@ -1,14 +1,6 @@
 
 export interface Weather {
   location : string;
-  temperature : number;
-  wind: {
-    speed: number;
-    deg: number;
-    gust: number;
-  };
-  description: string;
-  icon : string;
   time : number;
 }
 
@@ -56,10 +48,16 @@ export interface Tomorrow {
 }
 
 export interface week {
-  location : string;
   temp1 : number;
   temp2 : number;
   description : string;
   icon : string;
   day : number;
+}
+
+
+export interface weekArr {
+  location : string;
+  time : number;
+  days : any[];
 }

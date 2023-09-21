@@ -1,9 +1,8 @@
-import { Weather } from 'src/app/shares/interfaces/weather.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { User } from '../interfaces/user.interface';
-import { Current, Today, Tomorrow, week } from '../interfaces/weather.interface';
+import { Current, Today, Tomorrow, week, weekArr } from '../interfaces/weather.interface';
 
 
 @Injectable({
@@ -61,12 +60,9 @@ export class WeatherService {
   }
 
   public getWeekWeather$(): Observable<any>{
-    const Weather :any[] = [];
-    const WeekArr : any[] = [];
+    const Weather : any[] = [];
     return this.http.get<any>(this.buildWeekUrl())
     .pipe(map((res)=>{
-      console.log('Tomorrow:')
-      console.log(res)
       const Tomorrow : Tomorrow = {
         location : res.city.name,
         temperature : res.list[8].main.temp,
@@ -78,19 +74,21 @@ export class WeatherService {
         icon : res.list[8].weather[0].main,
         time :  new Date(res.list[8].dt_txt).getTime()
       }
-
+      const WeekArr : weekArr = {
+        location : res.city.name,
+        time : new Date(res.list[0].dt_txt).getTime(),
+        days : []
+      }
       for(let i = 0; i < res.list.length; i+=8)
       {
-        console.log(i)
         const day : week = {
-          location : res.city.name,
           temp1 : res.list[i].main.temp_max,
           temp2 : res.list[i+7].main.temp_min,
           description : res.list[i].weather[0].description,
           icon : res.list[i].weather[0].main,
-          day : new Date(res.list[i].dt_txt).getTime()
+          day : new Date(res.list[i].dt_txt).getDay()
         }
-        WeekArr.push(day);
+        WeekArr.days.push(day);
       }
       Weather.push(Tomorrow, WeekArr);
       return Weather;

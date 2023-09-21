@@ -1,1 +1,14 @@
-<p>week works!</p>
+<div class="body" *ngIf="Week$ | async as Week">
+  <div class="content d-flex justify-content-between">
+    <div class="card" *ngFor="let day of Week.days">
+      <div class="card-header">
+        {{day?.day}}
+      </div>
+      <img [src]="day?.icon" class="card-img-top" [alt]="day?.description">
+      <div class="card-body">
+        <h1 class="card-title">{{day?.temp1}}</h1>
+        <h1 class="card-title">{{day?.temp2}}</h1>
+      </div>
+    </div>
+  </div>
+  </div>
