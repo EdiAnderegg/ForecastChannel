@@ -1,5 +1,5 @@
 <div class="body" *ngIf="Week$ | async as Week">
-  <div class="content d-flex justify-content-between">
+  <div class="content d-flex justify-content-center">
     <div class="card" *ngFor="let day of Week.days">
       <div class="card-header">
         {{day?.day}}

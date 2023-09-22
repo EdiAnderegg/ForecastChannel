@@ -16,12 +16,35 @@
   width: 100%;
   height: 49.3dvh;
   top: 15.3dvh;
+  gap: 0.9%
 }
-
+/*==================Card Starts===================*/
 .card
 {
+  background-image:linear-gradient(to bottom,#063bff 30%,#080c68);
   width: 18%;
+  height: 100%;
   z-index: 0;
 }
 
+.card-header
+{
+
+}
+
+.card-img-top
+{
+
+}
+
+.body
+{
+
+}
+
+.card-title
+{
+
+}
+/*=====================Card Ends=====================*/
 /*=======================Body Ends==================*/
