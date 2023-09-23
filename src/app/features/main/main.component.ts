@@ -3,11 +3,13 @@ import { take } from 'rxjs';
 import { Router, RouterOutlet } from '@angular/router';
 import { Current, Today, Tomorrow, Weather, weekArr } from 'src/app/shares/interfaces/weather.interface';
 import { WeatherService } from 'src/app/shares/services/weather.service';
+import { UvIndexService } from 'src/app/shares/services/uv-index.service';
 import { IconService } from 'src/app/shares/services/icon.service';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { slider } from 'src/app/shares/animation/slide.animation';
 import { fadeInAnimation } from 'src/app/shares/animation/fade-in.animation';
+import { UV } from 'src/app/shares/interfaces/uv.interface';
 
 
 
@@ -26,12 +28,13 @@ export class MainComponent implements OnInit, AfterViewInit {
   faSortUp = faSortUp;
   faSortDown = faSortDown;
 
+  public uv : UV | undefined;
   public Current : Current | undefined;
   public Today : Today | undefined;
   public Tomorrow : Tomorrow | undefined;
   public Week : weekArr | undefined;
   public Weather : Weather | undefined;
-  public actualSite: string[] = ['UV-Index','Current','Today','Tomorrow','5-Day Forecast',''];
+  public actualSite: string[] = ['','UV-Index','Current','Today','Tomorrow','5-Day Forecast',''];
   public urlTitle : string | undefined = '';
   public currentIndex : number = 1;
   public textLength : boolean = false;
@@ -42,7 +45,8 @@ export class MainComponent implements OnInit, AfterViewInit {
               private readonly iconService : IconService,
               private readonly sessionDataService : SessionDataService,
               private readonly router : Router,
-              private readonly cd : ChangeDetectorRef
+              private readonly cd : ChangeDetectorRef,
+              private readonly uvService : UvIndexService
               )
               {}
 
@@ -77,6 +81,10 @@ export class MainComponent implements OnInit, AfterViewInit {
       this.router.navigateByUrl(`main/${this.actualSite[newIndex].split(" ").join('.')}`);
 
       switch(this.actualSite[newIndex]){
+        case'UV-Index':
+        this.Weather = this.Current;
+        this.textLength = false;
+        break
         case'Current':
         this.Weather = this.Current;
         this.textLength = false;
@@ -109,6 +117,7 @@ export class MainComponent implements OnInit, AfterViewInit {
     if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition((pos)=>{
         this.weatherService.setWeather(pos.coords.latitude,pos.coords.longitude,'metric','');
+        //this.uvService.setUV(pos.coords.latitude, pos.coords.longitude);
         this.weatherService.getCurrentWeather$()
         .pipe(take(1))
         .subscribe((data) =>{
@@ -122,11 +131,11 @@ export class MainComponent implements OnInit, AfterViewInit {
           switch(this.urlTitle){
             case'Current':
               this.Weather = this.Current;
-              this.currentIndex = 1;
+              this.currentIndex = 2;
               return
             case 'Today':
               this.Weather = this.Today;
-              this.currentIndex = 2;
+              this.currentIndex = 3;
               return
           }
         });
@@ -145,15 +154,29 @@ export class MainComponent implements OnInit, AfterViewInit {
           switch(this.urlTitle){
             case'Tomorrow':
             this.Weather = this.Tomorrow;
-              this.currentIndex = 3;
+              this.currentIndex = 4;
               return
             case '5-Day.Forecast':
               this.Weather = this.Week;
-              this.currentIndex = 4;
+              this.currentIndex = 5;
               this.textLength = true;
               return
           }
         });
+        /*this.uvService.getUV$()
+        .pipe(take(1))
+        .subscribe((data)=>{
+          this.uv = {...data};
+          this.sessionDataService.outputUv(this.uv);
+          if(this.urlTitle === 'UV-Index'){
+           this.currentIndex = 1;
+           setTimeout(()=>{
+            this.Weather = this.Current;
+           },1)
+           return
+          }
+
+        });*/
       });
     };
   }

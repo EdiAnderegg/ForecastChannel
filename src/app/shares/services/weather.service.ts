@@ -83,7 +83,7 @@ export class WeatherService {
       {
         const day : week = {
           temp1 : res.list[i].main.temp_max,
-          temp2 : res.list[i+7].main.temp_min,
+          temp2 : res.list[i+4].main.temp_min,
           description : res.list[i].weather[0].description,
           icon : res.list[i].weather[0].main,
           day : new Date(res.list[i].dt_txt).getDay()

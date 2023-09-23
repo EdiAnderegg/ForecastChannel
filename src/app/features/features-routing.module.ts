@@ -8,6 +8,7 @@ import { CurrentComponent } from './main/current/current.component';
 import { TodayComponent } from './main/today/today.component';
 import { TomorrowComponent } from './main/tomorrow/tomorrow.component';
 import { WeekComponent } from './main/week/week.component';
+import { UvIndexComponent } from './main/uv-index/uv-index.component';
 
 
 const routes: Routes = [
@@ -15,10 +16,11 @@ const routes: Routes = [
   {path: 'main', component: MainComponent,
    children:[
     {path: '', redirectTo: 'Current', pathMatch: 'full'},
-    {path: 'Current', component: CurrentComponent, data: { animation: 0 }},
-    {path: 'Today', component: TodayComponent, data: { animation: 1 }},
-    {path: 'Tomorrow', component: TomorrowComponent, data: { animation: 2 }},
-    {path: '5-Day.Forecast', component: WeekComponent, data: { animation: 3 }},
+    {path: 'UV-Index', component: UvIndexComponent, data: { animation: 0}},
+    {path: 'Current', component: CurrentComponent, data: { animation: 1 }},
+    {path: 'Today', component: TodayComponent, data: { animation: 2 }},
+    {path: 'Tomorrow', component: TomorrowComponent, data: { animation: 3 }},
+    {path: '5-Day.Forecast', component: WeekComponent, data: { animation: 4 }},
     {path: '**', component: CurrentComponent}
    ]
   },

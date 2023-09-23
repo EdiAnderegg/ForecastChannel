@@ -14,6 +14,11 @@ export class WeekComponent implements OnInit {
 
   constructor(private readonly sessionDataService: SessionDataService){}
 
+  public isWeekend(weekDay: number): boolean{
+    if(weekDay === 6 || weekDay === 0) return true;
+    return false;
+  }
+
   ngOnInit(): void {
     this.Week$ = this.sessionDataService.getWeek$();
   }

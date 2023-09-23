@@ -8,10 +8,13 @@ import { SettingsComponent } from './settings/settings.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { WindPipe } from '../shares/pipes/wind.pipe';
 import { SpeedPipe } from '../shares/pipes/speed.pipe';
+import { WeekPipe } from '../shares/pipes/week.pipe';
+import { HighlightDirectiv } from '../shares/directives/highlight.directive';
 import { CurrentComponent } from './main/current/current.component';
 import { TodayComponent } from './main/today/today.component';
 import { TomorrowComponent } from './main/tomorrow/tomorrow.component';
 import { WeekComponent } from './main/week/week.component';
+import { UvIndexComponent } from './main/uv-index/uv-index.component';
 
 
 
@@ -23,10 +26,13 @@ import { WeekComponent } from './main/week/week.component';
     SettingsComponent,
     WindPipe,
     SpeedPipe,
+    WeekPipe,
+    HighlightDirectiv,
     CurrentComponent,
     TodayComponent,
     TomorrowComponent,
     WeekComponent,
+    UvIndexComponent,
   ],
   imports: [
     CommonModule,

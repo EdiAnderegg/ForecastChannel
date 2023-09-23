@@ -1,12 +1,14 @@
 import { Current, Today, Tomorrow, weekArr } from '../interfaces/weather.interface';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { UV } from '../interfaces/uv.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionDataService {
 
+  private UV = new BehaviorSubject<UV | undefined>(undefined);
   private Current = new BehaviorSubject<Current | undefined>(undefined);
   private Today = new BehaviorSubject<Today | undefined>(undefined);
   private Tomorrow = new BehaviorSubject<Tomorrow | undefined>(undefined);
@@ -29,6 +31,10 @@ export class SessionDataService {
     this.Week.next(WeatherObject);
   }
 
+  public outputUv(UvObject: UV | undefined):void{
+    this.UV.next(UvObject);
+  }
+
   public getCurrent$(): Observable<Current | undefined> {
     return this.Current.asObservable();
   };
@@ -42,6 +48,10 @@ export class SessionDataService {
 
   public getWeek$(): Observable<weekArr | undefined>{
     return this.Week.asObservable();
+  }
+
+  public getUv$(): Observable<UV | undefined>{
+    return this.UV.asObservable();
   }
 
   constructor() {
