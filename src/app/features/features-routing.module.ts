@@ -16,11 +16,11 @@ const routes: Routes = [
   {path: 'main', component: MainComponent,
    children:[
     {path: '', redirectTo: 'Current', pathMatch: 'full'},
-    {path: 'UV-Index', component: UvIndexComponent, data: { animation: 0}},
+    {path: 'UV_Index', component: UvIndexComponent, data: { animation: 0}},
     {path: 'Current', component: CurrentComponent, data: { animation: 1 }},
     {path: 'Today', component: TodayComponent, data: { animation: 2 }},
     {path: 'Tomorrow', component: TomorrowComponent, data: { animation: 3 }},
-    {path: '5-Day.Forecast', component: WeekComponent, data: { animation: 4 }},
+    {path: '5-Day_Forecast', component: WeekComponent, data: { animation: 4 }},
     {path: '**', component: CurrentComponent}
    ]
   },

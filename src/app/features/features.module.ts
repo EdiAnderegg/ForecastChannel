@@ -18,6 +18,7 @@ import { UvIndexComponent } from './main/uv-index/uv-index.component';
 
 
 
+
 @NgModule({
   declarations: [
     StartComponent,

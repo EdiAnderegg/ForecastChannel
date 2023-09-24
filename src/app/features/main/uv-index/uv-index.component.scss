@@ -17,12 +17,92 @@
   left: 56.6%;
   transform: translateX(-50%);
 }
-/*========Container======*/
-
-/*========Container ends=========*/
 
 /*========Header===========*/
+.header
+{
+  background-color: #02449b;
+  position: absolute;
+  width: 100%;
+  height: 23%;
+  box-shadow: 0 -0.25dvh 0 0 rgb(163, 199, 246);
+}
 
+.title
+{
+  position: absolute;
+  font-size: 5dvh;
+  top: 50%;
+  left: 54.2%;
+  transform: translate(-50%,-50%);
+  color: rgb(247, 254, 255);
+  text-shadow: rgb(34, 34, 34) 0.05em 0.01em;
+  word-spacing: 0.5dvh;
+}
+
+.img
+{
+  position: absolute;
+  top: 40%;
+  left: 1%;
+  transform: translate(-50%,-50%);
+  z-index: 1;
+}
+.icon
+{
+  width: 22dvh;
+}
 /*=======Header ends=======*/
+
+/*=======Footer==========*/
+.footer
+{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 74%
+}
+.left
+{
+  position: relative;
+  background: rgba(255, 255, 255, 0.2);
+  height: 100%;
+  width: 27%;
+  box-shadow: -0.15dvh -0.15dvh 0 0.15dvh rgb(163, 199, 246);
+}
+.left-content
+{
+  position: absolute;
+  font-size: 13dvh;
+  color: rgb(247, 254, 255);
+  text-shadow: rgb(34, 34, 34) 0.04em 0.02em;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
+}
+.right
+{
+  position: relative;
+  background: rgba(255, 255, 255, 0.2);
+  height: 100%;
+  width: 71%;
+  box-shadow: -0.15dvh -0.15dvh 0 0.15dvh rgb(163, 199, 246);
+}
+
+.right-content
+{
+  position: absolute;
+  font-size: 6.8dvh;
+  color: rgb(247, 254, 255);
+  text-shadow: rgb(34, 34, 34) 0.04em 0.02em;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
+}
+
+/*=======Footer ends=====*/
 
 /*=======Body Ends==========*/

@@ -6,15 +6,15 @@ import { Injectable } from '@angular/core';
 export class IconService {
 
   private icon : string[] = [
-    'assets/img/01d.png',
-    'assets/img/02d.png',
-    'assets/img/03d.png',
-    'assets/img/04d.png',
-    'assets/img/09d.png',
-    'assets/img/10d.png',
-    'assets/img/11d.png',
-    'assets/img/13d.png',
-    'assets/img/50d.png'
+    'assets/img/icon/day/01d.png',
+    'assets/img/icon/day/02d.png',
+    'assets/img/icon/day/03d.png',
+    'assets/img/icon/day/04d.png',
+    'assets/img/icon/day/09d.png',
+    'assets/img/icon/day/10d.png',
+    'assets/img/icon/day/11d.png',
+    'assets/img/icon/day/13d.png',
+    'assets/img/icon/day/50d.png'
   ];
 
    public getIcon(condition: string):any{

@@ -34,7 +34,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   public Tomorrow : Tomorrow | undefined;
   public Week : weekArr | undefined;
   public Weather : Weather | undefined;
-  public actualSite: string[] = ['','UV-Index','Current','Today','Tomorrow','5-Day Forecast',''];
+  public actualSite: string[] = ['','UV Index','Current','Today','Tomorrow','5-Day Forecast',''];
   public urlTitle : string | undefined = '';
   public currentIndex : number = 1;
   public textLength : boolean = false;
@@ -78,10 +78,10 @@ export class MainComponent implements OnInit, AfterViewInit {
     const newIndex = this.currentIndex + increment;
     if (newIndex >= 1 && newIndex < this.actualSite.length) {
       this.currentIndex = newIndex;
-      this.router.navigateByUrl(`main/${this.actualSite[newIndex].split(" ").join('.')}`);
+      this.router.navigateByUrl(`main/${this.actualSite[newIndex].split(" ").join('_')}`);
 
       switch(this.actualSite[newIndex]){
-        case'UV-Index':
+        case'UV_Index':
         this.Weather = this.Current;
         this.textLength = false;
         break
@@ -97,7 +97,7 @@ export class MainComponent implements OnInit, AfterViewInit {
           this.Weather = this.Tomorrow;
           this.textLength = false;
           break
-        case'5-Day Forecast':
+        case'5-Day_Forecast':
         this.Weather = this.Week;
         this.textLength = true;
       }
