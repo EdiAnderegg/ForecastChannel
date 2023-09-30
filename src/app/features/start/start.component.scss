@@ -228,21 +228,11 @@
   transition: all .1s;
 }
 
-.bttn:hover
-{
-  transform: scale(1.08);
-}
-
-.bttn:active
-{
-  transform: scale(1);
-  transition: 0s;
-}
-
-.bttnwrapper:active
-{
-  background: white;
-  opacity: 0.1;
+@media(hover:hover){
+  .bttn:hover
+  {
+    transform: scale(1.08);
+  }
 }
 
 .bttn::before,

@@ -61,14 +61,6 @@ export class MainComponent implements OnInit, AfterViewInit {
     },1);
   }
 
-  private fontSize(){
-    let strLength = document.querySelector('.body-title');
-    if(strLength!.textContent!.length >= 10){
-      strLength?.classList.add('small-title');
-    } else{
-      strLength?.classList.add('normal-title');
-    }
-  }
   public btnstart(){
     this.router.navigateByUrl('/start');
   }
@@ -81,7 +73,7 @@ export class MainComponent implements OnInit, AfterViewInit {
       this.router.navigateByUrl(`main/${this.actualSite[newIndex].split(" ").join('_')}`);
 
       switch(this.actualSite[newIndex]){
-        case'UV_Index':
+        case'UV Index':
         this.Weather = this.Current;
         this.textLength = false;
         break
@@ -97,9 +89,10 @@ export class MainComponent implements OnInit, AfterViewInit {
           this.Weather = this.Tomorrow;
           this.textLength = false;
           break
-        case'5-Day_Forecast':
+        case'5-Day Forecast':
         this.Weather = this.Week;
         this.textLength = true;
+          break
       }
     }
     this.disableDisplay()
@@ -156,7 +149,7 @@ export class MainComponent implements OnInit, AfterViewInit {
             this.Weather = this.Tomorrow;
               this.currentIndex = 4;
               return
-            case '5-Day.Forecast':
+            case '5-Day_Forecast':
               this.Weather = this.Week;
               this.currentIndex = 5;
               this.textLength = true;
@@ -182,7 +175,6 @@ export class MainComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-      this.fontSize();
       this.cd.detectChanges();
   }
 
