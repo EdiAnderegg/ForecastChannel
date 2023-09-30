@@ -46,7 +46,7 @@ export class MainComponent implements OnInit, AfterViewInit {
               private readonly sessionDataService : SessionDataService,
               private readonly router : Router,
               private readonly cd : ChangeDetectorRef,
-              private readonly uvService : UvIndexService
+              private readonly uvService : UvIndexService,
               )
               {}
 
@@ -63,6 +63,10 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   public btnstart(){
     this.router.navigateByUrl('/start');
+  }
+
+  public btnSettings(){
+    this.router.navigateByUrl('/settings');
   }
 
   public btnSlide(increment: number){

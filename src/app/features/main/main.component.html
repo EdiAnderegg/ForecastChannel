@@ -7,7 +7,7 @@
         <h1 class="header-middle-text">{{actualSite[currentIndex -1]}}</h1>
       </div>
     </button>
-    <div class="header-right header-btn d-flex justify-content-center"><h1 class="header-right-content align-self-end">Settings</h1></div>
+    <div class="header-right header-btn d-flex justify-content-center" (click)="btnSettings()"><h1 class="header-right-content align-self-end">Settings</h1></div>
   </div>
   <div class="body-header">
     <h1 class="body-title" *ngIf='display' [style]="textLength ? 'font-size: 7dvh': 'font-size: 4.2dvw'">

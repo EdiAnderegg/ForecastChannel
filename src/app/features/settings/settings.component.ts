@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PreviousRouteService } from 'src/app/shares/services/previous-route.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -7,8 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private readonly previousRouteService: PreviousRouteService,
+              private readonly router: Router) {}
 
+  public getBack(){
+    this.router.navigateByUrl(this.previousRouteService.getPreviousUrl());
+  }
   ngOnInit(): void {
   }
 
