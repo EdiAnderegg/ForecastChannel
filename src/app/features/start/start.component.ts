@@ -25,7 +25,7 @@ export class StartComponent implements OnInit {
  ngOnInit():void {
   if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition((pos)=>{
-      this.weatherService.setWeather(pos.coords.latitude,pos.coords.longitude,'metric','');
+      this.weatherService.setWeather(pos.coords.latitude,pos.coords.longitude,'metric','','');
       this.weatherService.getCurrentWeather$()
       .pipe(take(1))
       .subscribe((data) =>{

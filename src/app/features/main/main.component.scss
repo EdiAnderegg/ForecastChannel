@@ -25,7 +25,6 @@ button{
 /*==========Header================*/
 .header
 {
-  user-select: none;
   position: fixed;
   top: -2dvh;
   height: 15.5dvh;
@@ -100,7 +99,7 @@ button{
 @media(hover:hover){
   .header-btn:hover
   {
-    user-select: none;
+
     cursor: pointer;
     color:rgb(247, 254, 255);
   }
@@ -131,7 +130,6 @@ button{
 .header-btn[disabled]
 {
   pointer-events: none;
-  user-select: none;
   color: rgba(0,0,0,0);
 }
 
@@ -285,7 +283,6 @@ button{
   height: 13.5dvh;
   width: 100%;
   overflow: hidden;
-  user-select: none;
 }
 .footer-left
 {
@@ -372,7 +369,6 @@ button{
 @media(hover:hover){
   .footer-btn:hover
 {
-  user-select: none;
   cursor: pointer;
   color:rgb(247, 254, 255);
 }
@@ -402,6 +398,5 @@ button{
 {
   color: rgba(0,0,0,0);
   pointer-events: none;
-  user-select: none;
 }
 /*==========Footer Ends==========*/

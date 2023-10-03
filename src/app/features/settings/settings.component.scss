@@ -125,7 +125,7 @@ button{
   height: 100%;
 }
 
-.right-btn
+.settings-btn
 {
   position: absolute;
   top: -1dvh;
@@ -164,6 +164,7 @@ button{
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 1;
   background: rgba(0, 132, 255, 0.65);
 }
 }
@@ -177,12 +178,7 @@ button{
   top: -1dvh;
   transition: 100ms;
 }
-.settings-btn[disabled]
-{
-  color: rgba(0,0,0,0);
-  pointer-events: none;
-  user-select: none;
-}
+
 /*==============Cart Ends============*/
 
 

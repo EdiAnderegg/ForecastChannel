@@ -15,16 +15,16 @@ export class WeatherService {
   private weekUrl : string = 'https://api.openweathermap.org/data/2.5/forecast';
   private settings! : User;
 
-  public setWeather(lat : number, lon : number, unit : string, location : string){
-    this.settings = {lat : lat, lon : lon, units : unit, location : location};
+  public setWeather(lat : number, lon : number, tempUnit : string, windSpeed : string, location : string){
+    this.settings = {lat : lat, lon : lon, tempUnit : tempUnit, windSpeed : windSpeed, location : location};
   }
 
   private buildUrl(): string{
-    return`${this.url}?lat=${this.settings.lat}&lon=${this.settings.lon}&appid=${this.api}&units=${this.settings.units}`;
+    return`${this.url}?lat=${this.settings.lat}&lon=${this.settings.lon}&appid=${this.api}&units=${this.settings.tempUnit}`;
   }
 
   private buildWeekUrl() : string{
-    return `${this.weekUrl}?lat=${this.settings.lat}&lon=${this.settings.lon}&appid=${this.api}&units=${this.settings.units}`;
+    return `${this.weekUrl}?lat=${this.settings.lat}&lon=${this.settings.lon}&appid=${this.api}&units=${this.settings.tempUnit}`;
   }
 
   public getCurrentWeather$(): Observable<any>{

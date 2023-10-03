@@ -25,7 +25,7 @@ export class UvIndexService {
   constructor(private readonly http: HttpClient) {}
 
   public setUV(lat : number, lon : number){
-    this.settings = {lat : lat, lon : lon, units : '', location : ''};
+    this.settings = {lat : lat, lon : lon, tempUnit : '',windSpeed : '', location : ''};
   }
 
   private buildUrl(): string{

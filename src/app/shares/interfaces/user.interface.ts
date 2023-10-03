@@ -1,6 +1,8 @@
+
 export interface User {
   lat : number;
   lon : number;
-  units : string;
+  tempUnit : string;
+  windSpeed : string;
   location : string;
 }

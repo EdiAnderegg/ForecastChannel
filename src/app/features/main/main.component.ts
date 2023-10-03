@@ -1,7 +1,9 @@
+
 import { Component, OnInit,ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { take } from 'rxjs';
 import { Router, RouterOutlet } from '@angular/router';
 import { Current, Today, Tomorrow, Weather, weekArr } from 'src/app/shares/interfaces/weather.interface';
+import { User } from 'src/app/shares/interfaces/user.interface';
 import { WeatherService } from 'src/app/shares/services/weather.service';
 import { UvIndexService } from 'src/app/shares/services/uv-index.service';
 import { IconService } from 'src/app/shares/services/icon.service';
@@ -34,6 +36,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   public Tomorrow : Tomorrow | undefined;
   public Week : weekArr | undefined;
   public Weather : Weather | undefined;
+  public User : User | undefined;
   public actualSite: string[] = ['','UV Index','Current','Today','Tomorrow','5-Day Forecast',''];
   public urlTitle : string | undefined = '';
   public currentIndex : number = 1;
@@ -41,7 +44,8 @@ export class MainComponent implements OnInit, AfterViewInit {
   public display : boolean = true;
 
 
-  constructor(private readonly weatherService : WeatherService,
+  constructor(
+              private readonly weatherService : WeatherService,
               private readonly iconService : IconService,
               private readonly sessionDataService : SessionDataService,
               private readonly router : Router,
@@ -113,7 +117,7 @@ export class MainComponent implements OnInit, AfterViewInit {
     this.urlTitle = this.router.url.split('/').pop();
     if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition((pos)=>{
-        this.weatherService.setWeather(pos.coords.latitude,pos.coords.longitude,'metric','');
+        this.weatherService.setWeather(pos.coords.latitude,pos.coords.longitude,'metric','km/h','');
         //this.uvService.setUV(pos.coords.latitude, pos.coords.longitude);
         this.weatherService.getCurrentWeather$()
         .pipe(take(1))
@@ -124,6 +128,14 @@ export class MainComponent implements OnInit, AfterViewInit {
           this.Today = {...data[1]};
           this.Today!.icon = this.iconService.getIcon(this.Today!.description);
           this.sessionDataService.outputToday(this.Today);
+
+          this.sessionDataService.outputUser({
+            lat : 0,
+            lon : 0,
+            tempUnit : 'metric',
+            windSpeed : data[0].wind.speed,
+            location : data[0].location
+          });
 
           switch(this.urlTitle){
             case'Current':
@@ -172,7 +184,6 @@ export class MainComponent implements OnInit, AfterViewInit {
            },1)
            return
           }
-
         });*/
       });
     };
@@ -181,5 +192,4 @@ export class MainComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
       this.cd.detectChanges();
   }
-
 }
