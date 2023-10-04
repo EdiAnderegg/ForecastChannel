@@ -14,12 +14,16 @@ export class WeatherService {
   private url : string = 'https://api.openweathermap.org/data/2.5/weather';
   private weekUrl : string = 'https://api.openweathermap.org/data/2.5/forecast';
   private settings! : User;
+  public isSet : boolean = false;
 
   public setWeather(lat : number, lon : number, tempUnit : string, windSpeed : string, location : string){
     this.settings = {lat : lat, lon : lon, tempUnit : tempUnit, windSpeed : windSpeed, location : location};
   }
 
   private buildUrl(): string{
+    if(this.settings.location.length > 0){
+      return `${this.url}?q=${this.settings.location}&appid=${this.api}&units=${this.settings.tempUnit}`;
+    }
     return`${this.url}?lat=${this.settings.lat}&lon=${this.settings.lon}&appid=${this.api}&units=${this.settings.tempUnit}`;
   }
 

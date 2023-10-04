@@ -14,11 +14,6 @@ import { fadeInAnimation } from 'src/app/shares/animation/fade-in.animation';
 import { UV } from 'src/app/shares/interfaces/uv.interface';
 
 
-
-
-
-
-
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -81,11 +76,11 @@ export class MainComponent implements OnInit, AfterViewInit {
       this.router.navigateByUrl(`main/${this.actualSite[newIndex].split(" ").join('_')}`);
 
       switch(this.actualSite[newIndex]){
-        case'UV Index':
+        case 'UV Index':
         this.Weather = this.Current;
         this.textLength = false;
         break
-        case'Current':
+        case 'Current':
         this.Weather = this.Current;
         this.textLength = false;
           break
@@ -97,7 +92,7 @@ export class MainComponent implements OnInit, AfterViewInit {
           this.Weather = this.Tomorrow;
           this.textLength = false;
           break
-        case'5-Day Forecast':
+        case '5-Day Forecast':
         this.Weather = this.Week;
         this.textLength = true;
           break
@@ -117,8 +112,10 @@ export class MainComponent implements OnInit, AfterViewInit {
     this.urlTitle = this.router.url.split('/').pop();
     if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition((pos)=>{
-        this.weatherService.setWeather(pos.coords.latitude,pos.coords.longitude,'metric','km/h','');
-        //this.uvService.setUV(pos.coords.latitude, pos.coords.longitude);
+        if(!this.weatherService.isSet){
+          this.weatherService.setWeather(pos.coords.latitude,pos.coords.longitude,'metric','km/h','');
+          //this.uvService.setUV(pos.coords.latitude, pos.coords.longitude);
+        }
         this.weatherService.getCurrentWeather$()
         .pipe(take(1))
         .subscribe((data) =>{
@@ -129,16 +126,18 @@ export class MainComponent implements OnInit, AfterViewInit {
           this.Today!.icon = this.iconService.getIcon(this.Today!.description);
           this.sessionDataService.outputToday(this.Today);
 
-          this.sessionDataService.outputUser({
-            lat : 0,
-            lon : 0,
-            tempUnit : 'metric',
-            windSpeed : data[0].wind.speed,
-            location : data[0].location
-          });
+          if(!this.weatherService.isSet){
+            this.sessionDataService.outputUser({
+              lat : 0,
+              lon : 0,
+              tempUnit : 'metric',
+              windSpeed : data[0].wind.speed,
+              location : data[0].location
+            });
+          }
 
           switch(this.urlTitle){
-            case'Current':
+            case 'Current':
               this.Weather = this.Current;
               this.currentIndex = 2;
               return
@@ -161,7 +160,7 @@ export class MainComponent implements OnInit, AfterViewInit {
           this.sessionDataService.outputWeek(this.Week);
 
           switch(this.urlTitle){
-            case'Tomorrow':
+            case 'Tomorrow':
             this.Weather = this.Tomorrow;
               this.currentIndex = 4;
               return
