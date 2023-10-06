@@ -131,7 +131,7 @@ export class MainComponent implements OnInit, AfterViewInit {
               lat : 0,
               lon : 0,
               tempUnit : 'metric',
-              windSpeed : data[0].wind.speed,
+              windSpeed : 'km/h',
               location : data[0].location
             });
           }

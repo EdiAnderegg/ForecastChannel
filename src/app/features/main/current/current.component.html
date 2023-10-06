@@ -9,9 +9,9 @@
     </div>
   </div>
   <div class="body-footer-up">
-    <h1 class="wind-info">
+    <h1 class="wind-info" *ngIf="User$ | async as User">
       {{Current?.wind?.deg | wind}}
-      {{Current?.wind?.speed | speed:'metric'}}
+      {{Current?.wind?.speed | speed: User.windSpeed}}
     </h1>
   </div>
   </div>

@@ -7,13 +7,13 @@ export class SpeedPipe implements PipeTransform {
 
   transform(value: number | undefined, ...args: string[]): any {
     const [system] = args
-    if(system === "metric"){
+    if(system === "km/h"){
       const speed = Math.round((value! * 3.6)*10)/10;
       return `${speed} km/h`;
     }
-    if(system === 'imperial'){
+    if(system === 'mph'){
       const speed = Math.round(value!*10)/10;
-      return `${speed} mi/h`;
+      return `${speed} mph`;
     }
     return '';
   }
