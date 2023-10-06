@@ -12,7 +12,7 @@ export class SpeedPipe implements PipeTransform {
       return `${speed} km/h`;
     }
     if(system === 'mph'){
-      const speed = Math.round(value!*10)/10;
+      const speed = Math.round((value! * 2.2369)*10)/10;
       return `${speed} mph`;
     }
     return '';

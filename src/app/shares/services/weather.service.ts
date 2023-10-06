@@ -28,6 +28,9 @@ export class WeatherService {
   }
 
   private buildWeekUrl() : string{
+    if(this.settings.location.length > 0){
+      return `${this.weekUrl}?q=${this.settings.location}&appid=${this.api}&units=${this.settings.tempUnit}`;
+    }
     return `${this.weekUrl}?lat=${this.settings.lat}&lon=${this.settings.lon}&appid=${this.api}&units=${this.settings.tempUnit}`;
   }
 

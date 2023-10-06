@@ -10,6 +10,7 @@ import { WindPipe } from '../shares/pipes/wind.pipe';
 import { SpeedPipe } from '../shares/pipes/speed.pipe';
 import { WeekPipe } from '../shares/pipes/week.pipe';
 import { UvIndexPipe } from '../shares/pipes/uv-index.pipe';
+import { TemperaturePipe } from '../shares/pipes/temperature.pipe';
 import { HighlightDirectiv } from '../shares/directives/highlight.directive';
 import { CurrentComponent } from './main/current/current.component';
 import { TodayComponent } from './main/today/today.component';
@@ -30,6 +31,7 @@ import { UvIndexComponent } from './main/uv-index/uv-index.component';
     SpeedPipe,
     WeekPipe,
     UvIndexPipe,
+    TemperaturePipe,
     HighlightDirectiv,
     CurrentComponent,
     TodayComponent,

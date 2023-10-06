@@ -10,8 +10,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

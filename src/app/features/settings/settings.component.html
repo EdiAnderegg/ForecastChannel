@@ -8,8 +8,8 @@
         <h1 class="header-title">Closest Location</h1>
       </div>
       <div class="crt-content">
-        <div class="crt-left" *ngIf="User$ | async as User">
-          <h1 class="left-title">{{ User?.location }}</h1>
+        <div class="crt-left">
+          <h1 class="left-title">{{ location }}</h1>
         </div>
         <div class="crt-right">
           <button class="settings-btn">
@@ -24,7 +24,7 @@
       </div>
       <div class="crt-content">
         <div class="crt-left">
-          <h1 id='temp' class="left-title">{{ measure }}</h1>
+          <h1 id='temp' class="left-title">{{ measure | temperature }}</h1>
         </div>
         <div class="crt-right">
           <button class="settings-btn" (click)="changeTemp()">
