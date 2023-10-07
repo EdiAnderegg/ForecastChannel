@@ -17,6 +17,8 @@ import { TodayComponent } from './main/today/today.component';
 import { TomorrowComponent } from './main/tomorrow/tomorrow.component';
 import { WeekComponent } from './main/week/week.component';
 import { UvIndexComponent } from './main/uv-index/uv-index.component';
+import { RegionComponent } from './settings/region/region.component';
+import { SetComponent } from './settings/set/set.component';
 
 
 
@@ -38,6 +40,8 @@ import { UvIndexComponent } from './main/uv-index/uv-index.component';
     TomorrowComponent,
     WeekComponent,
     UvIndexComponent,
+    RegionComponent,
+    SetComponent,
   ],
   imports: [
     CommonModule,

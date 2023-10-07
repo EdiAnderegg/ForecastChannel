@@ -9,6 +9,8 @@ import { TodayComponent } from './main/today/today.component';
 import { TomorrowComponent } from './main/tomorrow/tomorrow.component';
 import { WeekComponent } from './main/week/week.component';
 import { UvIndexComponent } from './main/uv-index/uv-index.component';
+import { RegionComponent } from './settings/region/region.component';
+import { SetComponent } from './settings/set/set.component';
 
 
 const routes: Routes = [
@@ -24,7 +26,14 @@ const routes: Routes = [
     {path: '**', component: CurrentComponent}
    ]
   },
-  {path: 'settings', component: SettingsComponent },
+  {path: 'settings', component: SettingsComponent,
+   children:[
+    {path: '', redirectTo: '', pathMatch: 'full'},
+    {path: '' , component: SetComponent},
+    {path: 'region', component: RegionComponent},
+    {path: '**', component: SetComponent}
+   ]
+},
   {path: 'globe', component: GlobeComponent },
   {path: '', redirectTo: 'start', pathMatch: 'full'},
   {path: '**', component: StartComponent }

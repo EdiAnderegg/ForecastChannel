@@ -1,0 +1,184 @@
+
+
+/*==========Header================*/
+.header
+{
+  background-color: rgba(0, 0, 0, 0.2);
+  user-select: none;
+  position: fixed;
+  top: 7.5dvh;
+  left: 50%;
+  transform: translate(-50%, 0);
+  height: 14.2dvh;
+  width: 89%;
+  border-radius: 1.2em;
+  z-index: 1;
+}
+.header-text
+{
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 5dvh;
+  text-align: center;
+  color:rgb(247, 254, 255);
+  word-spacing: 0.3dvh;
+}
+/*==========Header Ends==========*/
+
+
+/*===============Body Start============*/
+.body
+{
+  position: fixed;
+  top: 21.6dvh;
+  left: 0;
+  width: 100%;
+  height: 65.4dvh;
+}
+
+/*==========button start==============*/
+.selector
+{
+  position: relative;
+  background: rgba(255, 255, 255, 0.2);
+  margin-top: 2.6dvh;
+  margin-bottom: 1.6dvh;
+  width: 100%;
+  height: 8.8dvh;
+}
+
+.title
+{
+  position: absolute;
+  font-size: 6.2dvh;
+  color: rgb(247, 254, 255);
+  width: 100%;
+  top: 50%;
+  text-align: center;
+  transform: translateY(-50%);
+}
+
+@media(hover : hover){
+  .selector:hover
+  {
+    background: #92bbcc;
+  }
+}
+/*=========button end=================*/
+
+
+/*==============Body Ends=============*/
+
+
+/*==========Footer================*/
+.footer
+{
+  position: fixed;
+  bottom: 0;
+  height: 13.5dvh;
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
+}
+.footer-left
+{
+  position: relative;
+  width: 25%;
+  border-top: 0.5dvh solid #a8a7b0;
+  background:  linear-gradient(#e6e6e6 40%,#cbccc8 0%,#e6e6e6);
+  box-shadow: inset -1.15dvw -1dvw 0 -1dvw black,
+              inset -0.80dvw 0.75dvw 0 -0.3dvw white;
+  transition: 200ms;
+}
+
+.footer-left-content
+{
+  position: absolute;
+  width: 100%;
+  top: -0.5dvh;
+  z-index: 1;
+  text-align: center;
+  font-size: 5.5dvh;
+}
+
+.footer-middle
+{
+  position: relative;
+  width: 25%;
+  border-top: 0.5dvh solid #a8a7b0;
+  background:  linear-gradient(#e6e6e6 40%,#cbccc8 0%,#e6e6e6);
+  box-shadow: inset -1.15dvw -1dvw 0 -1dvw black,
+              inset 1.15dvw -1dvw 0 -1dvw black,
+              inset 0.5dvw 0 0.6dvw -0.3dvw black,
+              inset -0.80dvw 0.75dvw 0 -0.3dvw white;
+  transition: 200ms;
+}
+
+.footer-middle-icon
+{
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+  font-size: 9dvh;
+}
+
+.footer-middle-icon.down
+{
+  top: -6dvh;
+}
+
+.footer-middle-icon.up
+{
+  top: -1.5dvh;
+}
+
+.footer-right
+{
+  position: relative;
+  width: 25%;
+  border-top: 0.5dvh solid #a8a7b0;
+  background:  linear-gradient(#e6e6e6 40%,#cbccc8 0%,#e6e6e6);
+  box-shadow: inset 1.15dvw -1dvw 0 -1dvw black,
+              inset 0.5dvw 0 0.6dvw -0.3dvw black,
+              inset 0 0.75dvw 0 -0.3dvw white;
+}
+
+@media(hover:hover){
+  .footer-btn:hover
+{
+  user-select: none;
+  cursor: pointer;
+  color:rgb(247, 254, 255);
+}
+.footer-btn:hover:after
+{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 132, 255, 0.65);
+}
+}
+
+.footer-btn:active
+{
+ top: 2dvh;
+ border-top: none;
+}
+.footer-btn:not(active)
+{
+  top: 0;
+  transition: 100ms;
+}
+.footer-btn[disabled]
+{
+  color: rgba(0,0,0,0);
+  pointer-events: none;
+  user-select: none;
+}
+/*==========Footer Ends==========*/
