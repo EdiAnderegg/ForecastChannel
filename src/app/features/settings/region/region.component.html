@@ -1,21 +1,25 @@
+
 <div class="header">
   <h1 class="header-text">Choose the location closest to where you live.</h1>
 </div>
-<div class="body d-flex flex-column">
-  <div class="selector">
-    <h1 class="title">Herisau</h1>
+<div id="body" class="body">
+  <div class="body-content d-flex flex-column">
+    <div id="value" class="selector" *ngFor="let location of List">
+      <h1 class="title">{{ location }}</h1>
+    </div>
   </div>
 </div>
 <div class="footer d-flex">
   <div class="footer-left footer-btn" (click)="getBack()">
     <h1 class="footer-left-content align-self-start">Back</h1>
   </div>
-  <div class="footer-middle footer-btn">
+  <button class="footer-middle footer-btn" (click)="btnSlide(1,'body','value')" [disabled]="isButtonDisabled(currentIndex + 1)">
     <fa-icon class="footer-middle-icon down" [icon]="faSortDown"></fa-icon>
-  </div>
-  <div class="footer-middle footer-btn">
+  </button>
+  <button class="footer-middle footer-btn" (click)="btnSlide(-1,'body','value')" [disabled]="isButtonDisabled(currentIndex - 1)">
     <fa-icon class="footer-middle-icon up" [icon]="faSortUp"></fa-icon>
-  </div>
+  </button>
 <div class="footer-right">
 </div>
 </div>
+

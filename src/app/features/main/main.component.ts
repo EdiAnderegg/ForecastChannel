@@ -102,7 +102,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   }
 
 
-  isButtonDisabled(index: number): boolean {
+   public isButtonDisabled(index: number): boolean {
     if(index === 0 || index === this.actualSite.length - 1)return true
     return false
   }
