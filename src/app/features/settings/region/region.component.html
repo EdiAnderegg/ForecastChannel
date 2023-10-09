@@ -4,8 +4,10 @@
 </div>
 <div id="body" class="body">
   <div class="body-content d-flex flex-column">
-    <div id="value" class="selector" *ngFor="let location of List">
-      <h1 class="title">{{ location }}</h1>
+    <div id="value" class="selector-wrapper" *ngFor="let location of List">
+      <div class="selector">
+        <h1 class="title">{{ location }}</h1>
+      </div>
     </div>
   </div>
 </div>
