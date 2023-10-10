@@ -37,6 +37,7 @@ export class SetComponent implements OnInit {
     }
 
     public changeLocation(){
+      this.weatherService.isSet = true;
       this.router.navigateByUrl('settings/region');
     }
 
