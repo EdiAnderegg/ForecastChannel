@@ -1,27 +1,50 @@
 
 <div class="header">
-  <h1 class="header-text">Choose the location closest to where you live.</h1>
+  <h1 class="header-text" *ngIf="display; else elseHeader">Choose the location closest to where you live.</h1>
+  <ng-template #elseHeader><h1 class="header-text">Is this location correct?</h1></ng-template>
 </div>
 <div id="body" class="body">
-  <div class="body-content d-flex flex-column">
+  <div class="body-content d-flex flex-column" *ngIf="display; else elseBody">
     <div id="value" class="selector-wrapper" *ngFor="let location of List">
-      <div class="selector" (click)="btnLocation(location)">
+      <div class="selector" (click)="selectLocation(location)">
         <h1 class="title">{{ location }}</h1>
       </div>
     </div>
   </div>
+  <ng-template #elseBody>
+    <div class="body-content">
+      <div class="else-selector">
+        <div class="else-title">{{ location }}</div>
+      </div>
+    </div>
+  </ng-template>
 </div>
-<div class="footer d-flex">
-  <div class="footer-left footer-btn" (click)="getBack()">
+<div class="footer d-flex" *ngIf="display; else elseFooter">
+  <div class="footer-left footer-btn hover-btn" (click)="getBack()">
     <h1 class="footer-left-content align-self-start">Back</h1>
   </div>
-  <button class="footer-middle footer-btn" (click)="btnSlide(1,'body','value')" [disabled]="isButtonDisabled(currentIndex + 1)">
+  <button class="footer-middle footer-btn hover-btn" (click)="btnSlide(1,'body','value')" [disabled]="isButtonDisabled(currentIndex + 1)">
     <fa-icon class="footer-middle-icon down" [icon]="faSortDown"></fa-icon>
   </button>
-  <button class="footer-middle footer-btn" (click)="btnSlide(-1,'body','value')" [disabled]="isButtonDisabled(currentIndex - 1)">
+  <button class="footer-middle footer-btn hover-btn" (click)="btnSlide(-1,'body','value')" [disabled]="isButtonDisabled(currentIndex - 1)">
     <fa-icon class="footer-middle-icon up" [icon]="faSortUp"></fa-icon>
   </button>
 <div class="footer-right">
 </div>
 </div>
+<ng-template #elseFooter>
+  <div class="else-footer d-flex flex-column">
+    <div class="else-btn hover-btn align-self-center">
+      <div class="btn-content">
+        Yes
+      </div>
+    </div>
+    <div class="else-btn hover-btn align-self-center">
+      <div class="btn-content">
+        No
+      </div>
+    </div>
+  </div>
+  </ng-template>
+
 
