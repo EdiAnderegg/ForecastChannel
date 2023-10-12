@@ -34,16 +34,16 @@
 </div>
 <ng-template #elseFooter>
   <div class="else-footer d-flex flex-column">
-    <div class="else-btn hover-btn align-self-center">
+    <button class="else-btn hover-btn align-self-center" (click)="btnLocation()">
       <div class="btn-content">
         Yes
       </div>
-    </div>
-    <div class="else-btn hover-btn align-self-center">
+    </button>
+    <button class="else-btn hover-btn align-self-center" (click)="selectAgain()">
       <div class="btn-content">
         No
       </div>
-    </div>
+    </button>
   </div>
   </ng-template>
 

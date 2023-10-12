@@ -1,4 +1,3 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
@@ -33,6 +32,10 @@ export class RegionComponent implements OnInit {
     this.router.navigateByUrl('/settings');
   }
 
+  public selectAgain(){
+    this.display = true;
+  }
+
   public selectLocation(location : string):void{
     this.location = location;
     this.display = false;
@@ -46,6 +49,7 @@ export class RegionComponent implements OnInit {
       windSpeed : this.User?.windSpeed!,
       location : this.location
     });
+    this.router.navigateByUrl('/settings');
   }
 
   public btnSlide(increment: number, idparentElement : string, idChildElement : string){
