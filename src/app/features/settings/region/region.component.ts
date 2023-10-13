@@ -4,6 +4,7 @@ import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { take } from 'rxjs';
 import { User } from 'src/app/shares/interfaces/user.interface';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
+import { NearLocationService } from 'src/app/shares/services/near-location.service';
 
 @Component({
   selector: 'app-region',
@@ -25,14 +26,18 @@ export class RegionComponent implements OnInit {
 
   constructor(
     private readonly router : Router,
-    private readonly sessionDataService : SessionDataService
+    private readonly sessionDataService : SessionDataService,
+    private readonly  nearLocationService : NearLocationService
   ){}
 
   public getBack(){
     this.router.navigateByUrl('/settings');
+
   }
 
   public selectAgain(){
+    this.currentIndex = 4;
+    this.height = 0;
     this.display = true;
   }
 
@@ -69,6 +74,8 @@ export class RegionComponent implements OnInit {
       this.height = 0;
       return;
     }
+
+    if(this)
     if(increment === 1){
       list?.scrollTo(
         {
@@ -93,10 +100,21 @@ export class RegionComponent implements OnInit {
     return false
   }
 
+  private getLocations(userData : string):void{
+    if(!userData)return;
+    this.nearLocationService.getNearestCities$(userData)
+    .pipe(take(1))
+    .subscribe((data)=>{
+      this.List = data;
+      console.log(this.List)
+    });
+  }
+
   ngOnInit(): void {
     this.sessionDataService.getUser$().pipe(take(1))
     .subscribe((data)=>{
       this.User = data;
+      this.getLocations(this.User?.location!)
     });
   }
 }

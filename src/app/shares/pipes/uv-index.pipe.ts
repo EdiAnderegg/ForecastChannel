@@ -5,10 +5,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class UvIndexPipe implements PipeTransform {
 
-  transform(value: number): string{
+  transform(value: number, ...args: string[]): string | number{
 
-    const rounded : number = Math.round(value);
+    const [system] = args;
+    const rounded = Math.round(value*10);
 
+    if(system === 'string'){
     switch(rounded){
       case 1:
         return 'Low';
@@ -26,13 +28,18 @@ export class UvIndexPipe implements PipeTransform {
         return 'High';
       case 8:
         return 'Very High';
-      case 9: 
+      case 9:
         return 'Very High';
       case 10:
         return 'Very High';
       case 11:
         return 'Extreme';
     }
+  }
+
+  if(system === 'number'){
+    return rounded;
+  }
     return 'no Info';
   }
 }

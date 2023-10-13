@@ -43,7 +43,7 @@ export class NearLocationService {
         )
       }))
       .sort((a: { distance: number; }, b: { distance: number; }) => a.distance - b.distance)
-      .slice(0, 10); // Get the 10 nearest cities
+      .slice(0, 20); // Get the 20 nearest cities
 
     return nearestCities.map((city: { name: any; }) => city.name);
     }));
@@ -56,10 +56,7 @@ export class NearLocationService {
     lat2: number,
     lon2: number
   ): number {
-    // Calculate distance between two coordinates (you can use the Haversine formula)
-    // Implement the distance calculation logic here
-    // This is a simplified example; you can find more accurate implementations online
-    const R = 6371; // Earth's radius in km
+    const R = 6371;
     const dLat = (lat2 - lat1) * (Math.PI / 180);
     const dLon = (lon2 - lon1) * (Math.PI / 180);
     const a =

@@ -171,12 +171,13 @@ export class MainComponent implements OnInit, AfterViewInit {
               return
           }
         });
+
         /*this.uvService.getUV$()
         .pipe(take(1))
         .subscribe((data)=>{
           this.uv = {...data};
           this.sessionDataService.outputUv(this.uv);
-          if(this.urlTitle === 'UV-Index'){
+          if(this.urlTitle === 'UV_Index'){
            this.currentIndex = 1;
            setTimeout(()=>{
             this.Weather = this.Current;
@@ -184,6 +185,7 @@ export class MainComponent implements OnInit, AfterViewInit {
            return
           }
         });*/
+
       });
     };
   }
