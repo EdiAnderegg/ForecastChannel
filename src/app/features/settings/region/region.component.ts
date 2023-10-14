@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { take } from 'rxjs';
 import { User } from 'src/app/shares/interfaces/user.interface';
+import { Location } from 'src/app/shares/interfaces/location.interface';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
 import { NearLocationService } from 'src/app/shares/services/near-location.service';
 
@@ -16,10 +17,10 @@ export class RegionComponent implements OnInit {
   faSortUp = faSortUp;
   faSortDown = faSortDown;
 
-  public List : string[] = ['Herisau','Sankt Gallen','Wil','Weinfelden','Rapperswil','Winterthur','Romanshorn'];
+  public List : Location[] | undefined;
   public currentIndex : number = 4;
   public display : boolean = true;
-  public location : string = '';
+  public location : Location | undefined;
   private height : number = 0;
   private User : User | undefined;
 
@@ -41,25 +42,25 @@ export class RegionComponent implements OnInit {
     this.display = true;
   }
 
-  public selectLocation(location : string):void{
+  public selectLocation(location : Location):void{
     this.location = location;
     this.display = false;
   }
 
   public btnLocation():void{
     this.sessionDataService.outputUser({
-      lat : this.User?.lat!,
-      lon : this.User?.lon!,
+      lat : this.location?.lat!,
+      lon : this.location?.lon!,
       tempUnit : this.User?.tempUnit!,
       windSpeed : this.User?.windSpeed!,
-      location : this.location
+      location : this.location?.city!
     });
     this.router.navigateByUrl('/settings');
   }
 
   public btnSlide(increment: number, idparentElement : string, idChildElement : string){
     const newIndex = this.currentIndex + increment;
-    if (newIndex >= 4 && newIndex < this.List.length) {
+    if (newIndex >= 4 && newIndex < this.List!.length) {
       this.currentIndex = newIndex;
     }
     this.scroll(increment, idparentElement, idChildElement);
@@ -96,7 +97,8 @@ export class RegionComponent implements OnInit {
   }
 
   public isButtonDisabled(index: number): boolean {
-    if(index === 3 || index === this.List.length) return true
+    if(this.List?.length === undefined)return false;
+    if(index === 3 || index === this.List?.length) return true
     return false
   }
 
@@ -114,6 +116,7 @@ export class RegionComponent implements OnInit {
     this.sessionDataService.getUser$().pipe(take(1))
     .subscribe((data)=>{
       this.User = data;
+      console.log(this.User?.location)
       this.getLocations(this.User?.location!)
     });
   }

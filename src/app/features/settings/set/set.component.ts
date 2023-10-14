@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { PreviousRouteService } from 'src/app/shares/services/previous-route.service';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
 import { WeatherService } from 'src/app/shares/services/weather.service';
-import { NearLocationService } from 'src/app/shares/services/near-location.service';
+import { UvIndexService } from 'src/app/shares/services/uv-index.service';
 import { Router } from '@angular/router';
 import { Observable, take } from 'rxjs';
 import { User } from 'src/app/shares/interfaces/user.interface';
+import { Location } from 'src/app/shares/interfaces/location.interface';
 
 @Component({
   selector: 'app-set',
@@ -17,22 +18,25 @@ export class SetComponent implements OnInit {
   public User$!: Observable<User | undefined>;
   public measure : string = 'metric';
   public speed : string = 'km/h';
-  public location : string = '...';
+  public location : Location | undefined;
 
   constructor(private readonly previousRouteService : PreviousRouteService,
     private readonly sessionDataService : SessionDataService,
     private readonly weatherService : WeatherService,
-    private readonly router: Router) {}
+    private readonly router: Router,
+    private readonly uvIndexService : UvIndexService
+    ) {}
 
     public getBack(){
       this.sessionDataService.outputUser({
-        lat : 0,
-        lon : 0,
+        lat : this.location?.lat!,
+        lon : this.location?.lon!,
         tempUnit : this.measure,
         windSpeed : this.speed,
-        location : this.location
+        location : this.location?.city!
       });
-      this.weatherService.setWeather(0,0,this.measure,this.speed,this.location);
+      this.weatherService.setWeather(this.location?.lat!,this.location?.lon!,this.measure,this.speed,this.location?.city!);
+      this.uvIndexService.setUV(this.location?.lat!,this.location?.lon!);
       this.router.navigateByUrl(this.previousRouteService.getPreviousUrl());
     }
 
@@ -58,7 +62,12 @@ export class SetComponent implements OnInit {
     this.User$.pipe(take(1)).subscribe(
       (data)=>{
         if(data?.location){
-          this.location = data?.location!;
+          this.location = {
+            country : '',
+            city : data?.location,
+            lat : data?.lat,
+            lon : data?.lon,
+          }
         }
         if(data?.tempUnit === 'imperial'){
           this.measure = 'imperial';

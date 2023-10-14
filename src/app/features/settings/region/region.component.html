@@ -7,14 +7,14 @@
   <div class="body-content d-flex flex-column" *ngIf="display; else elseBody">
     <div id="value" class="selector-wrapper" *ngFor="let location of List">
       <div class="selector" (click)="selectLocation(location)">
-        <h1 class="title">{{ location }}</h1>
+        <h1 class="title">{{ location?.city }}</h1>
       </div>
     </div>
   </div>
   <ng-template #elseBody>
     <div class="body-content">
       <div class="else-selector">
-        <div class="else-title">{{ location }}</div>
+        <div class="else-title">{{ location?.city }}</div>
       </div>
     </div>
   </ng-template>

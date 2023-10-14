@@ -21,16 +21,10 @@ export class WeatherService {
   }
 
   private buildUrl(): string{
-    if(this.settings.location.length > 0){
-      return `${this.url}?q=${this.settings.location}&appid=${this.api}&units=${this.settings.tempUnit}`;
-    }
     return`${this.url}?lat=${this.settings.lat}&lon=${this.settings.lon}&appid=${this.api}&units=${this.settings.tempUnit}`;
   }
 
   private buildWeekUrl() : string{
-    if(this.settings.location.length > 0){
-      return `${this.weekUrl}?q=${this.settings.location}&appid=${this.api}&units=${this.settings.tempUnit}`;
-    }
     return `${this.weekUrl}?lat=${this.settings.lat}&lon=${this.settings.lon}&appid=${this.api}&units=${this.settings.tempUnit}`;
   }
 

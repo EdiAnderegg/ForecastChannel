@@ -114,7 +114,7 @@ export class MainComponent implements OnInit, AfterViewInit {
       navigator.geolocation.getCurrentPosition((pos)=>{
         if(!this.weatherService.isSet){
           this.weatherService.setWeather(pos.coords.latitude,pos.coords.longitude,'metric','km/h','');
-          //this.uvService.setUV(pos.coords.latitude, pos.coords.longitude);
+          this.uvService.setUV(pos.coords.latitude, pos.coords.longitude);
         }
         this.weatherService.getCurrentWeather$()
         .pipe(take(1))
