@@ -15,7 +15,7 @@
     </h1>
     <div class="body-header-body align-self-center d-flex justify-content-end">
       <h1 class="body-header-title align-self-center">
-        {{Weather?.location}}
+        {{weather?.location}}
       </h1>
     </div>
   </div>
@@ -28,8 +28,8 @@
       <h2 class="body-footer-date align-self-center" *ngIf='display'>
         <span [@fadeIn]>
           As of
-        {{ Weather?.time | date: 'h:mm a'}},
-        {{ Weather?.time | date: 'dd/MM'}}
+        {{ weather?.time | date: 'h:mm a'}},
+        {{ weather?.time | date: 'dd/MM'}}
         </span>
         </h2>
       <div class="body-footer-underline"></div>

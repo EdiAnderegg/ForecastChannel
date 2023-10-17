@@ -26,12 +26,12 @@ export class MainComponent implements OnInit, AfterViewInit {
   faSortDown = faSortDown;
 
   public uv : UV | undefined;
-  public Current : Current | undefined;
-  public Today : Today | undefined;
-  public Tomorrow : Tomorrow | undefined;
-  public Week : weekArr | undefined;
-  public Weather : Weather | undefined;
-  public User : User | undefined;
+  public current : Current | undefined;
+  public today : Today | undefined;
+  public tomorrow : Tomorrow | undefined;
+  public week : weekArr | undefined;
+  public weather : Weather | undefined;
+  public user : User | undefined;
   public actualSite: string[] = ['','UV Index','Current','Today','Tomorrow','5-Day Forecast',''];
   public urlTitle : string | undefined = '';
   public currentIndex : number = 1;
@@ -49,148 +49,135 @@ export class MainComponent implements OnInit, AfterViewInit {
               )
               {}
 
-  public prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
-  }
-
-  private disableDisplay(){
-    this.display = false
-    setTimeout(()=>{
-      return this.display = true
-    },1);
-  }
-
-  public btnstart(){
-    this.router.navigateByUrl('/start');
-  }
-
-  public btnSettings(){
-    this.router.navigateByUrl('/settings');
-  }
-
-  public btnSlide(increment: number){
-    this.urlTitle = this.router.url.split('/').pop();
-    const newIndex = this.currentIndex + increment;
-    if (newIndex >= 1 && newIndex < this.actualSite.length) {
-      this.currentIndex = newIndex;
-      this.router.navigateByUrl(`main/${this.actualSite[newIndex].split(" ").join('_')}`);
-
-      switch(this.actualSite[newIndex]){
-        case 'UV Index':
-        this.Weather = this.Current;
-        this.textLength = false;
-        break
-        case 'Current':
-        this.Weather = this.Current;
-        this.textLength = false;
-          break
-        case 'Today':
-          this.Weather = this.Today;
-          this.textLength = false;
-          break
-        case 'Tomorrow':
-          this.Weather = this.Tomorrow;
-          this.textLength = false;
-          break
-        case '5-Day Forecast':
-        this.Weather = this.Week;
-        this.textLength = true;
-          break
-      }
-    }
-    this.disableDisplay()
-  }
-
-
-   public isButtonDisabled(index: number): boolean {
-    if(index === 0 || index === this.actualSite.length - 1)return true
-    return false
-  }
-
-  ngOnInit(): void {
-
-    this.urlTitle = this.router.url.split('/').pop();
-    if(navigator.geolocation){
-      navigator.geolocation.getCurrentPosition((pos)=>{
-        if(!this.weatherService.isSet){
-          this.weatherService.setWeather(pos.coords.latitude,pos.coords.longitude,'metric','km/h','');
-          this.uvService.setUV(pos.coords.latitude, pos.coords.longitude);
-        }
-        this.weatherService.getCurrentWeather$()
-        .pipe(take(1))
-        .subscribe((data) =>{
-          this.Current = {...data[0]};
-          this.Current!.icon = this.iconService.getIcon(this.Current!.description);
-          this.sessionDataService.outputCurrent(this.Current);
-          this.Today = {...data[1]};
-          this.Today!.icon = this.iconService.getIcon(this.Today!.description);
-          this.sessionDataService.outputToday(this.Today);
-
-          if(!this.weatherService.isSet){
-            this.sessionDataService.outputUser({
-              lat : 0,
-              lon : 0,
-              tempUnit : 'metric',
-              windSpeed : 'km/h',
-              location : data[0].location
-            });
-          }
-
-          switch(this.urlTitle){
-            case 'Current':
-              this.Weather = this.Current;
-              this.currentIndex = 2;
-              return
-            case 'Today':
-              this.Weather = this.Today;
-              this.currentIndex = 3;
-              return
-          }
-        });
-        this.weatherService.getWeekWeather$()
-        .pipe(take(1))
-        .subscribe((data) =>{
-          this.Tomorrow = {...data[0]};
-          this.Tomorrow!.icon = this.iconService.getIcon(this.Tomorrow!.description);
-          this.sessionDataService.outputTomorrow(this.Tomorrow);
-          this.Week = {...data[1]};
-          for(let i = 0; i <= 4; i++){
-            this.Week!.days[i]!.icon = this.iconService.getIcon(this.Week!.days[i]!.description);
-          }
-          this.sessionDataService.outputWeek(this.Week);
-
-          switch(this.urlTitle){
-            case 'Tomorrow':
-            this.Weather = this.Tomorrow;
-              this.currentIndex = 4;
-              return
-            case '5-Day_Forecast':
-              this.Weather = this.Week;
-              this.currentIndex = 5;
-              this.textLength = true;
-              return
-          }
-        });
-
-        /*this.uvService.getUV$()
-        .pipe(take(1))
-        .subscribe((data)=>{
-          this.uv = {...data};
-          this.sessionDataService.outputUv(this.uv);
-          if(this.urlTitle === 'UV_Index'){
-           this.currentIndex = 1;
-           setTimeout(()=>{
-            this.Weather = this.Current;
-           },1)
-           return
-          }
-        });*/
-
-      });
-    };
-  }
-
-  ngAfterViewInit(): void {
-      this.cd.detectChanges();
-  }
+              ngOnInit(): void {
+                this.urlTitle = this.router.url.split('/').pop();
+                this.initializeData();
+              }
+            
+              ngAfterViewInit(): void {
+                this.cd.detectChanges();
+              }
+            
+              private initializeData(): void {
+                if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition((pos) => {
+                    if (!this.weatherService.isSet) {
+                      this.weatherService.setWeather(pos.coords.latitude, pos.coords.longitude, 'metric', 'km/h', '');
+                      this.uvService.setUV(pos.coords.latitude, pos.coords.longitude);
+                    }
+            
+                    this.weatherService.getCurrentWeather$()
+                      .pipe(take(1))
+                      .subscribe((data) => {
+                        this.current = { ...data[0] };
+                        this.current!.icon = this.iconService.getIcon(this.current?.description!);
+                        this.sessionDataService.outputCurrent(this.current);
+                        this.today = { ...data[1] };
+                        this.today!.icon = this.iconService.getIcon(this.today?.description!);
+                        this.sessionDataService.outputToday(this.today);
+            
+                        if (!this.weatherService.isSet) {
+                          this.sessionDataService.outputUser({
+                            lat: 0,
+                            lon: 0,
+                            tempUnit: 'metric',
+                            windSpeed: 'km/h',
+                            location: data[0].location
+                          });
+                        }
+            
+                        this.handleUrlTitle();
+                      });
+            
+                    this.weatherService.getWeekWeather$()
+                      .pipe(take(1))
+                      .subscribe((data) => {
+                        this.tomorrow = { ...data[0] };
+                        this.tomorrow!.icon = this.iconService.getIcon(this.tomorrow?.description!);
+                        this.sessionDataService.outputTomorrow(this.tomorrow);
+                        this.week = { ...data[1] };
+                        for (let i = 0; i <= 4; i++) {
+                          this.week!.days[i].icon = this.iconService.getIcon(this.week?.days[i].description);
+                        }
+                        this.sessionDataService.outputWeek(this.week);
+            
+                        this.handleUrlTitle();
+                      });
+            
+                    this.uvService.getUV$()
+                      .pipe(take(1))
+                      .subscribe((data) => {
+                        this.uv = { ...data };
+                        this.sessionDataService.outputUv(this.uv);
+                        this.handleUrlTitle();
+                      });
+                  });
+                }
+              }
+            
+              private handleUrlTitle(): void {
+                switch (this.urlTitle) {
+                  case 'Current':
+                    this.weather = this.current;
+                    this.currentIndex = 2;
+                    break;
+                  case 'Today':
+                    this.weather = this.today;
+                    this.currentIndex = 3;
+                    break;
+                  case 'Tomorrow':
+                    this.weather = this.tomorrow;
+                    this.currentIndex = 4;
+                    break;
+                  case '5-Day_Forecast':
+                    this.weather = this.week;
+                    this.currentIndex = 5;
+                    this.textLength = true;
+                    break;
+                  case 'UV_Index':
+                    this.weather = this.current;
+                    this.currentIndex = 1;
+                    break;
+                }
+              }
+            
+              public prepareRoute(outlet: RouterOutlet): any {
+                return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+              }
+            
+              public disableDisplay(): void {
+                this.display = false;
+                setTimeout(() => {
+                  this.display = true;
+                }, 1);
+              }
+            
+              public btnstart(): void {
+                this.router.navigateByUrl('/start');
+              }
+            
+              public btnSettings(): void {
+                this.router.navigateByUrl('/settings');
+              }
+            
+              public btnSlide(increment: number): void {
+                this.urlTitle = this.router.url.split('/').pop();
+                const newIndex = this.currentIndex + increment;
+              
+                if (newIndex >= 1 && newIndex < this.actualSite.length) {
+                  this.currentIndex = newIndex;
+              
+                  // Only set the router URL once
+                  const newRoute = `main/${this.actualSite[newIndex].split(" ").join('_')}`;
+                  this.router.navigateByUrl(newRoute);
+                }
+              
+                this.disableDisplay();
+              }
+              
+            
+              public isButtonDisabled(index: number): boolean {
+                return index === 0 || index === this.actualSite.length - 1;
+              }
+            
 }
