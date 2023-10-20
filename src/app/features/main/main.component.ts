@@ -25,13 +25,12 @@ export class MainComponent implements OnInit, AfterViewInit {
   faSortUp = faSortUp;
   faSortDown = faSortDown;
 
-  public uv : UV | undefined;
-  public current : Current | undefined;
-  public today : Today | undefined;
-  public tomorrow : Tomorrow | undefined;
-  public week : weekArr | undefined;
+  private uv : UV | undefined;
+  private current : Current | undefined;
+  private today : Today | undefined;
+  private tomorrow : Tomorrow | undefined;
+  private week : weekArr | undefined;
   public weather : Weather | undefined;
-  public user : User | undefined;
   public actualSite: string[] = ['','UV Index','Current','Today','Tomorrow','5-Day Forecast',''];
   public urlTitle : string | undefined = '';
   public currentIndex : number = 1;
