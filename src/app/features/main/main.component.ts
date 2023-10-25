@@ -139,7 +139,15 @@ export class MainComponent implements OnInit, AfterViewInit {
                     break;
                 }
               }
-            
+              
+              private ctrlLongTitle(url:string){
+                if(url === 'main/5-Day_Forecast'){
+                  this.textLength = true;
+                  return
+                }
+                this.textLength = false;
+              }
+
               public prepareRoute(outlet: RouterOutlet): any {
                 return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
               }
@@ -168,6 +176,7 @@ export class MainComponent implements OnInit, AfterViewInit {
               
                   // Only set the router URL once
                   const newRoute = `main/${this.actualSite[newIndex].split(" ").join('_')}`;
+                  this.ctrlLongTitle(newRoute);
                   this.router.navigateByUrl(newRoute);
                 }
               

@@ -107,8 +107,8 @@ export class RegionComponent implements OnInit {
     this.nearLocationService.getNearestCities$(userData)
     .pipe(take(1))
     .subscribe((data)=>{
+      if(!data)return;
       this.List = data;
-      console.log(this.List)
     });
   }
 
@@ -116,7 +116,6 @@ export class RegionComponent implements OnInit {
     this.sessionDataService.getUser$().pipe(take(1))
     .subscribe((data)=>{
       this.User = data;
-      console.log(this.User?.location)
       this.getLocations(this.User?.location!)
     });
   }

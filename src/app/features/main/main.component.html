@@ -10,7 +10,7 @@
     <div class="header-right header-btn d-flex justify-content-center" (click)="btnSettings()"><h1 class="header-right-content align-self-end">Settings</h1></div>
   </div>
   <div class="body-header">
-    <h1 class="body-title" *ngIf='display' [style]="textLength ? 'font-size: 7dvh': 'font-size: 4.2dvw'">
+    <h1 class="body-title" *ngIf='display' [style]="textLength ? 'font-size: 7dvh' : 'font-size: 4.2dvw'">
       <span [@fadeIn]>{{ actualSite[currentIndex] | uppercase }}</span>
     </h1>
     <div class="body-header-body align-self-center d-flex justify-content-end">
