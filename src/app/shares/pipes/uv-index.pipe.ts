@@ -37,9 +37,8 @@ export class UvIndexPipe implements PipeTransform {
     }
   }
 
-  if(system === 'number'){
-    return rounded;
-  }
-    return 'no Info';
+  if(system === 'number') return rounded;
+    
+  return 'no Info';
   }
 }
