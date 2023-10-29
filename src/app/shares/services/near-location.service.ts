@@ -15,39 +15,34 @@ export class NearLocationService {
   constructor(private readonly http: HttpClient) { }
 
 
-  public getNearestCities$(inputCity: string): Observable<Location[]> {
-    return this.http.get<any>(this.url).pipe(map((res) => {
-      const citiesData = res;
-      // Find the city in the JSON data by name
-      const selectedCity = citiesData.find(
-        (city: { city_ascii: string; }) => city.city_ascii === inputCity
-      );
-      if (!selectedCity) {
-        console.error("City not found");
-        return [];
-      }
-      // Get the country of the selected city
-      const selectedCountry = selectedCity.country;
-      // Replace these with the coordinates of the selected city
-      const cityLat = parseFloat(selectedCity.lat);
-      const cityLng = parseFloat(selectedCity.lng);
-
-      // Calculate distances and filter cities in the same country
-      const nearestCities = citiesData
-        .filter((city: { city_ascii: string; country: string; }) => city.country === selectedCountry && city.city_ascii !== inputCity) // Exclude the input city and filter by the same country
-        .map((city: { country: string, city_ascii: string, lat: string, lng: string }) => ({
-          country: city.country,
-          city: city.city_ascii,
-          lat: parseFloat(city.lat),
-          lon: parseFloat(city.lng)
-        }))
-        .sort((a: { lat: number; lon: number; }, b: { lon: number; lat: number; }) => {
-          return this.calculateDistance(cityLat, cityLng, a.lat, a.lon) - this.calculateDistance(cityLat, cityLng, b.lat, b.lon);
-        })
-        .slice(0, 20); // Get the 20 nearest cities within the same country
-
-      return nearestCities;
-    }));
+  public getNearestCities$(lat: number, lng: number): Observable<Location[]> {
+    return this.http.get<any>(this.url).pipe(
+      map((res) => {
+        const citiesData = res;
+        
+        // Calculate distances and filter cities in the same country
+        const nearestCities = citiesData
+          .map((city: { country: string, city_ascii: string, lat: string, lng: string }) => ({
+            country: city.country,
+            city: city.city_ascii,
+            lat: parseFloat(city.lat),
+            lon: parseFloat(city.lng)
+          }))
+          .filter((city: { country: string; city: string; lat: number; lon: number }) => {
+            // Exclude the input coordinates and filter by the same country
+            return (
+              city.lat !== lat && city.lon !== lng &&
+              this.calculateDistance(lat, lng, city.lat, city.lon) <= 100 //MAX_DISTANCE
+            );
+          })
+          .sort((a: { lat: number; lon: number; }, b: { lon: number; lat: number; }) => {
+            return this.calculateDistance(lat, lng, a.lat, a.lon) - this.calculateDistance(lat, lng, b.lat, b.lon);
+          })
+          .slice(0, 20); // Get the 20 nearest cities within the same country
+  
+        return nearestCities;
+      })
+    );
   }
 
 

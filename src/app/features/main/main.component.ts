@@ -3,7 +3,6 @@ import { Component, OnInit,ChangeDetectorRef, AfterViewInit } from '@angular/cor
 import { take } from 'rxjs';
 import { Router, RouterOutlet } from '@angular/router';
 import { Current, Today, Tomorrow, Weather, weekArr } from 'src/app/shares/interfaces/weather.interface';
-import { User } from 'src/app/shares/interfaces/user.interface';
 import { WeatherService } from 'src/app/shares/services/weather.service';
 import { UvIndexService } from 'src/app/shares/services/uv-index.service';
 import { IconService } from 'src/app/shares/services/icon.service';
@@ -25,6 +24,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   faSortUp = faSortUp;
   faSortDown = faSortDown;
 
+ 
   private uv : UV | undefined;
   private current : Current | undefined;
   private today : Today | undefined;
@@ -77,14 +77,13 @@ export class MainComponent implements OnInit, AfterViewInit {
             
                         if (!this.weatherService.isSet) {
                           this.sessionDataService.outputUser({
-                            lat: 0,
-                            lon: 0,
+                            lat: pos.coords.latitude,
+                            lon: pos.coords.longitude,
                             tempUnit: 'metric',
                             windSpeed: 'km/h',
                             location: data[0].location
                           });
                         }
-            
                         this.handleUrlTitle();
                       });
             

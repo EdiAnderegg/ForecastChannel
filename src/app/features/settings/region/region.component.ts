@@ -102,9 +102,9 @@ export class RegionComponent implements OnInit {
     return false
   }
 
-  private getLocations(userData : string):void{
-    if(!userData)return;
-    this.nearLocationService.getNearestCities$(userData)
+  private getLocations(lat : number, lng : number):void{
+    if(NaN)return;
+    this.nearLocationService.getNearestCities$(lat,lng)
     .pipe(take(1))
     .subscribe((data)=>{
       if(!data)return;
@@ -116,7 +116,7 @@ export class RegionComponent implements OnInit {
     this.sessionDataService.getUser$().pipe(take(1))
     .subscribe((data)=>{
       this.User = data;
-      this.getLocations(this.User?.location!)
+      this.getLocations(this.User?.lat!, this.User?.lon!);
     });
   }
 }
