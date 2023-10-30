@@ -23,6 +23,7 @@ export class StartComponent implements OnInit {
   }
 
  ngOnInit():void {
+  this.weatherService.isSet = false;
   if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition((pos)=>{
       this.weatherService.setWeather(pos.coords.latitude,pos.coords.longitude,'metric','','');

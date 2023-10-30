@@ -20,7 +20,8 @@ export class SetComponent implements OnInit {
   public speed : string = 'km/h';
   public location : Location | undefined;
 
-  constructor(private readonly previousRouteService : PreviousRouteService,
+  constructor(
+    private readonly previousRouteService : PreviousRouteService,
     private readonly sessionDataService : SessionDataService,
     private readonly weatherService : WeatherService,
     private readonly router: Router,

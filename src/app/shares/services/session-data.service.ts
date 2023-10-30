@@ -7,6 +7,7 @@ import { UV } from '../interfaces/uv.interface';
 @Injectable({
   providedIn: 'root'
 })
+
 export class SessionDataService {
 
   private UV = new BehaviorSubject<UV | undefined>(undefined);
@@ -31,15 +32,15 @@ export class SessionDataService {
 
   public outputWeek(WeatherObject: weekArr | undefined):void{
     this.Week.next(WeatherObject);
-  }
+  };
 
   public outputUv(UvObject: UV | undefined):void{
     this.UV.next(UvObject);
-  }
+  };
 
   public outputUser(User: User | undefined): void{
     this.User.next(User);
-  }
+  };
 
   public getCurrent$(): Observable<Current | undefined> {
     return this.Current.asObservable();
@@ -50,20 +51,20 @@ export class SessionDataService {
 
   public getTomorrow$(): Observable<Tomorrow | undefined>{
     return this.Tomorrow.asObservable();
-  }
+  };
 
   public getWeek$(): Observable<weekArr | undefined>{
     return this.Week.asObservable();
-  }
+  };
 
   public getUv$(): Observable<UV | undefined>{
     return this.UV.asObservable();
-  }
+  };
 
   public getUser$(): Observable<User | undefined>{
     return this.User.asObservable();
-  }
+  };
 
-  constructor() {
-   }
+  constructor() {}
+
 }

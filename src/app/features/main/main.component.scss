@@ -2,7 +2,9 @@
 
 
 /*===============Reset button==============*/
-button{
+
+button
+{
 	background: none;
 	color: inherit;
 	border: none;
@@ -14,6 +16,7 @@ button{
 /*================button End=========*/
 
 /*================Background====================*/
+
 .screen
 {
   position: relative;
@@ -31,6 +34,7 @@ button{
   width: 100%;
   z-index: 1;
 }
+
 .header-left
 {
   width: 29.6%;
@@ -40,6 +44,7 @@ button{
               inset -0.80dvw -0.75dvw 0 -0.3dvw white;
   transition: 200ms;
 }
+
 .header-middle
 {
   position: relative;
@@ -61,6 +66,7 @@ button{
   height: 100%;
   padding-left: 6.4dvw;
 }
+
 .header-middle-icon
 {
   position: absolute;
@@ -69,6 +75,7 @@ button{
   margin-top: 3dvh;
   font-size: 14dvh;
 }
+
 .header-middle-text
 {
   position: absolute;
@@ -91,11 +98,13 @@ button{
               inset 0 -0.75dvw 0 -0.3dvw white;
   transition: 200ms;
 }
+
 .header-right-content
 {
   z-index: 1;
   font-size: 5.5dvh;
 }
+
 @media(hover:hover){
   .header-btn:hover
   {
@@ -229,6 +238,7 @@ button{
   height: 5dvh;
   background: linear-gradient(to right, rgba(255, 255, 255, 0.2) 61%,rgba(163, 22, 22, 0.8)88%);
 }
+
 .body-footer-brand
 {
   font-size: 3.3dvh;
@@ -237,6 +247,7 @@ button{
   margin-left: 1.3em;
   text-shadow: rgb(34, 34, 34) 0.09em 0.06em;
 }
+
 .body-footer-date
 {
   font-size: 3.8dvh;
@@ -244,6 +255,7 @@ button{
   margin-bottom: 1dvh;
   margin-right: 2.3rem;
 }
+
 .body-footer-underline
 {
   position: absolute;
@@ -252,12 +264,14 @@ button{
   width: 100%;
   background: linear-gradient(to right, rgba(255, 255, 255, 0) 60%,rgb(169, 183, 198) 80%);
 }
+
 .body-footer-underline::before,
 .body-footer-underline::after
 {
   content: '';
   position: absolute;
 }
+
 .body-footer-underline::before
 {
   top: -0.15dvh;
@@ -265,6 +279,7 @@ button{
   width: 100%;
   background: linear-gradient(to right, rgba(255, 255, 255, 0) 55%,rgba(169, 183, 198, 0.5));
 }
+
 .body-footer-underline::after
 {
   bottom: -0.15dvh;
@@ -284,6 +299,7 @@ button{
   width: 100%;
   overflow: hidden;
 }
+
 .footer-left
 {
   position: relative;
@@ -327,6 +343,7 @@ button{
   height: 100%;
   padding-left: 6.4dvw;
 }
+
 .footer-middle-icon
 {
   position: absolute;
@@ -335,6 +352,7 @@ button{
   z-index: 1;
   font-size: 14dvh;
 }
+
 .footer-middle-text
 {
   position: absolute;
@@ -345,6 +363,7 @@ button{
   z-index: 1;
   font-size: 5.5dvh;
 }
+
 .footer-right
 {
   position: relative;
@@ -356,6 +375,7 @@ button{
               inset 0 0.75dvw 0 -0.3dvw white;
   transition: 200ms;
 }
+
 .footer-right-content
 {
   position: absolute;
@@ -389,14 +409,17 @@ button{
  top: 2dvh;
  border-top: none;
 }
+
 .footer-btn:not(active)
 {
   top: 0;
   transition: 100ms;
 }
+
 .footer-btn[disabled]
 {
   color: rgba(0,0,0,0);
   pointer-events: none;
 }
+
 /*==========Footer Ends==========*/
