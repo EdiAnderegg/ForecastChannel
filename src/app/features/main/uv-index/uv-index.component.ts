@@ -7,19 +7,18 @@ import { PreviousRouteService } from 'src/app/shares/services/previous-route.ser
 @Component({
   selector: 'app-uv-index',
   templateUrl: './uv-index.component.html',
-  styleUrls: ['./uv-index.component.scss']
+  styleUrls: ['./uv-index.component.scss'],
 })
 export class UvIndexComponent implements OnInit {
-
   public Uv$!: Observable<UV | undefined>;
 
-  constructor(private readonly sessionDataService : SessionDataService,
-              private readonly previousRouteService : PreviousRouteService
-    ){}
+  constructor(
+    private readonly sessionDataService: SessionDataService,
+    private readonly previousRouteService: PreviousRouteService
+  ) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.Uv$ = this.sessionDataService.getUv$();
     this.previousRouteService.setLastUrl();
   }
-
 }

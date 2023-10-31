@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class IconService {
-
-  private icon : string[] = [
+  private icon: string[] = [
     'assets/img/icon/day/01d.png',
     'assets/img/icon/day/02d.png',
     'assets/img/icon/day/03d.png',
@@ -14,12 +13,12 @@ export class IconService {
     'assets/img/icon/day/10d.png',
     'assets/img/icon/day/11d.png',
     'assets/img/icon/day/13d.png',
-    'assets/img/icon/day/50d.png'
+    'assets/img/icon/day/50d.png',
   ];
 
-   public getIcon(condition: string):any{
+  public getIcon(condition: string): any {
     const icon = [...this.icon];
-    switch(condition){
+    switch (condition) {
       case 'clear sky':
         return icon[0];
       case 'few clouds':
@@ -49,5 +48,5 @@ export class IconService {
     }
     return undefined;
   }
-  constructor() { }
+  constructor() {}
 }

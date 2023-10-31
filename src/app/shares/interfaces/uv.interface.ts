@@ -1,5 +1,4 @@
-
 export interface UV {
-  uv : number
-  time : number
+  uv: number;
+  time: number;
 }

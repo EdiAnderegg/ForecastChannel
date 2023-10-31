@@ -1,13 +1,11 @@
-import {  Directive, HostBinding } from '@angular/core';
+import { Directive, HostBinding } from '@angular/core';
 
 @Directive({
-  selector: '[Highlight]'
+  selector: '[Highlight]',
 })
 export class HighlightDirectiv {
-
-  @HostBinding('style.color') fontColor : string;
+  @HostBinding('style.color') fontColor: string;
   constructor() {
     this.fontColor = '#ffcc0f';
   }
-
 }

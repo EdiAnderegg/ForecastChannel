@@ -2,23 +2,21 @@
   <div class="content">
     <div class="header">
       <span class="img">
-        <img class="icon img-fluid" src="assets/img/UV_icon.png">
+        <img class="icon img-fluid" src="assets/img/UV_icon.png" />
       </span>
-      <h1 class="title">
-        UV Index
-      </h1>
+      <h1 class="title">UV Index</h1>
     </div>
     <div class="footer d-flex justify-content-between">
       <div class="left">
         <h1 class="left-content">
-          {{ Uv.uv | uvIndex : 'number' }}
+          {{ Uv.uv | uvIndex : "number" }}
         </h1>
       </div>
       <div class="right">
         <h1 class="right-content">
-          {{ Uv.uv | uvIndex : 'string' }}
+          {{ Uv.uv | uvIndex : "string" }}
         </h1>
       </div>
     </div>
   </div>
-  </div>
+</div>

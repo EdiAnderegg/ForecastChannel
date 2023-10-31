@@ -1,19 +1,17 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'week'
+  name: 'week',
 })
 export class WeekPipe implements PipeTransform {
-
   transform(value: number | undefined): string {
-
-    switch(value){
+    switch (value) {
       case 0:
         return 'SUN';
       case 1:
         return 'MON';
       case 2:
-       return 'TUE';
+        return 'TUE';
       case 3:
         return 'WED';
       case 4:
@@ -21,8 +19,8 @@ export class WeekPipe implements PipeTransform {
       case 5:
         return 'FRI';
       case 6:
-        return 'SAT'
+        return 'SAT';
     }
-    return ''
+    return '';
   }
 }

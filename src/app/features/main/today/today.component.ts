@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Today } from 'src/app/shares/interfaces/weather.interface';
@@ -9,21 +8,20 @@ import { PreviousRouteService } from 'src/app/shares/services/previous-route.ser
 @Component({
   selector: 'app-today',
   templateUrl: './today.component.html',
-  styleUrls: ['./today.component.scss']
+  styleUrls: ['./today.component.scss'],
 })
 export class TodayComponent implements OnInit {
-
   public Today$!: Observable<Today | undefined>;
-  public User$! : Observable<User | undefined>;
+  public User$!: Observable<User | undefined>;
 
-  constructor(private readonly sessionDataService: SessionDataService,
-              private readonly previousRouteService : PreviousRouteService) { }
-
+  constructor(
+    private readonly sessionDataService: SessionDataService,
+    private readonly previousRouteService: PreviousRouteService
+  ) {}
 
   ngOnInit(): void {
     this.Today$ = this.sessionDataService.getToday$();
     this.User$ = this.sessionDataService.getUser$();
     this.previousRouteService.setLastUrl();
   }
-
 }

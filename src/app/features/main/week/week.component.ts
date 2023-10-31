@@ -7,17 +7,18 @@ import { PreviousRouteService } from 'src/app/shares/services/previous-route.ser
 @Component({
   selector: 'app-week',
   templateUrl: './week.component.html',
-  styleUrls: ['./week.component.scss']
+  styleUrls: ['./week.component.scss'],
 })
 export class WeekComponent implements OnInit {
-
   public Week$!: Observable<weekArr | undefined>;
 
-  constructor(private readonly sessionDataService: SessionDataService,
-              private readonly previousRouteService : PreviousRouteService){}
+  constructor(
+    private readonly sessionDataService: SessionDataService,
+    private readonly previousRouteService: PreviousRouteService
+  ) {}
 
-  public isWeekend(weekDay: number): boolean{
-    if(weekDay === 6 || weekDay === 0) return true;
+  public isWeekend(weekDay: number): boolean {
+    if (weekDay === 6 || weekDay === 0) return true;
     return false;
   }
 

@@ -2,20 +2,28 @@
   <div class="content d-flex justify-content-center">
     <div class="card" *ngFor="let day of Week.days">
       <div class="card-header">
-        <h1 class="header-title" Highlight *ngIf="isWeekend(day?.day); else restOfWeek">
-          {{day?.day | week}}
+        <h1
+          class="header-title"
+          Highlight
+          *ngIf="isWeekend(day?.day); else restOfWeek"
+        >
+          {{ day?.day | week }}
         </h1>
         <ng-template #restOfWeek>
           <h1 class="header-title">
-            {{day?.day | week}}
+            {{ day?.day | week }}
           </h1>
         </ng-template>
       </div>
       <div class="card-body">
-        <img [src]="day?.icon" class="img-fluid" [alt]="day?.description">
-        <div class="card-title"><h1 class="title-one">{{day?.temp1 | number:'1.0-0'}}</h1></div>
-        <div class="card-title"><h1 class="title-two">{{day?.temp2 | number:'1.0-0'}}</h1></div>
+        <img [src]="day?.icon" class="img-fluid" [alt]="day?.description" />
+        <div class="card-title">
+          <h1 class="title-one">{{ day?.temp1 | number : "1.0-0" }}</h1>
+        </div>
+        <div class="card-title">
+          <h1 class="title-two">{{ day?.temp2 | number : "1.0-0" }}</h1>
+        </div>
       </div>
     </div>
   </div>
-  </div>
+</div>

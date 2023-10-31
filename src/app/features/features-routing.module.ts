@@ -12,35 +12,46 @@ import { UvIndexComponent } from './main/uv-index/uv-index.component';
 import { RegionComponent } from './settings/region/region.component';
 import { SetComponent } from './settings/set/set.component';
 
-
 const routes: Routes = [
-  {path: 'start', component: StartComponent },
-  {path: 'main', component: MainComponent,
-   children:[
-    {path: '', redirectTo: 'Current', pathMatch: 'full'},
-    {path: 'UV_Index', component: UvIndexComponent, data: { animation: 0}},
-    {path: 'Current', component: CurrentComponent, data: { animation: 1 }},
-    {path: 'Today', component: TodayComponent, data: { animation: 2 }},
-    {path: 'Tomorrow', component: TomorrowComponent, data: { animation: 3 }},
-    {path: '5-Day_Forecast', component: WeekComponent, data: { animation: 4 }},
-    {path: '**', component: CurrentComponent}
-   ]
+  { path: 'start', component: StartComponent },
+  {
+    path: 'main',
+    component: MainComponent,
+    children: [
+      { path: '', redirectTo: 'Current', pathMatch: 'full' },
+      { path: 'UV_Index', component: UvIndexComponent, data: { animation: 0 } },
+      { path: 'Current', component: CurrentComponent, data: { animation: 1 } },
+      { path: 'Today', component: TodayComponent, data: { animation: 2 } },
+      {
+        path: 'Tomorrow',
+        component: TomorrowComponent,
+        data: { animation: 3 },
+      },
+      {
+        path: '5-Day_Forecast',
+        component: WeekComponent,
+        data: { animation: 4 },
+      },
+      { path: '**', component: CurrentComponent },
+    ],
   },
-  {path: 'settings', component: SettingsComponent,
-   children:[
-    {path: '', redirectTo: '', pathMatch: 'full'},
-    {path: '' , component: SetComponent},
-    {path: 'region', component: RegionComponent},
-    {path: '**', component: SetComponent}
-   ]
-},
-  {path: 'globe', component: GlobeComponent },
-  {path: '', redirectTo: 'start', pathMatch: 'full'},
-  {path: '**', component: StartComponent }
+  {
+    path: 'settings',
+    component: SettingsComponent,
+    children: [
+      { path: '', redirectTo: '', pathMatch: 'full' },
+      { path: '', component: SetComponent },
+      { path: 'region', component: RegionComponent },
+      { path: '**', component: SetComponent },
+    ],
+  },
+  { path: 'globe', component: GlobeComponent },
+  { path: '', redirectTo: 'start', pathMatch: 'full' },
+  { path: '**', component: StartComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class FeaturesRoutingModule { }
+export class FeaturesRoutingModule {}

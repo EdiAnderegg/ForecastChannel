@@ -1,8 +1,5 @@
-
-
 /*==========Header================*/
-.header
-{
+.header {
   background-color: #40992a;
   user-select: none;
   position: fixed;
@@ -11,21 +8,18 @@
   width: 100%;
   z-index: 1;
 }
-.header-text
-{
+.header-text {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   font-size: 5dvh;
   word-spacing: 0.5dvh;
 }
 /*==========Header Ends==========*/
 
-
 /*===============Body Start============*/
-.body
-{
+.body {
   position: fixed;
   top: 14dvh;
   left: 0;
@@ -34,8 +28,7 @@
 }
 
 /*==============Cart Start===========*/
-.crt-body
-{
+.crt-body {
   position: relative;
   height: 19.8dvh;
   width: 100%;
@@ -43,9 +36,8 @@
   margin-bottom: 2.2dvh;
 }
 
-.crt-header
-{
-  background: linear-gradient(to right, #003b65,rgba(255, 255, 255, 0) 90%);
+.crt-header {
+  background: linear-gradient(to right, #003b65, rgba(255, 255, 255, 0) 90%);
   position: absolute;
   top: 0;
   left: 0;
@@ -53,20 +45,18 @@
   width: 100%;
 }
 
-.header-title
-{
+.header-title {
   position: absolute;
   font-size: 5dvh;
   top: 50%;
   left: 32%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   color: rgb(247, 254, 255);
   text-shadow: rgb(34, 34, 34) 0.05em 0.01em;
   word-spacing: 0.5dvh;
 }
 
-.crt-content
-{
+.crt-content {
   pointer-events: none;
   position: absolute;
   bottom: 0;
@@ -76,8 +66,7 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
-.crt-left
-{
+.crt-left {
   position: absolute;
   top: 0;
   left: 0;
@@ -85,20 +74,18 @@
   height: 100%;
 }
 
-.left-title
-{
+.left-title {
   position: absolute;
   font-size: 6.4dvh;
   top: 50%;
   left: 52%;
-  transform: translate(-50%,-50%);
-  color: rgb(247, 254, 255,0.8);
+  transform: translate(-50%, -50%);
+  color: rgb(247, 254, 255, 0.8);
   word-spacing: 0.5dvh;
   z-index: 1;
 }
 
-.crt-right
-{
+.crt-right {
   position: absolute;
   top: 0;
   right: 0;
@@ -106,8 +93,7 @@
   height: 100%;
 }
 
-.settings-btn
-{
+.settings-btn {
   pointer-events: auto;
   position: absolute;
   top: -1dvh;
@@ -116,13 +102,12 @@
   z-index: 1;
   border: 0.5dvh solid #a8a7b0;
   border-right: 0.5dvh solid #575757;
-  background:  linear-gradient(#e6e6e6 40%,#cbccc8 0%,#e6e6e6);
+  background: linear-gradient(#e6e6e6 40%, #cbccc8 0%, #e6e6e6);
   box-shadow: inset -0.65dvw 0.7dvw 0 -0.3dvw white;
   transition: 200ms;
 }
 
-.btn-content
-{
+.btn-content {
   position: absolute;
   width: 100%;
   top: 24%;
@@ -131,74 +116,62 @@
   font-size: 6dvh;
 }
 
-@media(hover:hover){
+@media (hover: hover) {
+  .settings-btn:hover {
+    user-select: none;
+    cursor: pointer;
+    color: rgb(247, 254, 255);
+  }
+  .settings-btn:hover:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: rgba(0, 132, 255, 0.65);
+  }
 
-.settings-btn:hover
-{
-  user-select: none;
-  cursor: pointer;
-  color:rgb(247, 254, 255);
-}
-.settings-btn:hover:after
-{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  background: rgba(0, 132, 255, 0.65);
-}
+  .location-content:hover:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 132, 255, 0.65);
+  }
 
-.location-content:hover:after
-{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 132, 255, 0.65);
-}
+  .stats-content:hover:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(247, 254, 255);
+  }
 
-.stats-content:hover:after
-{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgb(247, 254, 255);
-}
-
-.stats-content:hover .crt-left .left-title
-{
-  color: black;
+  .stats-content:hover .crt-left .left-title {
+    color: black;
+  }
 }
 
+.settings-btn:active {
+  top: 2dvh;
 }
-
-.settings-btn:active
-{
- top: 2dvh;
-}
-.settings-btn:not(active)
-{
+.settings-btn:not(active) {
   top: -1dvh;
   transition: 100ms;
 }
 
 /*==============Cart Ends============*/
 
-
 /*==============Body Ends=============*/
 
-
 /*==========Footer================*/
-.footer
-{
+.footer {
   position: fixed;
   bottom: 0;
   height: 13.5dvh;
@@ -206,20 +179,17 @@
   overflow: hidden;
   user-select: none;
 }
-.footer-left
-{
+.footer-left {
   position: relative;
   width: 29.6%;
   border-top: 0.5dvh solid #a8a7b0;
-  background:  linear-gradient(#e6e6e6 40%,#cbccc8 0%,#e6e6e6);
+  background: linear-gradient(#e6e6e6 40%, #cbccc8 0%, #e6e6e6);
   box-shadow: inset -1.15dvw -1dvw 0 -1dvw black,
-              inset -0.80dvw 0.75dvw 0 -0.3dvw white;
+    inset -0.8dvw 0.75dvw 0 -0.3dvw white;
   transition: 200ms;
-
 }
 
-.footer-left-content
-{
+.footer-left-content {
   position: absolute;
   width: 100%;
   top: -0.5dvh;
@@ -228,49 +198,42 @@
   font-size: 5.5dvh;
 }
 
-.footer-right
-{
+.footer-right {
   position: relative;
   width: 70.4%;
   border-top: 0.5dvh solid #a8a7b0;
-  background:  linear-gradient(#e6e6e6 40%,#cbccc8 0%,#e6e6e6);
+  background: linear-gradient(#e6e6e6 40%, #cbccc8 0%, #e6e6e6);
   box-shadow: inset 1.15dvw -1dvw 0 -1dvw black,
-              inset 0.5dvw 0 0.6dvw -0.3dvw black,
-              inset 0 0.75dvw 0 -0.3dvw white;
+    inset 0.5dvw 0 0.6dvw -0.3dvw black, inset 0 0.75dvw 0 -0.3dvw white;
 }
 
-@media(hover:hover){
-  .footer-btn:hover
-{
-  user-select: none;
-  cursor: pointer;
-  color:rgb(247, 254, 255);
-}
-.footer-btn:hover:after
-{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 132, 255, 0.65);
-}
+@media (hover: hover) {
+  .footer-btn:hover {
+    user-select: none;
+    cursor: pointer;
+    color: rgb(247, 254, 255);
+  }
+  .footer-btn:hover:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 132, 255, 0.65);
+  }
 }
 
-.footer-btn:active
-{
- top: 2dvh;
- border-top: none;
+.footer-btn:active {
+  top: 2dvh;
+  border-top: none;
 }
-.footer-btn:not(active)
-{
+.footer-btn:not(active) {
   top: 0;
   transition: 100ms;
 }
-.footer-btn[disabled]
-{
-  color: rgba(0,0,0,0);
+.footer-btn[disabled] {
+  color: rgba(0, 0, 0, 0);
   pointer-events: none;
   user-select: none;
 }

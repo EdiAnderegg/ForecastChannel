@@ -20,9 +20,6 @@ import { UvIndexComponent } from './main/uv-index/uv-index.component';
 import { RegionComponent } from './settings/region/region.component';
 import { SetComponent } from './settings/set/set.component';
 
-
-
-
 @NgModule({
   declarations: [
     StartComponent,
@@ -43,13 +40,7 @@ import { SetComponent } from './settings/set/set.component';
     RegionComponent,
     SetComponent,
   ],
-  imports: [
-    CommonModule,
-    FeaturesRoutingModule,
-    FontAwesomeModule
-  ],
-  exports:[
-    FeaturesRoutingModule
-  ],
+  imports: [CommonModule, FeaturesRoutingModule, FontAwesomeModule],
+  exports: [FeaturesRoutingModule],
 })
-export class FeaturesModule { }
+export class FeaturesModule {}

@@ -1,17 +1,23 @@
 <div class="body" *ngIf="Tomorrow$ | async as Tomorrow">
   <div class="body-content d-flex justify-content-around">
-    <div class="body-content-temperature d-flex flex-column justify-content-between">
-      <h1 class="temperature-title align-self-center">{{Tomorrow?.temperature | number:'1.0-0'}}&deg;</h1>
-      <h1 class="temperature-status align-self-center">{{Tomorrow?.description}}</h1>
+    <div
+      class="body-content-temperature d-flex flex-column justify-content-between"
+    >
+      <h1 class="temperature-title align-self-center">
+        {{ Tomorrow?.temperature | number : "1.0-0" }}&deg;
+      </h1>
+      <h1 class="temperature-status align-self-center">
+        {{ Tomorrow?.description }}
+      </h1>
     </div>
     <div class="body-content-symbol align-self-center">
-      <img class="symbol-image img-fluid" [src]="Tomorrow?.icon">
+      <img class="symbol-image img-fluid" [src]="Tomorrow?.icon" />
     </div>
   </div>
   <div class="body-footer-up">
     <h1 class="wind-info" *ngIf="User$ | async as User">
-      {{Tomorrow?.wind?.deg | wind}}
-      {{Tomorrow?.wind?.speed | speed: User.windSpeed}}
+      {{ Tomorrow?.wind?.deg | wind }}
+      {{ Tomorrow?.wind?.speed | speed : User.windSpeed }}
     </h1>
   </div>
-  </div>
+</div>

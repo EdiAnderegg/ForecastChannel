@@ -8,7 +8,7 @@ describe('UvIndexComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [UvIndexComponent]
+      declarations: [UvIndexComponent],
     });
     fixture = TestBed.createComponent(UvIndexComponent);
     component = fixture.componentInstance;

@@ -8,7 +8,6 @@ import { SessionDataService } from 'src/app/shares/services/session-data.service
 @Injectable({
   providedIn: 'root',
 })
-
 export class MainService {
   constructor(
     private readonly weatherService: WeatherService,
@@ -31,7 +30,8 @@ export class MainService {
           this.uvService.setUV(pos.coords.latitude, pos.coords.longitude);
         }
 
-        this.weatherService.getCurrentWeather$()
+        this.weatherService
+          .getCurrentWeather$()
           .pipe(take(1))
           .subscribe((data) => {
             const current = { ...data[0] };
@@ -53,7 +53,8 @@ export class MainService {
             }
           });
 
-        this.weatherService.getWeekWeather$()
+        this.weatherService
+          .getWeekWeather$()
           .pipe(take(1))
           .subscribe((data) => {
             const tomorrow = { ...data[0] };
@@ -62,12 +63,15 @@ export class MainService {
 
             const week = { ...data[1] };
             for (let i = 0; i <= 4; i++) {
-              week.days[i].icon = this.iconService.getIcon(week.days[i].description);
+              week.days[i].icon = this.iconService.getIcon(
+                week.days[i].description
+              );
             }
             this.sessionDataService.outputWeek(week);
           });
 
-        this.uvService.getUV$()
+        this.uvService
+          .getUV$()
           .pipe(take(1))
           .subscribe((data) => {
             const uv = { ...data };
@@ -77,4 +81,3 @@ export class MainService {
     }
   }
 }
-

@@ -8,20 +8,20 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-tomorrow',
   templateUrl: './tomorrow.component.html',
-  styleUrls: ['./tomorrow.component.scss']
+  styleUrls: ['./tomorrow.component.scss'],
 })
 export class TomorrowComponent implements OnInit {
-
   public Tomorrow$!: Observable<Tomorrow | undefined>;
-  public User$! : Observable<User | undefined>;
+  public User$!: Observable<User | undefined>;
 
-  constructor(private readonly sessionDataService: SessionDataService,
-              private readonly previousRouteService : PreviousRouteService) { }
+  constructor(
+    private readonly sessionDataService: SessionDataService,
+    private readonly previousRouteService: PreviousRouteService
+  ) {}
 
   ngOnInit(): void {
     this.Tomorrow$ = this.sessionDataService.getTomorrow$();
     this.User$ = this.sessionDataService.getUser$();
     this.previousRouteService.setLastUrl();
   }
-
 }

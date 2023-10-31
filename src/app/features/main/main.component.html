@@ -1,52 +1,75 @@
 <div class="screen"></div>
-  <div class="header d-flex">
-    <div class="header-left"></div>
-    <button class="header-middle header-btn" (click)="btnSlide(-1)" [disabled]="isButtonDisabled(currentIndex - 1)">
-      <div class="header-middle-content">
-        <div class="header-middle-icon"><fa-icon  [icon]="faSortUp"></fa-icon></div>
-        <h1 class="header-middle-text">{{actualSite[currentIndex -1]}}</h1>
+<div class="header d-flex">
+  <div class="header-left"></div>
+  <button
+    class="header-middle header-btn"
+    (click)="btnSlide(-1)"
+    [disabled]="isButtonDisabled(currentIndex - 1)"
+  >
+    <div class="header-middle-content">
+      <div class="header-middle-icon">
+        <fa-icon [icon]="faSortUp"></fa-icon>
       </div>
-    </button>
-    <div class="header-right header-btn d-flex justify-content-center" (click)="btnSettings()"><h1 class="header-right-content align-self-end">Settings</h1></div>
+      <h1 class="header-middle-text">{{ actualSite[currentIndex - 1] }}</h1>
+    </div>
+  </button>
+  <div
+    class="header-right header-btn d-flex justify-content-center"
+    (click)="btnSettings()"
+  >
+    <h1 class="header-right-content align-self-end">Settings</h1>
   </div>
-  <div class="body-header">
-    <h1 class="body-title" *ngIf='display' [style]="textLength ? 'font-size: 7dvh' : 'font-size: 4.2dvw'">
-      <span [@fadeIn]>{{ actualSite[currentIndex] | uppercase }}</span>
+</div>
+<div class="body-header">
+  <h1
+    class="body-title"
+    *ngIf="display"
+    [style]="textLength ? 'font-size: 7dvh' : 'font-size: 4.2dvw'"
+  >
+    <span [@fadeIn]>{{ actualSite[currentIndex] | uppercase }}</span>
+  </h1>
+  <div class="body-header-body align-self-center d-flex justify-content-end">
+    <h1
+      class="body-header-title align-self-center"
+      *ngIf="Weather$ | async as Weather"
+    >
+      {{ Weather?.location }}
     </h1>
-    <div class="body-header-body align-self-center d-flex justify-content-end" >
-      <h1 class="body-header-title align-self-center" *ngIf="Weather$ | async as Weather">
-        {{Weather?.location}}
-      </h1>
-    </div>
   </div>
-  <div class="body-screen"[@slider]="prepareRoute(outlet)">
-    <router-outlet #outlet="outlet"></router-outlet>
+</div>
+<div class="body-screen" [@slider]="prepareRoute(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>
+<div class="body-footer">
+  <div class="body-footer-down d-flex justify-content-between">
+    <h2 class="body-footer-brand align-self-center">
+      supported by OpenWeather
+    </h2>
+    <h2 class="body-footer-date align-self-center" *ngIf="display">
+      <span [@fadeIn] *ngIf="Weather$ | async as Weather">
+        As of
+        {{ Weather?.time | date : "h:mm a" }},
+        {{ Weather?.time | date : "dd/MM" }}
+      </span>
+    </h2>
+    <div class="body-footer-underline"></div>
   </div>
-  <div class="body-footer">
-    <div class="body-footer-down d-flex justify-content-between">
-      <h2 class="body-footer-brand align-self-center">supported by OpenWeather</h2>
-      <h2 class="body-footer-date align-self-center" *ngIf='display'>
-        <span [@fadeIn] *ngIf="Weather$ | async as Weather">
-          As of
-        {{ Weather?.time | date: 'h:mm a'}},
-        {{ Weather?.time | date: 'dd/MM'}}
-        </span>
-        </h2>
-      <div class="body-footer-underline"></div>
-    </div>
+</div>
+<div class="footer d-flex">
+  <div class="footer-left footer-btn" (click)="btnstart()">
+    <h1 class="footer-left-content align-self-start">Wii Menu</h1>
   </div>
-  <div class="footer d-flex">
-    <div class="footer-left footer-btn" (click)="btnstart()">
-      <h1 class="footer-left-content align-self-start">Wii Menu</h1>
+  <button
+    class="footer-middle footer-btn"
+    (click)="btnSlide(1)"
+    [disabled]="isButtonDisabled(currentIndex + 1)"
+  >
+    <div class="footer-middle-content">
+      <fa-icon class="footer-middle-icon" [icon]="faSortDown"></fa-icon>
+      <h1 class="footer-middle-text">{{ actualSite[currentIndex + 1] }}</h1>
     </div>
-    <button class="footer-middle footer-btn" (click)="btnSlide(1)" [disabled]="isButtonDisabled(currentIndex + 1)">
-      <div class="footer-middle-content">
-        <fa-icon class="footer-middle-icon" [icon]="faSortDown"></fa-icon>
-        <h1 class="footer-middle-text">{{actualSite[currentIndex +1]}}</h1>
-    </div>
-    </button>
+  </button>
   <div class="footer-right footer-btn">
     <h1 class="footer-right-content align-self-start">Globe</h1>
   </div>
 </div>
-
