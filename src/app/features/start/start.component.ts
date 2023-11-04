@@ -1,22 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { take } from 'rxjs';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
-import { WeatherService } from 'src/app/shares/services/weather.service';
-import { IconService } from './../../shares/services/icon.service';
+import { MotherService } from 'src/app/shares/services/main.service';
+import { SessionDataService } from './../../shares/services/session-data.service';
+import { LoadingService } from 'src/app/shares/services/loading.service';
 import { Current } from '../../shares/interfaces/weather.interface';
+import { Observable } from 'rxjs';
+import { fadeOutScreen } from 'src/app/shares/animation/loading.animation';
 
 @Component({
   selector: 'app-start',
   templateUrl: './start.component.html',
   styleUrls: ['./start.component.scss'],
+  animations: [fadeOutScreen],
 })
-export class StartComponent implements OnInit {
-  public Current: Current | undefined;
+export class StartComponent implements OnInit, AfterViewInit {
+  public loadingStart$!: Observable<boolean>;
+  public Current$!: Observable<Current | undefined>;
 
   constructor(
-    private readonly weatherService: WeatherService,
-    private readonly iconService: IconService,
-    private readonly router: Router
+    private readonly motherService: MotherService,
+    private readonly sessionDataService: SessionDataService,
+    private readonly loadingService: LoadingService,
+    private readonly router: Router,
+    private readonly cd: ChangeDetectorRef
   ) {}
 
   public btnClick() {
@@ -24,27 +35,12 @@ export class StartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.weatherService.isSet = false;
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        this.weatherService.setWeather(
-          pos.coords.latitude,
-          pos.coords.longitude,
-          'metric',
-          '',
-          ''
-        );
-        this.weatherService
-          .getCurrentWeather$()
-          .pipe(take(1))
-          .subscribe((data) => {
-            this.Current = { ...data[0] };
-            this.Current!.icon = this.iconService.getIcon(
-              this.Current!.description
-            );
-            return this.Current;
-          });
-      });
-    }
+    this.motherService.initializeStart();
+    this.Current$ = this.sessionDataService.getCurrent$();
+  }
+
+  ngAfterViewInit(): void {
+    this.loadingStart$ = this.loadingService.getLoadingStart();
+    this.cd.detectChanges();
   }
 }

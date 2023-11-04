@@ -4,19 +4,52 @@ import { WeatherService } from 'src/app/shares/services/weather.service';
 import { UvIndexService } from 'src/app/shares/services/uv-index.service';
 import { IconService } from 'src/app/shares/services/icon.service';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
+import { LoadingService } from './loading.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MainService {
+export class MotherService {
   constructor(
     private readonly weatherService: WeatherService,
     private readonly iconService: IconService,
     private readonly sessionDataService: SessionDataService,
-    private readonly uvService: UvIndexService
+    private readonly uvService: UvIndexService,
+    private readonly loadingService: LoadingService
   ) {}
 
-  initializeData(): void {
+  initializeStart(): void {
+    this.loadingService.setLoadingCurrent(false);
+    this.weatherService.isSet = false;
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((pos) => {
+        if (!this.weatherService.isSet) {
+          this.weatherService.setWeather(
+            pos.coords.latitude,
+            pos.coords.longitude,
+            'metric',
+            'km/h',
+            ''
+          );
+        }
+
+        this.weatherService
+          .getCurrentWeather$()
+          .pipe(take(1))
+          .subscribe((data) => {
+            const current = { ...data[0] };
+            current.icon = this.iconService.getIcon(current.description);
+            this.sessionDataService.outputCurrent(current);
+            this.loadingService.setLoadingCurrent(true);
+          });
+      });
+    }
+  }
+
+  initializeMain(): void {
+    this.loadingService.setLoadingCurrent(false);
+    this.loadingService.setLoadingWeek(false);
+    this.loadingService.setLoadingUv(false);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
         if (!this.weatherService.isSet) {
@@ -51,6 +84,8 @@ export class MainService {
                 location: data[0].location,
               });
             }
+
+            this.loadingService.setLoadingCurrent(true);
           });
 
         this.weatherService
@@ -68,6 +103,8 @@ export class MainService {
               );
             }
             this.sessionDataService.outputWeek(week);
+
+            this.loadingService.setLoadingWeek(true);
           });
 
         this.uvService
@@ -76,6 +113,8 @@ export class MainService {
           .subscribe((data) => {
             const uv = { ...data };
             this.sessionDataService.outputUv(uv);
+
+            this.loadingService.setLoadingUv(true);
           });
       });
     }

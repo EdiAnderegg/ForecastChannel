@@ -7,23 +7,26 @@ import {
 import { Router, RouterOutlet } from '@angular/router';
 import { Weather } from 'src/app/shares/interfaces/weather.interface';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
-import { MainService } from 'src/app/shares/services/main.service';
+import { MotherService } from 'src/app/shares/services/main.service';
+import { LoadingService } from 'src/app/shares/services/loading.service';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { slider } from 'src/app/shares/animation/slide.animation';
 import { fadeInAnimation } from 'src/app/shares/animation/fade-in.animation';
+import { fadeOutScreen } from './../../shares/animation/loading.animation';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  animations: [slider, fadeInAnimation],
+  animations: [slider, fadeInAnimation, fadeOutScreen],
 })
 export class MainComponent implements OnInit, AfterViewInit {
   faSortUp = faSortUp;
   faSortDown = faSortDown;
 
   public Weather$!: Observable<Weather | undefined>;
+  public loadingMain$!: Observable<boolean>;
   public actualSite: string[] = [
     '',
     'UV Index',
@@ -40,20 +43,22 @@ export class MainComponent implements OnInit, AfterViewInit {
   public initialized: boolean = false;
 
   constructor(
-    private readonly mainService: MainService,
+    private readonly motherService: MotherService,
     private readonly sessionDataService: SessionDataService,
+    private readonly loadingService: LoadingService,
     private readonly router: Router,
     private readonly cd: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
+    this.motherService.initializeMain();
     this.urlTitle = this.router.url.split('/').pop();
-    this.mainService.initializeData();
     this.handleUrlTitle();
     this.initialized = true;
   }
 
   ngAfterViewInit(): void {
+    this.loadingMain$ = this.loadingService.getLoadingMain();
     this.cd.detectChanges();
   }
 
@@ -90,6 +95,9 @@ export class MainComponent implements OnInit, AfterViewInit {
           this.currentIndex = 1;
         }
         return;
+      default:
+        this.Weather$ = this.sessionDataService.getCurrent$();
+        this.currentIndex = 2;
     }
   }
 

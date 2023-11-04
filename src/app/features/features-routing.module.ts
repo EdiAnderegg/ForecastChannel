@@ -32,7 +32,7 @@ const routes: Routes = [
         component: WeekComponent,
         data: { animation: 4 },
       },
-      { path: '**', component: CurrentComponent },
+      { path: '**', component: CurrentComponent, data: { animation: 1 } },
     ],
   },
   {
