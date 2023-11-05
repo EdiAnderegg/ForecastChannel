@@ -103,7 +103,6 @@ export class MotherService {
               );
             }
             this.sessionDataService.outputWeek(week);
-
             this.loadingService.setLoadingWeek(true);
           });
 
@@ -113,7 +112,6 @@ export class MotherService {
           .subscribe((data) => {
             const uv = { ...data };
             this.sessionDataService.outputUv(uv);
-
             this.loadingService.setLoadingUv(true);
           });
       });
