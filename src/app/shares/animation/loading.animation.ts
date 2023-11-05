@@ -9,7 +9,7 @@ import {
 export const fadeOutScreen = trigger('fadeOutScreen', [
   transition(':leave', [
     animate(
-      '1000ms ease-out',
+      '1000ms ease-in',
       keyframes([
         style({ opacity: 1, offset: 0 }),
         style({ opacity: 0, offset: 1.0 }),

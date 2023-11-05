@@ -4,6 +4,7 @@ import { WeatherService } from 'src/app/shares/services/weather.service';
 import { UvIndexService } from 'src/app/shares/services/uv-index.service';
 import { IconService } from 'src/app/shares/services/icon.service';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
+import { SoundService } from './sound.service';
 import { LoadingService } from './loading.service';
 
 @Injectable({
@@ -15,11 +16,15 @@ export class MotherService {
     private readonly iconService: IconService,
     private readonly sessionDataService: SessionDataService,
     private readonly uvService: UvIndexService,
+    private readonly soundService: SoundService,
     private readonly loadingService: LoadingService
   ) {}
 
   initializeStart(): void {
     this.loadingService.setLoadingCurrent(false);
+    this.loadingService.setLoadingBackgroundSound(false);
+    this.loadingService.setLoadingEventSound(false);
+
     this.weatherService.isSet = false;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
@@ -44,12 +49,35 @@ export class MotherService {
           });
       });
     }
+
+    //Sounds in StartComponent
+
+    //BackgroundSound
+    this.soundService
+      .preload(
+        'start_component',
+        'assets/sound/background_sound/01_forecast_channel_banner.mp3'
+      )
+      .pipe(take(1))
+      .subscribe(() => {
+        this.soundService.playSound('start_component');
+        this.loadingService.setLoadingBackgroundSound(true);
+      });
+
+    //EventSounds
+    this.soundService
+      .preload('start_button', 'assets/sound/event_sound/start_button.mp3')
+      .pipe(take(1))
+      .subscribe(() => {
+        this.loadingService.setLoadingEventSound(true);
+      });
   }
 
   initializeMain(): void {
     this.loadingService.setLoadingCurrent(false);
     this.loadingService.setLoadingWeek(false);
     this.loadingService.setLoadingUv(false);
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
         if (!this.weatherService.isSet) {

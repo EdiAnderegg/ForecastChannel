@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { MotherService } from 'src/app/shares/services/main.service';
+import { SoundService } from 'src/app/shares/services/sound.service';
 import { SessionDataService } from './../../shares/services/session-data.service';
 import { LoadingService } from 'src/app/shares/services/loading.service';
 import { Current } from '../../shares/interfaces/weather.interface';
@@ -24,14 +25,16 @@ export class StartComponent implements OnInit, AfterViewInit {
 
   constructor(
     private readonly motherService: MotherService,
+    private readonly soundService: SoundService,
     private readonly sessionDataService: SessionDataService,
     private readonly loadingService: LoadingService,
     private readonly router: Router,
     private readonly cd: ChangeDetectorRef
   ) {}
 
-  public btnClick() {
-    this.router.navigateByUrl('/main');
+  public btnClick(navigate: string, sound: string) {
+    this.soundService.playSound(sound);
+    this.router.navigateByUrl(navigate);
   }
 
   ngOnInit(): void {
