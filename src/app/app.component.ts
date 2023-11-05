@@ -1,5 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
-import { startWith } from 'rxjs/operators';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
