@@ -66,7 +66,7 @@ export class MotherService {
 
     //EventSounds
     this.soundService
-      .preload('start_button', 'assets/sound/event_sound/start_button.mp3')
+      .preload('start_button', 'assets/sound/event_sound/start_button.ogg')
       .pipe(take(1))
       .subscribe(() => {
         this.loadingService.setLoadingEventSound(true);

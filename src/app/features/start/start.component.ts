@@ -32,8 +32,10 @@ export class StartComponent implements OnInit, AfterViewInit {
     private readonly cd: ChangeDetectorRef
   ) {}
 
-  public btnClick(navigate: string, sound: string) {
+  public playSound(sound: string) {
     this.soundService.playSound(sound);
+  }
+  public btnClick(navigate: string) {
     this.router.navigateByUrl(navigate);
   }
 

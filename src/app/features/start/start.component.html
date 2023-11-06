@@ -46,12 +46,22 @@
     <!--Footer-->
     <div class="footer fixed-bottom d-flex justify-content-center">
       <div class="bttn">
-        <div class="bttnwrapper" (click)="btnClick('/start', 'start_button')">
+        <div
+          class="bttnwrapper"
+          (touchstart)="playSound('start_button')"
+          (mousedown)="playSound('start_button')"
+          (click)="btnClick('/start')"
+        >
           Wii Menu
         </div>
       </div>
       <div class="bttn">
-        <div class="bttnwrapper" (click)="btnClick('/main', 'start_button')">
+        <div
+          class="bttnwrapper"
+          (touchstart)="playSound('start_button')"
+          (mousedown)="playSound('start_button')"
+          (click)="btnClick('/main')"
+        >
           Start
         </div>
       </div>
