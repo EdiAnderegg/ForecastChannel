@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 })
 export class SoundService {
   private sounds: { [key: string]: HTMLAudioElement } = {};
-
   constructor() {}
 
   public preload(soundName: string, soundPath: string) {
