@@ -21,10 +21,6 @@ export class MotherService {
   ) {}
 
   initializeStart(): void {
-    this.loadingService.setLoadingCurrent(false);
-    this.loadingService.setLoadingBackgroundSound(false);
-    this.loadingService.setLoadingEventSound(false);
-
     this.weatherService.isSet = false;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
@@ -74,10 +70,6 @@ export class MotherService {
   }
 
   initializeMain(): void {
-    this.loadingService.setLoadingCurrent(false);
-    this.loadingService.setLoadingWeek(false);
-    this.loadingService.setLoadingUv(false);
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
         if (!this.weatherService.isSet) {
@@ -144,5 +136,19 @@ export class MotherService {
           });
       });
     }
+
+    //Sounds in MainComponent
+
+    //BackgroundSound
+    this.soundService
+      .preload(
+        'main_component',
+        'assets/sound/background_sound/04_Local_Forecast_(Daytime).mp3'
+      )
+      .pipe(take(1))
+      .subscribe(() => {
+        this.soundService.playSound('main_component');
+        this.loadingService.setLoadingBackgroundSound(true);
+      });
   }
 }

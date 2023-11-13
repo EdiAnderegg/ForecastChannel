@@ -9,6 +9,7 @@ import { Weather } from 'src/app/shares/interfaces/weather.interface';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
 import { MotherService } from 'src/app/shares/services/main.service';
 import { LoadingService } from 'src/app/shares/services/loading.service';
+import { SoundService } from 'src/app/shares/services/sound.service';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { slider } from 'src/app/shares/animation/slide.animation';
 import { fadeInAnimation } from 'src/app/shares/animation/fade-in.animation';
@@ -44,6 +45,7 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   constructor(
     private readonly motherService: MotherService,
+    private readonly soundService: SoundService,
     private readonly sessionDataService: SessionDataService,
     private readonly loadingService: LoadingService,
     private readonly router: Router,
@@ -125,6 +127,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   }
 
   public btnstart(): void {
+    this.soundService.stopSound('main_component');
     this.router.navigateByUrl('/start');
   }
 
