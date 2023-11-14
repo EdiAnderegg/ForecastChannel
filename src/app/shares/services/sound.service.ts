@@ -7,7 +7,6 @@ import * as $ from 'jquery';
 })
 export class SoundService {
   private sounds: { [key: string]: HTMLAudioElement } = {};
-  public isBackgroundPlaying: boolean = false;
 
   constructor() {}
 
@@ -50,4 +49,5 @@ export class SoundService {
       });
     }
   }
+  public enableAutoplay(): void {}
 }

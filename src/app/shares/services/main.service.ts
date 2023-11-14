@@ -21,10 +21,13 @@ export class MotherService {
   ) {}
 
   initializeStart(): void {
-    this.weatherService.isSet = false;
+    this.loadingService.setLoadingCurrent(false);
+    this.loadingService.setLoadingBackgroundSound(false);
+    this.loadingService.setLoadingEventSound(false);
+    this.loadingService.weatherChanged = false;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
-        if (!this.weatherService.isSet) {
+        if (!this.loadingService.weatherChanged) {
           this.weatherService.setWeather(
             pos.coords.latitude,
             pos.coords.longitude,
@@ -32,6 +35,7 @@ export class MotherService {
             'km/h',
             ''
           );
+          this.uvService.setUV(pos.coords.latitude, pos.coords.longitude);
         }
 
         this.weatherService
@@ -41,6 +45,16 @@ export class MotherService {
             const current = { ...data[0] };
             current.icon = this.iconService.getIcon(current.description);
             this.sessionDataService.outputCurrent(current);
+
+            if (!this.loadingService.weatherChanged) {
+              this.sessionDataService.outputUser({
+                lat: pos.coords.latitude,
+                lon: pos.coords.longitude,
+                tempUnit: 'metric',
+                windSpeed: 'km/h',
+                location: data[0].location,
+              });
+            }
             this.loadingService.setLoadingCurrent(true);
           });
       });
@@ -49,6 +63,7 @@ export class MotherService {
     //Sounds in StartComponent
 
     //BackgroundSound
+    this.soundService.enableAutoplay();
     this.soundService
       .preload(
         'start_component',
@@ -70,76 +85,74 @@ export class MotherService {
   }
 
   initializeMain(): void {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        if (!this.weatherService.isSet) {
-          this.weatherService.setWeather(
-            pos.coords.latitude,
-            pos.coords.longitude,
-            'metric',
-            'km/h',
-            ''
-          );
-          this.uvService.setUV(pos.coords.latitude, pos.coords.longitude);
-        }
+    this.loadingService.setLoadingCurrent(false);
+    this.loadingService.setLoadingWeek(false);
+    this.loadingService.setLoadingUv(false);
+    this.loadingService.setLoadingBackgroundSound(false);
 
-        this.weatherService
-          .getCurrentWeather$()
-          .pipe(take(1))
-          .subscribe((data) => {
-            const current = { ...data[0] };
-            current.icon = this.iconService.getIcon(current.description);
-            this.sessionDataService.outputCurrent(current);
-
-            const today = { ...data[1] };
-            today.icon = this.iconService.getIcon(today.description);
-            this.sessionDataService.outputToday(today);
-
-            if (!this.weatherService.isSet) {
-              this.sessionDataService.outputUser({
-                lat: pos.coords.latitude,
-                lon: pos.coords.longitude,
-                tempUnit: 'metric',
-                windSpeed: 'km/h',
-                location: data[0].location,
-              });
-            }
-
-            this.loadingService.setLoadingCurrent(true);
-          });
-
-        this.weatherService
-          .getWeekWeather$()
-          .pipe(take(1))
-          .subscribe((data) => {
-            const tomorrow = { ...data[0] };
-            tomorrow.icon = this.iconService.getIcon(tomorrow.description);
-            this.sessionDataService.outputTomorrow(tomorrow);
-
-            const week = { ...data[1] };
-            for (let i = 0; i <= 4; i++) {
-              week.days[i].icon = this.iconService.getIcon(
-                week.days[i].description
-              );
-            }
-            this.sessionDataService.outputWeek(week);
-            this.loadingService.setLoadingWeek(true);
-          });
-
-        this.uvService
-          .getUV$()
-          .pipe(take(1))
-          .subscribe((data) => {
-            const uv = { ...data };
-            this.sessionDataService.outputUv(uv);
-            this.loadingService.setLoadingUv(true);
-          });
+    this.sessionDataService
+      .getUser$()
+      .pipe(take(1))
+      .subscribe((data) => {
+        this.weatherService.setWeather(
+          data?.lat!,
+          data?.lon!,
+          data?.tempUnit!,
+          data?.windSpeed!,
+          data?.location!
+        );
       });
-    }
+
+    this.weatherService
+      .getCurrentWeather$()
+      .pipe(take(1))
+      .subscribe((data) => {
+        const current = { ...data[0] };
+        current.icon = this.iconService.getIcon(current.description);
+        this.sessionDataService.outputCurrent(current);
+
+        const today = { ...data[1] };
+        today.icon = this.iconService.getIcon(today.description);
+        this.sessionDataService.outputToday(today);
+
+        this.loadingService.setLoadingCurrent(true);
+      });
+
+    this.weatherService
+      .getWeekWeather$()
+      .pipe(take(1))
+      .subscribe((data) => {
+        const tomorrow = { ...data[0] };
+        tomorrow.icon = this.iconService.getIcon(tomorrow.description);
+        this.sessionDataService.outputTomorrow(tomorrow);
+
+        const week = { ...data[1] };
+        for (let i = 0; i <= 4; i++) {
+          week.days[i].icon = this.iconService.getIcon(
+            week.days[i].description
+          );
+        }
+        this.sessionDataService.outputWeek(week);
+        this.loadingService.setLoadingWeek(true);
+      });
+
+    this.uvService
+      .getUV$()
+      .pipe(take(1))
+      .subscribe((data) => {
+        const uv = { ...data };
+        this.sessionDataService.outputUv(uv);
+        this.loadingService.setLoadingUv(true);
+      });
 
     //Sounds in MainComponent
 
     //BackgroundSound
+    if (this.loadingService.playingBackgroundSound) {
+      this.loadingService.setLoadingBackgroundSound(true);
+      return;
+    }
+    this.soundService.enableAutoplay();
     this.soundService
       .preload(
         'main_component',
@@ -148,7 +161,29 @@ export class MotherService {
       .pipe(take(1))
       .subscribe(() => {
         this.soundService.playSound('main_component');
+        this.loadingService.playingBackgroundSound = true;
         this.loadingService.setLoadingBackgroundSound(true);
       });
+  }
+
+  initializeSettings(): void {
+    this.loadingService.setLoadingUser(false);
+    if (navigator.geolocation) {
+      this.sessionDataService
+        .getUser$()
+        .pipe(take(1))
+        .subscribe((data) => {
+          const location = {
+            country: '',
+            city: data?.location!,
+            lat: data?.lat!,
+            lon: data?.lon!,
+          };
+          this.sessionDataService.outputLocation(location);
+          setTimeout(() => {
+            this.loadingService.setLoadingUser(true);
+          }, 0);
+        });
+    }
   }
 }

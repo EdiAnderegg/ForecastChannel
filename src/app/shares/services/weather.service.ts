@@ -18,7 +18,6 @@ export class WeatherService {
   private url: string = 'https://api.openweathermap.org/data/2.5/weather';
   private weekUrl: string = 'https://api.openweathermap.org/data/2.5/forecast';
   private settings!: User;
-  public isSet: boolean = false;
 
   public setWeather(
     lat: number,

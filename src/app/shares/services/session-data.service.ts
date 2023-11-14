@@ -8,6 +8,7 @@ import {
 } from '../interfaces/weather.interface';
 import { User } from '../interfaces/user.interface';
 import { UV } from '../interfaces/uv.interface';
+import { Location } from '../interfaces/location.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,7 @@ export class SessionDataService {
   private Tomorrow = new BehaviorSubject<Tomorrow | undefined>(undefined);
   private Week = new BehaviorSubject<weekArr | undefined>(undefined);
   private User = new BehaviorSubject<User | undefined>(undefined);
+  private Location = new BehaviorSubject<Location | undefined>(undefined);
 
   public outputCurrent(WeatherObject: Current | undefined): void {
     this.Current.next(WeatherObject);
@@ -41,6 +43,10 @@ export class SessionDataService {
 
   public outputUser(User: User | undefined): void {
     this.User.next(User);
+  }
+
+  public outputLocation(Location: Location | undefined): void {
+    this.Location.next(Location);
   }
 
   public getCurrent$(): Observable<Current | undefined> {

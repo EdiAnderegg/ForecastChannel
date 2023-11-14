@@ -1,14 +1,17 @@
+<div class="fade-in" *ngIf="loadingSet$ | async" [@fadeOutScreen]></div>
+<!--Header-->
 <div class="header">
   <h1 class="header-text">Change Settings</h1>
 </div>
-<div class="body d-flex flex-column">
+<!--Body-->
+<div class="body d-flex flex-column" *ngIf="User$ | async as User">
   <div class="crt-body">
     <div class="crt-header">
       <h1 class="header-title">Closest Location</h1>
     </div>
     <div class="crt-content location-content">
       <div class="crt-left">
-        <h1 class="left-title">{{ location?.city }}</h1>
+        <h1 class="left-title">{{ User?.location }}</h1>
       </div>
       <div class="crt-right">
         <button class="settings-btn" (click)="changeLocation()">
@@ -48,6 +51,7 @@
     </div>
   </div>
 </div>
+<!--Footer-->
 <div class="footer d-flex">
   <div class="footer-left footer-btn" (click)="getBack()">
     <h1 class="footer-left-content align-self-start">Back</h1>

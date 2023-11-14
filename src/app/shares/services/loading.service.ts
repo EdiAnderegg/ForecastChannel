@@ -9,8 +9,11 @@ export class LoadingService {
   private loadingCurrent = new BehaviorSubject<boolean>(false);
   private loadingWeek = new BehaviorSubject<boolean>(false);
   private loadingUv = new BehaviorSubject<boolean>(false);
+  private loadingUser = new BehaviorSubject<boolean>(false);
   private loadingBackgroundSound = new BehaviorSubject<boolean>(false);
   private loadingEventSound = new BehaviorSubject<boolean>(false);
+  public playingBackgroundSound: boolean = false;
+  public weatherChanged: boolean = false;
 
   setLoadingCurrent(state: boolean) {
     this.loadingCurrent.next(state);
@@ -24,6 +27,10 @@ export class LoadingService {
     this.loadingUv.next(state);
   }
 
+  setLoadingUser(state: boolean) {
+    this.loadingUser.next(state);
+  }
+
   setLoadingBackgroundSound(state: boolean) {
     this.loadingBackgroundSound.next(state);
   }
@@ -31,14 +38,16 @@ export class LoadingService {
   setLoadingEventSound(state: boolean) {
     this.loadingEventSound.next(state);
   }
+
   getLoadingMain(): Observable<boolean> {
     return combineLatest([
       this.loadingCurrent.asObservable(),
       this.loadingWeek.asObservable(),
       this.loadingUv.asObservable(),
+      this.loadingBackgroundSound.asObservable(),
     ]).pipe(
-      map(([current, week, uv]) => {
-        return !current && !week && !uv;
+      map(([current, week, uv, backGroundSound]) => {
+        return !current && !week && !uv && !backGroundSound;
       })
     );
   }
@@ -51,6 +60,14 @@ export class LoadingService {
     ]).pipe(
       map(([current, backGroundSound, eventSound]) => {
         return !current && !backGroundSound && !eventSound;
+      })
+    );
+  }
+
+  getLoadingSettings(): Observable<boolean> {
+    return combineLatest([this.loadingUser.asObservable()]).pipe(
+      map(([loadingUser]) => {
+        return !loadingUser;
       })
     );
   }
