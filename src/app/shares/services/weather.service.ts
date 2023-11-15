@@ -19,19 +19,13 @@ export class WeatherService {
   private weekUrl: string = 'https://api.openweathermap.org/data/2.5/forecast';
   private settings!: User;
 
-  public setWeather(
-    lat: number,
-    lon: number,
-    tempUnit: string,
-    windSpeed: string,
-    location: string
-  ) {
+  public setWeather(user: User | Partial<User> | undefined) {
     this.settings = {
-      lat: lat,
-      lon: lon,
-      tempUnit: tempUnit,
-      windSpeed: windSpeed,
-      location: location,
+      lat: user?.lat!,
+      lon: user?.lon!,
+      tempUnit: user?.tempUnit!,
+      windSpeed: user?.windSpeed!,
+      location: user?.location!,
     };
   }
 

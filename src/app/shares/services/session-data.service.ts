@@ -19,7 +19,9 @@ export class SessionDataService {
   private Today = new BehaviorSubject<Today | undefined>(undefined);
   private Tomorrow = new BehaviorSubject<Tomorrow | undefined>(undefined);
   private Week = new BehaviorSubject<weekArr | undefined>(undefined);
-  private User = new BehaviorSubject<User | undefined>(undefined);
+  private User = new BehaviorSubject<User | Partial<User> | undefined>(
+    undefined
+  );
   private Location = new BehaviorSubject<Location | undefined>(undefined);
 
   public outputCurrent(WeatherObject: Current | undefined): void {
@@ -41,7 +43,7 @@ export class SessionDataService {
     this.UV.next(UvObject);
   }
 
-  public outputUser(User: User | undefined): void {
+  public outputUser(User: User | Partial<User> | undefined): void {
     this.User.next(User);
   }
 
@@ -68,7 +70,7 @@ export class SessionDataService {
     return this.UV.asObservable();
   }
 
-  public getUser$(): Observable<User | undefined> {
+  public getUser$(): Observable<User | Partial<User> | undefined> {
     return this.User.asObservable();
   }
 

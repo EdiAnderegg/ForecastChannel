@@ -20,45 +20,44 @@ export class MotherService {
     private readonly loadingService: LoadingService
   ) {}
 
+  initializeApp(): void {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((pos) => {
+        this.sessionDataService.outputUser({
+          lat: pos.coords.latitude,
+          lon: pos.coords.longitude,
+          tempUnit: 'metric',
+          windSpeed: 'km/h',
+          location: '',
+        });
+      });
+    }
+  }
   initializeStart(): void {
     this.loadingService.setLoadingCurrent(false);
     this.loadingService.setLoadingBackgroundSound(false);
     this.loadingService.setLoadingEventSound(false);
-    this.loadingService.weatherChanged = false;
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        if (!this.loadingService.weatherChanged) {
-          this.weatherService.setWeather(
-            pos.coords.latitude,
-            pos.coords.longitude,
-            'metric',
-            'km/h',
-            ''
-          );
-          this.uvService.setUV(pos.coords.latitude, pos.coords.longitude);
-        }
 
-        this.weatherService
-          .getCurrentWeather$()
-          .pipe(take(1))
-          .subscribe((data) => {
-            const current = { ...data[0] };
-            current.icon = this.iconService.getIcon(current.description);
-            this.sessionDataService.outputCurrent(current);
-
-            if (!this.loadingService.weatherChanged) {
-              this.sessionDataService.outputUser({
-                lat: pos.coords.latitude,
-                lon: pos.coords.longitude,
-                tempUnit: 'metric',
-                windSpeed: 'km/h',
-                location: data[0].location,
-              });
-            }
-            this.loadingService.setLoadingCurrent(true);
-          });
+    this.sessionDataService
+      .getUser$()
+      .pipe(take(1))
+      .subscribe((user) => {
+        this.weatherService.setWeather(user);
+        this.uvService.setUV(user?.lat!, user?.lon!);
       });
-    }
+
+    this.weatherService
+      .getCurrentWeather$()
+      .pipe(take(1))
+      .subscribe((data) => {
+        const current = { ...data[0] };
+        current.icon = this.iconService.getIcon(current.description);
+        this.sessionDataService.outputCurrent(current);
+
+        this.sessionDataService.outputUser({ location: data[0].location });
+
+        this.loadingService.setLoadingCurrent(true);
+      });
 
     //Sounds in StartComponent
 
@@ -93,14 +92,9 @@ export class MotherService {
     this.sessionDataService
       .getUser$()
       .pipe(take(1))
-      .subscribe((data) => {
-        this.weatherService.setWeather(
-          data?.lat!,
-          data?.lon!,
-          data?.tempUnit!,
-          data?.windSpeed!,
-          data?.location!
-        );
+      .subscribe((user) => {
+        this.weatherService.setWeather(user);
+        this.uvService.setUV(user?.lat!, user?.lon!);
       });
 
     this.weatherService
@@ -110,6 +104,8 @@ export class MotherService {
         const current = { ...data[0] };
         current.icon = this.iconService.getIcon(current.description);
         this.sessionDataService.outputCurrent(current);
+
+        this.sessionDataService.outputUser({ location: data[0].location });
 
         const today = { ...data[1] };
         today.icon = this.iconService.getIcon(today.description);
@@ -168,22 +164,20 @@ export class MotherService {
 
   initializeSettings(): void {
     this.loadingService.setLoadingUser(false);
-    if (navigator.geolocation) {
-      this.sessionDataService
-        .getUser$()
-        .pipe(take(1))
-        .subscribe((data) => {
-          const location = {
-            country: '',
-            city: data?.location!,
-            lat: data?.lat!,
-            lon: data?.lon!,
-          };
-          this.sessionDataService.outputLocation(location);
-          setTimeout(() => {
-            this.loadingService.setLoadingUser(true);
-          }, 0);
-        });
-    }
+    this.sessionDataService
+      .getUser$()
+      .pipe(take(1))
+      .subscribe((data) => {
+        const location = {
+          country: '',
+          city: data?.location!,
+          lat: data?.lat!,
+          lon: data?.lon!,
+        };
+        this.sessionDataService.outputLocation(location);
+        setTimeout(() => {
+          this.loadingService.setLoadingUser(true);
+        }, 0);
+      });
   }
 }

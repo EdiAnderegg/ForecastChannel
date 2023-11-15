@@ -21,7 +21,7 @@ export class RegionComponent implements OnInit {
   public display: boolean = true;
   public location: Location | undefined;
   private height: number = 0;
-  private User: User | undefined;
+  private User: User | Partial<User> | undefined;
 
   constructor(
     private readonly router: Router,

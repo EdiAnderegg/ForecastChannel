@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MotherService } from './shares/services/main.service';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ForecastChannel';
+  constructor(private readonly motherservice: MotherService) {}
 
-  constructor() {}
+  ngOninit(): void {
+    this.motherservice.initializeApp();
+  }
 }

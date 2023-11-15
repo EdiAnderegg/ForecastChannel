@@ -17,7 +17,7 @@ import { fadeOutScreen } from 'src/app/shares/animation/loading.animation';
 })
 export class SetComponent implements OnInit {
   public loadingSet$!: Observable<boolean>;
-  public User$!: Observable<User | undefined>;
+  public User$!: Observable<User | Partial<User> | undefined>;
 
   public measure: string = 'metric';
   public speed: string = 'km/h';
