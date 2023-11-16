@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { MotherService } from './shares/services/main.service';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { OptionsComponent } from './options/options.component';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +8,11 @@ import { MotherService } from './shares/services/main.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'ForecastChannel';
-  constructor(private readonly motherservice: MotherService) {}
+  public firstLoad: boolean = true;
 
-  ngOninit(): void {
-    this.motherservice.initializeApp();
+  constructor(private modalService: BsModalService) {}
+
+  openModal() {
+    this.modalService.show(OptionsComponent);
   }
 }

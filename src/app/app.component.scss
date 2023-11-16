@@ -1,5 +1,45 @@
-.page {
-  background: black;
-  height: 100dvh;
-  user-select: none;
+@media (orientation: portrait) {
+  .blockPage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    z-index: 9999;
+    background-image: linear-gradient(to right, #4b9ced, #00038b);
+  }
+
+  .infoBox {
+    background-color: rgba(0, 0, 0, 0.2);
+    user-select: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 89%;
+    height: 24dvw;
+    border-radius: 1.2em;
+  }
+
+  .infoText {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 5dvw;
+    text-align: center;
+    color: rgb(247, 254, 255);
+    word-spacing: 0.3dvh;
+  }
+}
+
+@media (orientation: landscape) {
+  .blockPage {
+    display: none;
+  }
+  .page {
+    background-image: linear-gradient(to right, #4b9ced, #00038b);
+    height: 100dvh;
+    user-select: none;
+  }
 }

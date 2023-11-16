@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+/* Importing Bootstrap SCSS file. */
+
+@import "bootstrap/scss/bootstrap";
 
 * {
   font-family: "shippori-antique-b1", "Roboto";
@@ -13,6 +16,3 @@
   font-family: "shippori-antique-b1";
   src: url("assets/fonts/Shippori_Antique_B1/ShipporiAntiqueB1-Regular.ttf");
 }
-
-/* Importing Bootstrap SCSS file. */
-@import "bootstrap/scss/bootstrap";

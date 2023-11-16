@@ -13,6 +13,7 @@
 /*=================Loading End======================*/
 
 .wrapper {
+  background-color: black;
   display: grid;
   place-items: center;
   height: 100dvh;
@@ -199,6 +200,13 @@
   border-radius: 0% 0% 5% 5%/ 0% 0% 40% 40%;
 }
 
+.footer {
+  position: absolute;
+  width: 100%;
+  bottom: -17.5dvh;
+  z-index: 10;
+}
+
 .bttn {
   position: relative;
   background-color: white;
@@ -208,7 +216,6 @@
   text-align: center;
   margin-left: 0.8em;
   margin-right: 0.8em;
-  margin-bottom: 8.5dvh;
   border-radius: 10dvh;
   border: none;
   box-shadow: 0 0 0 0.08em #e3e8ef, 0 0 0 0.13em #47bee9,

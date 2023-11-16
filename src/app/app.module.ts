@@ -6,9 +6,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { OptionsComponent } from './options/options.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, OptionsComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -16,6 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NgbModule,
     FeaturesModule,
     FontAwesomeModule,
+    ModalModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

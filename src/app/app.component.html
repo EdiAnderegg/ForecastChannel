@@ -1,3 +1,18 @@
 <div class="page">
-  <router-outlet></router-outlet>
+  <div *ngIf="firstLoad; else loadSite">
+    <h3>Fading Modal Example</h3>
+    <p>Click on the button to open the modal.</p>
+
+    <button type="button" class="btn btn-primary" (click)="openModal()">
+      Open modal
+    </button>
+  </div>
+  <ng-template #loadSite>
+    <router-outlet></router-outlet>
+  </ng-template>
+</div>
+<div class="blockPage">
+  <div class="infoBox">
+    <h1 class="infoText">Please turn the mobile Device to Landscape mode.</h1>
+  </div>
 </div>
