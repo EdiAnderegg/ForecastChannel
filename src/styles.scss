@@ -1,6 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-/* Importing Bootstrap SCSS file. */
 
+/* Importing Bootstrap SCSS file. */
+/*Start Modals*/
+$modal-content-bg: rgba(0, 0, 0, 0.2);
+$modal-header-border-color: none;
+$modal-footer-border-color: none;
+$modal-backdrop-bg: white;
+$modal-backdrop-opacity: 0.1; // Adjust the opacity as needed
+/*End Modals*/
 @import "bootstrap/scss/bootstrap";
 
 * {

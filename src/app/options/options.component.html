@@ -1,14 +1,40 @@
-<div class="modal-header">
-  <h4 class="modal-title">Modal Heading</h4>
-  <button type="button" class="btn-close" (click)="modalRef.hide()"></button>
-</div>
-
-<!-- Modal body -->
-<div class="modal-body">Modal body..</div>
-
-<!-- Modal footer -->
-<div class="modal-footer">
-  <button type="button" class="btn btn-danger" (click)="modalRef.hide()">
-    Close
-  </button>
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">
+      This website utilizes GPS location services for local weather tracking and
+      sound functionality.
+      <br />
+      <br />
+      For an authentic user experience, we recommend keeping geolocation and
+      sound enabled.
+      <hr />
+    </h4>
+  </div>
+  <div class="modal-body">
+    <div class="form-check form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+        id="GPS"
+        [formControl]="location"
+      />
+      <label class="form-check-label" for="GPS">GPS</label>
+    </div>
+    <div class="form-check form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+        id="Sound"
+        [formControl]="sound"
+      />
+      <label class="form-check-label" for="Sound">Sound</label>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="startApp()">
+      Accept
+    </button>
+  </div>
 </div>

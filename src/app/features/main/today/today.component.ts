@@ -12,7 +12,7 @@ import { PreviousRouteService } from 'src/app/shares/services/previous-route.ser
 })
 export class TodayComponent implements OnInit {
   public Today$!: Observable<Today | undefined>;
-  public User$!: Observable<User | Partial<User> | undefined>;
+  public User$!: Observable<User | undefined>;
 
   constructor(
     private readonly sessionDataService: SessionDataService,

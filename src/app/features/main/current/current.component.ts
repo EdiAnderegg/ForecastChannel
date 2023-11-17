@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class CurrentComponent implements OnInit {
   public Current$!: Observable<Current | undefined>;
-  public User$!: Observable<User | Partial<User> | undefined>;
+  public User$!: Observable<User | undefined>;
   constructor(
     private readonly sessionDataService: SessionDataService,
     private readonly previousRouteService: PreviousRouteService

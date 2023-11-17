@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class TomorrowComponent implements OnInit {
   public Tomorrow$!: Observable<Tomorrow | undefined>;
-  public User$!: Observable<User | Partial<User> | undefined>;
+  public User$!: Observable<User | undefined>;
 
   constructor(
     private readonly sessionDataService: SessionDataService,

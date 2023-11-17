@@ -21,16 +21,28 @@ export class MotherService {
   ) {}
 
   initializeApp(): void {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        this.sessionDataService.outputUser({
-          lat: pos.coords.latitude,
-          lon: pos.coords.longitude,
-          tempUnit: 'metric',
-          windSpeed: 'km/h',
-          location: '',
+    if (this.loadingService.activateGPS) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((pos) => {
+          this.sessionDataService.outputUser({
+            lat: pos.coords.latitude,
+            lon: pos.coords.longitude,
+            tempUnit: 'metric',
+            windSpeed: 'km/h',
+            location: '',
+          });
+          this.loadingService.setLoadingApp(true);
         });
+      }
+    } else {
+      this.sessionDataService.outputUser({
+        lat: 18.9261,
+        lon: -99.23075,
+        tempUnit: 'metric',
+        windSpeed: 'km/h',
+        location: '',
       });
+      this.loadingService.setLoadingApp(true);
     }
   }
   initializeStart(): void {
@@ -54,33 +66,32 @@ export class MotherService {
         current.icon = this.iconService.getIcon(current.description);
         this.sessionDataService.outputCurrent(current);
 
-        this.sessionDataService.outputUser({ location: data[0].location });
-
         this.loadingService.setLoadingCurrent(true);
       });
 
     //Sounds in StartComponent
+    if (this.loadingService.activateSound) {
+      //BackgroundSound
+      this.soundService.enableAutoplay();
+      this.soundService
+        .preload(
+          'start_component',
+          'assets/sound/background_sound/01_forecast_channel_banner.mp3'
+        )
+        .pipe(take(1))
+        .subscribe(() => {
+          this.soundService.playSound('start_component');
+          this.loadingService.setLoadingBackgroundSound(true);
+        });
 
-    //BackgroundSound
-    this.soundService.enableAutoplay();
-    this.soundService
-      .preload(
-        'start_component',
-        'assets/sound/background_sound/01_forecast_channel_banner.mp3'
-      )
-      .pipe(take(1))
-      .subscribe(() => {
-        this.soundService.playSound('start_component');
-        this.loadingService.setLoadingBackgroundSound(true);
-      });
-
-    //EventSounds
-    this.soundService
-      .preload('start_button', 'assets/sound/event_sound/start_button.ogg')
-      .pipe(take(1))
-      .subscribe(() => {
-        this.loadingService.setLoadingEventSound(true);
-      });
+      //EventSounds
+      this.soundService
+        .preload('start_button', 'assets/sound/event_sound/start_button.ogg')
+        .pipe(take(1))
+        .subscribe(() => {
+          this.loadingService.setLoadingEventSound(true);
+        });
+    }
   }
 
   initializeMain(): void {
@@ -104,8 +115,6 @@ export class MotherService {
         const current = { ...data[0] };
         current.icon = this.iconService.getIcon(current.description);
         this.sessionDataService.outputCurrent(current);
-
-        this.sessionDataService.outputUser({ location: data[0].location });
 
         const today = { ...data[1] };
         today.icon = this.iconService.getIcon(today.description);
@@ -142,24 +151,25 @@ export class MotherService {
       });
 
     //Sounds in MainComponent
-
-    //BackgroundSound
-    if (this.loadingService.playingBackgroundSound) {
-      this.loadingService.setLoadingBackgroundSound(true);
-      return;
-    }
-    this.soundService.enableAutoplay();
-    this.soundService
-      .preload(
-        'main_component',
-        'assets/sound/background_sound/04_Local_Forecast_(Daytime).mp3'
-      )
-      .pipe(take(1))
-      .subscribe(() => {
-        this.soundService.playSound('main_component');
-        this.loadingService.playingBackgroundSound = true;
+    if (this.loadingService.activateSound) {
+      if (this.loadingService.playingBackgroundSound) {
         this.loadingService.setLoadingBackgroundSound(true);
-      });
+        return;
+      }
+      //BackgroundSound
+      this.soundService.enableAutoplay();
+      this.soundService
+        .preload(
+          'main_component',
+          'assets/sound/background_sound/04_Local_Forecast_(Daytime).mp3'
+        )
+        .pipe(take(1))
+        .subscribe(() => {
+          this.soundService.playSound('main_component');
+          this.loadingService.playingBackgroundSound = true;
+          this.loadingService.setLoadingBackgroundSound(true);
+        });
+    }
   }
 
   initializeSettings(): void {
