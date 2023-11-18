@@ -66,7 +66,7 @@ export class MotherService {
         current.icon = this.iconService.getIcon(current.description);
         this.sessionDataService.outputCurrent(current);
 
-        this.sessionDataService.outputUserLocation({
+        this.sessionDataService.outputPartialUser({
           location: current.location,
         });
         this.loadingService.setLoadingCurrent(true);
@@ -193,4 +193,6 @@ export class MotherService {
         }, 0);
       });
   }
+
+  initializeLocation(): void {}
 }

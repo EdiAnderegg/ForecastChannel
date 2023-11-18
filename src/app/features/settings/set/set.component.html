@@ -11,7 +11,7 @@
     </div>
     <div class="crt-content location-content">
       <div class="crt-left">
-        <h1 class="left-title">{{ User?.location }}</h1>
+        <h1 class="left-title">{{ User.location }}</h1>
       </div>
       <div class="crt-right">
         <button class="settings-btn" (click)="changeLocation()">
@@ -26,7 +26,7 @@
     </div>
     <div class="crt-content stats-content">
       <div class="crt-left">
-        <h1 id="temp" class="left-title">{{ measure | temperature }}</h1>
+        <h1 id="temp" class="left-title">{{ User.tempUnit | temperature }}</h1>
       </div>
       <div class="crt-right">
         <button class="settings-btn" (click)="changeTemp()">
@@ -41,7 +41,7 @@
     </div>
     <div class="crt-content stats-content">
       <div class="crt-left">
-        <h1 id="speed" class="left-title">{{ speed }}</h1>
+        <h1 id="speed" class="left-title">{{ User.windSpeed }}</h1>
       </div>
       <div class="crt-right">
         <button class="settings-btn" (click)="changeSpeed()">

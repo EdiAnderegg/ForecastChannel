@@ -4,10 +4,9 @@ import { PreviousRouteService } from 'src/app/shares/services/previous-route.ser
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
 import { LoadingService } from 'src/app/shares/services/loading.service';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { User } from 'src/app/shares/interfaces/user.interface';
 import { fadeOutScreen } from 'src/app/shares/animation/loading.animation';
-//import { Location } from 'src/app/shares/interfaces/location.interface';
 
 @Component({
   selector: 'app-set',
@@ -17,10 +16,7 @@ import { fadeOutScreen } from 'src/app/shares/animation/loading.animation';
 })
 export class SetComponent implements OnInit {
   public loadingSet$!: Observable<boolean>;
-  public User$!: Observable<User | Partial<User> | undefined>;
-
-  public measure: string = 'metric';
-  public speed: string = 'km/h';
+  public User$!: Observable<User | undefined>;
 
   constructor(
     private readonly motherService: MotherService,
@@ -32,21 +28,6 @@ export class SetComponent implements OnInit {
   ) {}
 
   public getBack() {
-    /*this.sessionDataService.outputUser({
-      lat: this.location?.lat!,
-      lon: this.location?.lon!,
-      tempUnit: this.measure,
-      windSpeed: this.speed,
-      location: this.location?.city!,
-    });
-     this.weatherService.setWeather(
-      this.location?.lat!,
-      this.location?.lon!,
-      this.measure,
-      this.speed,
-      this.location?.city!
-    );
-    this.uvIndexService.setUV(this.location?.lat!, this.location?.lon!);*/
     this.router.navigateByUrl(this.previousRouteService.getPreviousUrl());
   }
 
@@ -57,14 +38,24 @@ export class SetComponent implements OnInit {
 
   public changeTemp() {
     this.loadingService.weatherChanged = true;
-    if (this.measure === 'metric') return (this.measure = 'imperial');
-    return (this.measure = 'metric');
+    this.User$.pipe(take(1)).subscribe((user) => {
+      if (user) {
+        this.sessionDataService.outputPartialUser({
+          tempUnit: user.tempUnit === 'metric' ? 'imperial' : 'metric',
+        });
+      }
+    });
   }
 
   public changeSpeed() {
     this.loadingService.weatherChanged = true;
-    if (this.speed === 'km/h') return (this.speed = 'mph');
-    return (this.speed = 'km/h');
+    this.User$.pipe(take(1)).subscribe((user) => {
+      if (user) {
+        this.sessionDataService.outputPartialUser({
+          windSpeed: user.windSpeed === 'km/h' ? 'mph' : 'km/h',
+        });
+      }
+    });
   }
 
   ngOnInit(): void {

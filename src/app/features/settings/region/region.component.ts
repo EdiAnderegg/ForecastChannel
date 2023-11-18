@@ -21,7 +21,7 @@ export class RegionComponent implements OnInit {
   public display: boolean = true;
   public location: Location | undefined;
   private height: number = 0;
-  private User: User | Partial<User> | undefined;
+  private User: User | undefined;
 
   constructor(
     private readonly router: Router,
@@ -45,11 +45,9 @@ export class RegionComponent implements OnInit {
   }
 
   public btnLocation(): void {
-    this.sessionDataService.outputUser({
+    this.sessionDataService.outputPartialUser({
       lat: this.location?.lat!,
       lon: this.location?.lon!,
-      tempUnit: this.User?.tempUnit!,
-      windSpeed: this.User?.windSpeed!,
       location: this.location?.city!,
     });
     this.router.navigateByUrl('/settings');
