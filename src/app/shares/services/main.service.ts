@@ -66,13 +66,16 @@ export class MotherService {
         current.icon = this.iconService.getIcon(current.description);
         this.sessionDataService.outputCurrent(current);
 
+        this.sessionDataService.outputUserLocation({
+          location: current.location,
+        });
         this.loadingService.setLoadingCurrent(true);
       });
 
     //Sounds in StartComponent
     if (this.loadingService.activateSound) {
       //BackgroundSound
-      this.soundService.enableAutoplay();
+
       this.soundService
         .preload(
           'start_component',
@@ -157,7 +160,7 @@ export class MotherService {
         return;
       }
       //BackgroundSound
-      this.soundService.enableAutoplay();
+
       this.soundService
         .preload(
           'main_component',

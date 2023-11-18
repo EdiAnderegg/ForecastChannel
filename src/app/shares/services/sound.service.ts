@@ -49,5 +49,5 @@ export class SoundService {
       });
     }
   }
-  public enableAutoplay(): void {}
+  //public enableAutoplay(): void {}
 }

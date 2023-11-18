@@ -45,6 +45,13 @@ export class SessionDataService {
     this.User.next(User);
   }
 
+  public outputUserLocation(UserLocation: Partial<User>): void {
+    const currentUser = this.User.getValue();
+    if (currentUser) {
+      this.User.next({ ...currentUser, ...UserLocation });
+    }
+  }
+
   public outputLocation(Location: Location | undefined): void {
     this.Location.next(Location);
   }
