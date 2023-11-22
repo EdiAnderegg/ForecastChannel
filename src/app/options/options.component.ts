@@ -3,6 +3,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { LoadingService } from '../shares/services/loading.service';
 import { FormControl } from '@angular/forms';
 import { MotherService } from '../shares/services/main.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-options',
@@ -16,7 +17,8 @@ export class OptionsComponent {
   constructor(
     public modalRef: BsModalRef,
     private readonly loadingService: LoadingService,
-    private readonly motherService: MotherService
+    private readonly motherService: MotherService,
+    private readonly router: Router
   ) {}
 
   startApp() {
@@ -24,5 +26,6 @@ export class OptionsComponent {
     this.loadingService.activateSound = this.sound.value!;
     this.motherService.initializeApp();
     this.modalRef.hide();
+    this.router.navigateByUrl('/start');
   }
 }

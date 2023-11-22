@@ -11,6 +11,7 @@ export class LoadingService {
   private loadingWeek = new BehaviorSubject<boolean>(false);
   private loadingUv = new BehaviorSubject<boolean>(false);
   private loadingUser = new BehaviorSubject<boolean>(false);
+  private loadingLocationList = new BehaviorSubject<boolean>(false);
   private loadingBackgroundSound = new BehaviorSubject<boolean>(false);
   private loadingEventSound = new BehaviorSubject<boolean>(false);
   public playingBackgroundSound: boolean = false;
@@ -36,6 +37,10 @@ export class LoadingService {
 
   setLoadingUser(state: boolean) {
     this.loadingUser.next(state);
+  }
+
+  setLoadingLocationList(state: boolean) {
+    this.loadingLocationList.next(state);
   }
 
   setLoadingBackgroundSound(state: boolean) {
@@ -78,6 +83,14 @@ export class LoadingService {
     return combineLatest([this.loadingUser.asObservable()]).pipe(
       map(([loadingUser]) => {
         return !loadingUser;
+      })
+    );
+  }
+
+  getLoadingLocationList(): Observable<boolean> {
+    return combineLatest([this.loadingLocationList.asObservable()]).pipe(
+      map(([loadingLocationList]) => {
+        return !loadingLocationList;
       })
     );
   }

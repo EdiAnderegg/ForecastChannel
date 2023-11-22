@@ -50,8 +50,8 @@
           class="bttnwrapper"
           (touchstart)="playSound('start_button')"
           (mousedown)="playSound('start_button')"
-          (mouseup)="btnClick('/start')"
-          (touchend)="btnClick('/start')"
+          (mouseup)="btnMenu()"
+          (touchend)="btnMenu()"
         >
           Wii Menu
         </div>
@@ -61,8 +61,8 @@
           class="bttnwrapper"
           (touchstart)="playSound('start_button')"
           (mousedown)="playSound('start_button')"
-          (mouseup)="btnClick('/main')"
-          (touchend)="btnClick('/main')"
+          (mouseup)="btnStart()"
+          (touchend)="btnStart()"
         >
           Start
         </div>

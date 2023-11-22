@@ -1,4 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { MotherService } from 'src/app/shares/services/main.service';
 import { PreviousRouteService } from 'src/app/shares/services/previous-route.service';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
@@ -14,7 +19,7 @@ import { fadeOutScreen } from 'src/app/shares/animation/loading.animation';
   styleUrls: ['./set.component.scss'],
   animations: [fadeOutScreen],
 })
-export class SetComponent implements OnInit {
+export class SetComponent implements OnInit, AfterViewInit {
   public loadingSet$!: Observable<boolean>;
   public User$!: Observable<User | undefined>;
 

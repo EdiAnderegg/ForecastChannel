@@ -6,6 +6,7 @@ import { IconService } from 'src/app/shares/services/icon.service';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
 import { SoundService } from './sound.service';
 import { LoadingService } from './loading.service';
+import { NearLocationService } from './near-location.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,12 +18,13 @@ export class MotherService {
     private readonly sessionDataService: SessionDataService,
     private readonly uvService: UvIndexService,
     private readonly soundService: SoundService,
-    private readonly loadingService: LoadingService
+    private readonly loadingService: LoadingService,
+    private readonly nearLocationService: NearLocationService
   ) {}
 
   initializeApp(): void {
-    if (this.loadingService.activateGPS) {
-      if (navigator.geolocation) {
+    if (navigator.geolocation) {
+      if (this.loadingService.activateGPS) {
         navigator.geolocation.getCurrentPosition((pos) => {
           this.sessionDataService.outputUser({
             lat: pos.coords.latitude,
@@ -33,16 +35,16 @@ export class MotherService {
           });
           this.loadingService.setLoadingApp(true);
         });
+      } else {
+        this.sessionDataService.outputUser({
+          lat: 18.9261,
+          lon: -99.23075,
+          tempUnit: 'metric',
+          windSpeed: 'km/h',
+          location: '',
+        });
+        this.loadingService.setLoadingApp(true);
       }
-    } else {
-      this.sessionDataService.outputUser({
-        lat: 18.9261,
-        lon: -99.23075,
-        tempUnit: 'metric',
-        windSpeed: 'km/h',
-        location: '',
-      });
-      this.loadingService.setLoadingApp(true);
     }
   }
   initializeStart(): void {
@@ -187,12 +189,34 @@ export class MotherService {
           lat: data?.lat!,
           lon: data?.lon!,
         };
-        this.sessionDataService.outputLocation(location);
+        /*this.sessionDataService.outputLocation(location);*/
         setTimeout(() => {
           this.loadingService.setLoadingUser(true);
         }, 0);
       });
   }
 
-  initializeLocation(): void {}
+  //Start of Location Component
+  initializeLocation(n: number): void {
+    this.loadingService.setLoadingLocationList(false);
+    this.sessionDataService
+      .getUser$()
+      .pipe(take(1))
+      .subscribe((data) => {
+        this.getLocations(data?.lat!, data?.lon!, n);
+      });
+  }
+
+  private getLocations(lat: number, lng: number, n: number): void {
+    if (NaN) return;
+    this.nearLocationService
+      .getNearestCities$(lat, lng, n)
+      .pipe(take(1))
+      .subscribe((data) => {
+        if (!data) return;
+        this.sessionDataService.outputListofLocations(data);
+        this.loadingService.setLoadingLocationList(true);
+      });
+  }
+  //End of Location Component
 }

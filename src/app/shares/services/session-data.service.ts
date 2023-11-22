@@ -20,7 +20,8 @@ export class SessionDataService {
   private Tomorrow = new BehaviorSubject<Tomorrow | undefined>(undefined);
   private Week = new BehaviorSubject<weekArr | undefined>(undefined);
   private User = new BehaviorSubject<User | undefined>(undefined);
-  private Location = new BehaviorSubject<Location | undefined>(undefined);
+  /* private Location = new BehaviorSubject<Location | undefined>(undefined);*/
+  private List = new BehaviorSubject<Location[] | undefined>(undefined);
 
   public outputCurrent(WeatherObject: Current | undefined): void {
     this.Current.next(WeatherObject);
@@ -52,8 +53,12 @@ export class SessionDataService {
     }
   }
 
-  public outputLocation(Location: Location | undefined): void {
+  /*public outputLocation(Location: Location | undefined): void {
     this.Location.next(Location);
+  }*/
+
+  outputListofLocations(List: Location[] | undefined): void {
+    this.List.next(List);
   }
 
   public getCurrent$(): Observable<Current | undefined> {
@@ -77,6 +82,14 @@ export class SessionDataService {
 
   public getUser$(): Observable<User | undefined> {
     return this.User.asObservable();
+  }
+
+  /* public getLocation$(): Observable<Location | undefined> {
+    return this.Location.asObservable();
+  }*/
+
+  public getListofLocations$(): Observable<Location[] | undefined> {
+    return this.List.asObservable();
   }
 
   constructor() {}

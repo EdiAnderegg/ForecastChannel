@@ -35,8 +35,15 @@ export class StartComponent implements OnInit, AfterViewInit {
   public playSound(sound: string) {
     this.soundService.playSound(sound);
   }
-  public btnClick(navigate: string) {
-    this.router.navigateByUrl(navigate);
+  public btnStart() {
+    this.loadingService.playingBackgroundSound = false;
+    this.router.navigateByUrl('/main');
+  }
+
+  public btnMenu() {
+    setTimeout(() => {
+      location.reload();
+    }, 400);
   }
 
   ngOnInit(): void {

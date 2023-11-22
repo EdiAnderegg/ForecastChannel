@@ -1,3 +1,4 @@
+<div class="fade-in" *ngIf="loadingLocation$ | async" [@fadeOutScreen]></div>
 <div class="header">
   <h1 class="header-text" *ngIf="display; else elseHeader">
     Choose the location closest to where you live.
@@ -6,7 +7,7 @@
     ><h1 class="header-text">Is this location correct?</h1></ng-template
   >
 </div>
-<div id="body" class="body">
+<div id="body" class="body" *ngIf="List$ | async as List">
   <div class="body-content d-flex flex-column" *ngIf="display; else elseBody">
     <div id="value" class="selector-wrapper" *ngFor="let location of List">
       <div class="selector" (click)="selectLocation(location)">

@@ -11,6 +11,8 @@ import { WeekComponent } from './main/week/week.component';
 import { UvIndexComponent } from './main/uv-index/uv-index.component';
 import { RegionComponent } from './settings/region/region.component';
 import { SetComponent } from './settings/set/set.component';
+import { OptionsComponent } from '../options/options.component';
+import { AppComponent } from '../app.component';
 
 const routes: Routes = [
   { path: 'start', component: StartComponent },

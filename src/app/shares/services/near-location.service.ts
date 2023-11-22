@@ -11,7 +11,11 @@ export class NearLocationService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public getNearestCities$(lat: number, lng: number): Observable<Location[]> {
+  public getNearestCities$(
+    lat: number,
+    lng: number,
+    n: number
+  ): Observable<Location[]> {
     return this.http.get<any>(this.url).pipe(
       map((res) => {
         const citiesData = res;
@@ -57,7 +61,7 @@ export class NearLocationService {
               );
             }
           )
-          .slice(0, 20); // Get the 20 nearest cities within the same country
+          .slice(0, n); // Get the n nearest cities within the same country
 
         return nearestCities;
       })
