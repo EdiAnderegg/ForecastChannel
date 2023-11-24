@@ -32,10 +32,13 @@ export class SoundService {
     return this.sounds[soundName];
   }
 
-  public playSound(soundName: string): void {
+  public playSound(soundName: string, loop: boolean): void {
     const sound = this.getSound(soundName);
     if (sound) {
       sound.play();
+      if (loop) {
+        sound!.loop = true;
+      }
     }
   }
 
@@ -49,5 +52,4 @@ export class SoundService {
       });
     }
   }
-  //public enableAutoplay(): void {}
 }

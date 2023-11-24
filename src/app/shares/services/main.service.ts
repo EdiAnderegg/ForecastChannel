@@ -85,7 +85,7 @@ export class MotherService {
         )
         .pipe(take(1))
         .subscribe(() => {
-          this.soundService.playSound('start_component');
+          this.soundService.playSound('start_component', false);
           this.loadingService.setLoadingBackgroundSound(true);
         });
 
@@ -170,7 +170,7 @@ export class MotherService {
         )
         .pipe(take(1))
         .subscribe(() => {
-          this.soundService.playSound('main_component');
+          this.soundService.playSound('main_component', true);
           this.loadingService.playingBackgroundSound = true;
           this.loadingService.setLoadingBackgroundSound(true);
         });
