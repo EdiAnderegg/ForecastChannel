@@ -27,6 +27,8 @@
   width: 99%;
   border-radius: 5% 5% 0% 0%/ 10% 10% 0% 0%;
 }
+
+/*================Header Start========================*/
 .header {
   position: absolute;
   top: 5dvh;
@@ -49,14 +51,16 @@
   margin-right: 0.6em;
   text-shadow: rgb(34, 34, 34) 0.08em 0.08em;
 }
+/*=========================Header End========================*/
 
+/*================================Body Start======================*/
 .body {
   position: relative;
   top: 13.9dvh;
   height: 59.8dvh;
   width: 100%;
 }
-
+/*=========================Body Header Start========================*/
 .body-header {
   position: relative;
   height: 13.1dvh;
@@ -104,9 +108,13 @@
 .body-header-title {
   font-size: 6.5dvh;
   color: rgb(247, 254, 255);
+  margin-top: 2.4dvh;
   margin-right: 1.3em;
   text-shadow: rgb(34, 34, 34) 0.05em 0.03em;
 }
+/*=============================Body Header End===============================*/
+
+/*===========================Body Content Start=============================*/
 .body-content {
   position: absolute;
   top: 13.7dvh;
@@ -130,6 +138,9 @@
 .symbol-image {
   width: 32dvh;
 }
+/*==========================Body Content End===========================*/
+
+/*===========================Body Footer Start==========================*/
 .body-footer {
   position: absolute;
   bottom: 2.3dvh;
@@ -145,6 +156,7 @@
   font-size: 3.3dvh;
   font-weight: bold;
   color: rgb(247, 254, 255);
+  margin-top: 1dvh;
   margin-left: 1.3em;
   text-shadow: rgb(34, 34, 34) 0.09em 0.06em;
 }
@@ -190,6 +202,11 @@
     rgba(169, 183, 198, 0.5)
   );
 }
+/*==========================Body Footer End=========================*/
+
+/*========================Body End====================================*/
+
+/*=========================Footer Start==============================*/
 .footerbackground {
   margin-bottom: 1dvh;
   background-image: repeating-linear-gradient(#d7d7cf, #d7d7cf, #e8e8e4 4%);
@@ -295,3 +312,4 @@
   opacity: 1;
   transition: 0s;
 }
+/*===============================Footer End==============================*/

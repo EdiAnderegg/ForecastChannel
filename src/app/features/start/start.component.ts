@@ -33,7 +33,7 @@ export class StartComponent implements OnInit, AfterViewInit {
   ) {}
 
   public playSound(sound: string) {
-    this.soundService.playSound(sound);
+    this.soundService.playSound(sound, false);
   }
   public btnStart() {
     this.loadingService.playingBackgroundSound = false;

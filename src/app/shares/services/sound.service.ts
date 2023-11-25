@@ -45,10 +45,10 @@ export class SoundService {
   public stopSound(soundName: string): void {
     const sound = this.getSound(soundName);
     if (sound) {
-      $(sound).fadeOut(500, () => {
+      $(sound).fadeOut(250, () => {
         sound.pause();
         sound.currentTime = 0;
-        $(sound).fadeIn(0);
+        $(sound).fadeIn(250);
       });
     }
   }
