@@ -8,6 +8,7 @@ import {
   Tomorrow,
   week,
   weekArr,
+  Day,
 } from '../interfaces/weather.interface';
 
 @Injectable({
@@ -51,8 +52,9 @@ export class WeatherService {
           },
           description: res.weather[0].description,
           icon: res.weather[0].main,
-          time: new Date(Number(`${res.dt}000`)).getTime(),
+          time: Number(`${res.dt}000`),
         };
+
         const Today: Today = {
           location: res.name,
           temperature: res.main.temp_max,
@@ -63,9 +65,16 @@ export class WeatherService {
           },
           description: res.weather[0].description,
           icon: res.weather[0].main,
-          time: new Date(Number(`${res.dt}000`)).getTime(),
+          time: Number(`${res.dt}000`),
         };
-        Weather.push(Current, Today);
+
+        const Day: Day = {
+          sunrise: res.sys.sunrise,
+          sunset: res.sys.sunset,
+          actual: res.dt,
+        };
+
+        Weather.push(Current, Today, Day);
         return Weather;
       })
     );
@@ -87,6 +96,7 @@ export class WeatherService {
           icon: res.list[8].weather[0].main,
           time: new Date(res.list[8].dt_txt).getTime(),
         };
+
         const WeekArr: weekArr = {
           location: res.city.name,
           time: new Date(res.list[0].dt_txt).getTime(),

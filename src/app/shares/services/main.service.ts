@@ -65,6 +65,7 @@ export class MotherService {
       .pipe(take(1))
       .subscribe((data) => {
         const current = { ...data[0] };
+
         current.icon = this.iconService.getIcon(current.description);
         this.sessionDataService.outputCurrent(current);
 
@@ -118,6 +119,7 @@ export class MotherService {
       .pipe(take(1))
       .subscribe((data) => {
         const current = { ...data[0] };
+
         current.icon = this.iconService.getIcon(current.description);
         this.sessionDataService.outputCurrent(current);
 
@@ -133,6 +135,7 @@ export class MotherService {
       .pipe(take(1))
       .subscribe((data) => {
         const tomorrow = { ...data[0] };
+
         tomorrow.icon = this.iconService.getIcon(tomorrow.description);
         this.sessionDataService.outputTomorrow(tomorrow);
 
@@ -151,6 +154,7 @@ export class MotherService {
       .pipe(take(1))
       .subscribe((data) => {
         const uv = { ...data };
+
         this.sessionDataService.outputUv(uv);
         this.loadingService.setLoadingUv(true);
       });

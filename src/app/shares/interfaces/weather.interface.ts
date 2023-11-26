@@ -55,3 +55,9 @@ export interface weekArr {
   time: number;
   days: any[];
 }
+
+export interface Day {
+  sunrise: number;
+  sunset: number;
+  actual: number;
+}
