@@ -51,7 +51,6 @@ export class WeatherService {
             gust: res.wind.gust,
           },
           description: res.weather[0].description,
-          icon: res.weather[0].main,
           time: Number(`${res.dt}000`),
         };
 
@@ -64,7 +63,6 @@ export class WeatherService {
             gust: res.wind.gust,
           },
           description: res.weather[0].description,
-          icon: res.weather[0].main,
           time: Number(`${res.dt}000`),
         };
 
@@ -93,7 +91,6 @@ export class WeatherService {
             gust: res.list[8].wind.gust,
           },
           description: res.list[8].weather[0].description,
-          icon: res.list[8].weather[0].main,
           time: new Date(res.list[8].dt_txt).getTime(),
         };
 
@@ -107,7 +104,6 @@ export class WeatherService {
             temp1: res.list[i].main.temp_max,
             temp2: res.list[i + 4].main.temp_min,
             description: res.list[i].weather[0].description,
-            icon: res.list[i].weather[0].main,
             day: new Date(res.list[i].dt_txt).getDay(),
           };
           WeekArr.days.push(day);

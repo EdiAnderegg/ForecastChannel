@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Day } from '../interfaces/weather.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class IconService {
-  private icon: string[] = [
+  private dayIcon: string[] = [
     'assets/img/icon/day/01d.png',
     'assets/img/icon/day/02d.png',
     'assets/img/icon/day/03d.png',
@@ -16,8 +17,18 @@ export class IconService {
     'assets/img/icon/day/50d.png',
   ];
 
-  public getIcon(condition: string): any {
-    const icon = [...this.icon];
+  public getIcon(condition: string, day: Day): string {
+    const sunrise = day.sunrise;
+    const sunset = day.sunset;
+    const actual = day.actual;
+    let icon;
+
+    if (actual >= sunrise && actual <= sunset) {
+      icon = [...this.dayIcon];
+    } else {
+      icon = [...this.dayIcon];
+    }
+
     switch (condition) {
       case 'clear sky':
         return icon[0];
@@ -48,7 +59,7 @@ export class IconService {
       case 'mist':
         return icon[8];
     }
-    return undefined;
+    return 'noIcon';
   }
   constructor() {}
 }

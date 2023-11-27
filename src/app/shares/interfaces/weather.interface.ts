@@ -12,7 +12,6 @@ export interface Current {
     gust: number;
   };
   description: string;
-  icon: string;
   time: number;
 }
 
@@ -25,7 +24,6 @@ export interface Today {
     gust: number;
   };
   description: string;
-  icon: string;
   time: number;
 }
 
@@ -38,7 +36,6 @@ export interface Tomorrow {
     gust: number;
   };
   description: string;
-  icon: string;
   time: number;
 }
 
@@ -46,7 +43,6 @@ export interface week {
   temp1: number;
   temp2: number;
   description: string;
-  icon: string;
   day: number;
 }
 

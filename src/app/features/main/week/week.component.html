@@ -16,7 +16,11 @@
         </ng-template>
       </div>
       <div class="card-body">
-        <img [src]="day?.icon" class="img-fluid" [alt]="day?.description" />
+        <img
+          [src]="day?.description"
+          class="img-fluid"
+          [alt]="day?.description"
+        />
         <div class="card-title">
           <h1 class="title-one">{{ day?.temp1 | number : "1.0-0" }}</h1>
         </div>

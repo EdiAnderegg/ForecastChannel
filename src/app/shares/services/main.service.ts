@@ -65,9 +65,10 @@ export class MotherService {
       .pipe(take(1))
       .subscribe((data) => {
         const current = { ...data[0] };
+        const day = { ...data[2] };
 
-        current.icon = this.iconService.getIcon(current.description);
         this.sessionDataService.outputCurrent(current);
+        this.sessionDataService.outputDay(day);
 
         this.sessionDataService.outputPartialUser({
           location: current.location,
@@ -119,12 +120,13 @@ export class MotherService {
       .pipe(take(1))
       .subscribe((data) => {
         const current = { ...data[0] };
+        const day = { ...data[2] };
 
-        current.icon = this.iconService.getIcon(current.description);
         this.sessionDataService.outputCurrent(current);
+        this.sessionDataService.outputDay(day);
 
         const today = { ...data[1] };
-        today.icon = this.iconService.getIcon(today.description);
+
         this.sessionDataService.outputToday(today);
 
         this.loadingService.setLoadingCurrent(true);
@@ -136,15 +138,10 @@ export class MotherService {
       .subscribe((data) => {
         const tomorrow = { ...data[0] };
 
-        tomorrow.icon = this.iconService.getIcon(tomorrow.description);
         this.sessionDataService.outputTomorrow(tomorrow);
 
         const week = { ...data[1] };
-        for (let i = 0; i <= 4; i++) {
-          week.days[i].icon = this.iconService.getIcon(
-            week.days[i].description
-          );
-        }
+
         this.sessionDataService.outputWeek(week);
         this.loadingService.setLoadingWeek(true);
       });

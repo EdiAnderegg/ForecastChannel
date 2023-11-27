@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import {
   Current,
+  Day,
   Today,
   Tomorrow,
   weekArr,
@@ -22,6 +23,7 @@ export class SessionDataService {
   private User = new BehaviorSubject<User | undefined>(undefined);
   /* private Location = new BehaviorSubject<Location | undefined>(undefined);*/
   private List = new BehaviorSubject<Location[] | undefined>(undefined);
+  private Day = new BehaviorSubject<Day | undefined>(undefined);
 
   public outputCurrent(WeatherObject: Current | undefined): void {
     this.Current.next(WeatherObject);
@@ -57,8 +59,12 @@ export class SessionDataService {
     this.Location.next(Location);
   }*/
 
-  outputListofLocations(List: Location[] | undefined): void {
+  public outputListofLocations(List: Location[] | undefined): void {
     this.List.next(List);
+  }
+
+  public outputDay(Day: Day | undefined): void {
+    this.Day.next(Day);
   }
 
   public getCurrent$(): Observable<Current | undefined> {
@@ -90,6 +96,10 @@ export class SessionDataService {
 
   public getListofLocations$(): Observable<Location[] | undefined> {
     return this.List.asObservable();
+  }
+
+  public getDay$(): Observable<Day | undefined> {
+    return this.Day.asObservable();
   }
 
   constructor() {}
