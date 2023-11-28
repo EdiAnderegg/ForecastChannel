@@ -94,6 +94,7 @@
   text-shadow: rgb(34, 34, 34) 0.08em 0.03em;
 }
 .body-header-body {
+  position: relative;
   height: 11.5dvh;
   width: 71.5%;
   border-radius: 5.75dvh 0 0 5.75dvh;
@@ -106,10 +107,12 @@
 }
 
 .body-header-title {
+  position: absolute;
   font-size: 6.5dvh;
   color: rgb(247, 254, 255);
-  margin-top: 2.4dvh;
-  margin-right: 1.3em;
+  transform: translateY(-50%);
+  top: 50%;
+  right: 1.3em;
   text-shadow: rgb(34, 34, 34) 0.05em 0.03em;
 }
 /*=============================Body Header End===============================*/

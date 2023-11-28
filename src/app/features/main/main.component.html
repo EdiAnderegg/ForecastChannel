@@ -29,11 +29,8 @@
   >
     <span [@fadeIn]>{{ actualSite[currentIndex] | uppercase }}</span>
   </h1>
-  <div class="body-header-body align-self-center d-flex justify-content-end">
-    <h1
-      class="body-header-title align-self-center"
-      *ngIf="Weather$ | async as Weather"
-    >
+  <div class="body-header-body align-self-center justify-content-end">
+    <h1 class="body-header-title" *ngIf="Weather$ | async as Weather">
       {{ Weather?.location }}
     </h1>
   </div>

@@ -197,10 +197,12 @@ button {
 }
 
 .body-header-title {
+  position: absolute;
   font-size: 6.5dvh;
   color: rgb(247, 254, 255);
-  margin-top: 2.4dvh;
-  margin-right: 1.3em;
+  transform: translateY(-50%);
+  top: 50%;
+  right: 1.3em;
   text-shadow: rgb(34, 34, 34) 0.05em 0.03em;
 }
 

@@ -17,6 +17,18 @@ export class IconService {
     'assets/img/icon/day/50d.png',
   ];
 
+  private nightIcon: string[] = [
+    'assets/img/icon/night/01n.png',
+    'assets/img/icon/night/02n.png',
+    'assets/img/icon/day/03d.png',
+    'assets/img/icon/night/04n.png',
+    'assets/img/icon/day/09d.png',
+    'assets/img/icon/day/10d.png',
+    'assets/img/icon/day/11d.png',
+    'assets/img/icon/day/13d.png',
+    'assets/img/icon/day/50d.png',
+  ];
+
   public getIcon(condition: string, day: Day): string {
     const sunrise = day.sunrise;
     const sunset = day.sunset;
@@ -26,7 +38,7 @@ export class IconService {
     if (actual >= sunrise && actual <= sunset) {
       icon = [...this.dayIcon];
     } else {
-      icon = [...this.dayIcon];
+      icon = [...this.nightIcon];
     }
 
     switch (condition) {
