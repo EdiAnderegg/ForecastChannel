@@ -17,7 +17,8 @@
       </div>
       <div class="card-body">
         <img
-          [src]="day?.description"
+          *ngIf="Day$ | async as Day"
+          [src]="getIcon(day?.description!, Day)"
           class="img-fluid"
           [alt]="day?.description"
         />

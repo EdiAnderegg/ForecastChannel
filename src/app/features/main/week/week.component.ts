@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { weekArr } from 'src/app/shares/interfaces/weather.interface';
+import { Day, weekArr } from 'src/app/shares/interfaces/weather.interface';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
 import { PreviousRouteService } from 'src/app/shares/services/previous-route.service';
+import { IconService } from 'src/app/shares/services/icon.service';
 
 @Component({
   selector: 'app-week',
@@ -11,9 +12,11 @@ import { PreviousRouteService } from 'src/app/shares/services/previous-route.ser
 })
 export class WeekComponent implements OnInit {
   public Week$!: Observable<weekArr | undefined>;
+  public Day$!: Observable<Day | undefined>;
 
   constructor(
     private readonly sessionDataService: SessionDataService,
+    private iconService: IconService,
     private readonly previousRouteService: PreviousRouteService
   ) {}
 
@@ -22,8 +25,13 @@ export class WeekComponent implements OnInit {
     return false;
   }
 
+  public getIcon(description: string, day: Day): string {
+    return this.iconService.getIcon(description, day);
+  }
+
   ngOnInit(): void {
     this.Week$ = this.sessionDataService.getWeek$();
+    this.Day$ = this.sessionDataService.getDay$();
     this.previousRouteService.setLastUrl();
   }
 }

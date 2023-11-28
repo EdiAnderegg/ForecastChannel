@@ -10,8 +10,14 @@
         {{ Current?.description }}
       </h1>
     </div>
-    <div class="body-content-symbol align-self-center">
-      <img class="symbol-image img-fluid" [src]="Current?.description" />
+    <div
+      class="body-content-symbol align-self-center"
+      *ngIf="Day$ | async as Day"
+    >
+      <img
+        class="symbol-image img-fluid"
+        [src]="getIcon(Current?.description!, Day)"
+      />
     </div>
   </div>
   <div class="body-footer-up">
