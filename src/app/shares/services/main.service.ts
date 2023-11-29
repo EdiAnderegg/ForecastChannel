@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { take } from 'rxjs';
 import { WeatherService } from 'src/app/shares/services/weather.service';
 import { UvIndexService } from 'src/app/shares/services/uv-index.service';
-import { IconService } from 'src/app/shares/services/icon.service';
 import { SessionDataService } from 'src/app/shares/services/session-data.service';
 import { SoundService } from './sound.service';
 import { LoadingService } from './loading.service';
@@ -14,7 +13,6 @@ import { NearLocationService } from './near-location.service';
 export class MotherService {
   constructor(
     private readonly weatherService: WeatherService,
-    private readonly iconService: IconService,
     private readonly sessionDataService: SessionDataService,
     private readonly uvService: UvIndexService,
     private readonly soundService: SoundService,
@@ -47,6 +45,7 @@ export class MotherService {
       }
     }
   }
+
   initializeStart(): void {
     this.loadingService.setLoadingCurrent(false);
     this.loadingService.setLoadingBackgroundSound(false);
