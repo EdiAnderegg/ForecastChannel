@@ -78,7 +78,6 @@ export class MotherService {
     //Sounds in StartComponent
     if (this.loadingService.activateSound) {
       //BackgroundSound
-
       this.soundService
         .preload(
           'start_component',
@@ -119,10 +118,8 @@ export class MotherService {
       .pipe(take(1))
       .subscribe((data) => {
         const current = { ...data[0] };
-        const day = { ...data[2] };
 
         this.sessionDataService.outputCurrent(current);
-        this.sessionDataService.outputDay(day);
 
         const today = { ...data[1] };
 
@@ -157,23 +154,41 @@ export class MotherService {
 
     //Sounds in MainComponent
     if (this.loadingService.activateSound) {
+      const day = this.sessionDataService.getDay$();
+
       if (this.loadingService.playingBackgroundSound) {
         this.loadingService.setLoadingBackgroundSound(true);
         return;
       }
-      //BackgroundSound
 
-      this.soundService
-        .preload(
-          'main_component',
-          'assets/sound/background_sound/04_Local_Forecast_(Daytime).mp3'
-        )
-        .pipe(take(1))
-        .subscribe(() => {
-          this.soundService.playSound('main_component', true);
-          this.loadingService.playingBackgroundSound = true;
-          this.loadingService.setLoadingBackgroundSound(true);
-        });
+      day.pipe(take(1)).subscribe((data) => {
+        //BackgroundSound
+        if (data?.actual! >= data?.sunrise! && data?.actual! <= data?.sunset!) {
+          this.soundService
+            .preload(
+              'main_component',
+              'assets/sound/background_sound/04_Local_Forecast_(Daytime).mp3'
+            )
+            .pipe(take(1))
+            .subscribe(() => {
+              this.soundService.playSound('main_component', true);
+              this.loadingService.playingBackgroundSound = true;
+              this.loadingService.setLoadingBackgroundSound(true);
+            });
+        } else {
+          this.soundService
+            .preload(
+              'main_component',
+              'assets/sound/background_sound/05_Local_Forecast_(Nighttime).mp3'
+            )
+            .pipe(take(1))
+            .subscribe(() => {
+              this.soundService.playSound('main_component', true);
+              this.loadingService.playingBackgroundSound = true;
+              this.loadingService.setLoadingBackgroundSound(true);
+            });
+        }
+      });
     }
   }
 

@@ -13,7 +13,9 @@
   }
   .infoBox {
     background-color: rgba(0, 0, 0, 0.2);
-    user-select: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -22,7 +24,6 @@
     height: 24dvw;
     border-radius: 1.2em;
   }
-
   .infoText {
     position: absolute;
     width: 100%;
@@ -34,15 +35,15 @@
     word-spacing: 0.3dvh;
   }
 }
-
 @media (orientation: landscape) {
   .blockPage {
     display: none;
   }
   .page {
     background-color: black;
-    //background-image: linear-gradient(to right, #4b9ced, #00038b);
     height: 100dvh;
-    user-select: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
   }
 }

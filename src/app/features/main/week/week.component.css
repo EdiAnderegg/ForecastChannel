@@ -1,0 +1,85 @@
+/*=========Body===========*/
+.body {
+  position: relative;
+  top: 13.9dvh;
+  height: 72.5dvh;
+  padding-top: 1dvh;
+  margin-bottom: 14dvh;
+  width: 100%;
+}
+
+.content {
+  position: absolute;
+  width: 100%;
+  height: 48.7dvh;
+  top: 16dvh;
+  gap: 0.9%;
+}
+
+/*==================Card Starts===================*/
+.card {
+  background-image: linear-gradient(to bottom, #063bff 30%, #080c68);
+  width: 18%;
+  height: 100%;
+  z-index: 0;
+  border-radius: 0;
+  border: none;
+  box-shadow: -0.13dvh -0.13dvh 0 0.13dvh rgb(163, 199, 246);
+  text-align: center;
+}
+
+.card-header {
+  position: relative;
+  background-color: #082473;
+  height: 17%;
+  border: none;
+  border-radius: 0;
+}
+
+.header-title {
+  position: absolute;
+  top: -0.5dvh;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 7dvh;
+  letter-spacing: -0.02em;
+  color: rgb(247, 254, 255);
+  text-shadow: rgb(34, 34, 34) 0.1em 0.05em;
+}
+
+.card-body {
+  height: 83%;
+}
+
+.img-fluid {
+  height: 46%;
+}
+
+.card-title {
+  position: relative;
+  height: 27%;
+  letter-spacing: -0.02em;
+  color: rgb(247, 254, 255);
+  text-shadow: rgb(34, 34, 34) 0.07em 0.03em;
+}
+
+.title-one {
+  position: absolute;
+  font-size: 9dvh;
+  color: #ffcc0f;
+  top: -4%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.title-two {
+  position: absolute;
+  font-size: 9dvh;
+  color: #6fcee3;
+  top: -4%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/*=====================Card Ends=====================*/
+/*=======================Body Ends==================*/
