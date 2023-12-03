@@ -70,6 +70,8 @@ export class IconService {
         return icon[7];
       case 'mist':
         return icon[8];
+      case 'fog':
+        return icon[8];
     }
     return 'noIcon';
   }
