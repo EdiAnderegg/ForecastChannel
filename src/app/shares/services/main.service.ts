@@ -6,6 +6,7 @@ import { SessionDataService } from 'src/app/shares/services/session-data.service
 import { SoundService } from './sound.service';
 import { LoadingService } from './loading.service';
 import { NearLocationService } from './near-location.service';
+import { error } from 'jquery';
 
 @Injectable({
   providedIn: 'root',
@@ -23,16 +24,28 @@ export class MotherService {
   initializeApp(): void {
     if (navigator.geolocation) {
       if (this.loadingService.activateGPS) {
-        navigator.geolocation.getCurrentPosition((pos) => {
-          this.sessionDataService.outputUser({
-            lat: pos.coords.latitude,
-            lon: pos.coords.longitude,
-            tempUnit: 'metric',
-            windSpeed: 'km/h',
-            location: '',
-          });
-          this.loadingService.setLoadingApp(true);
-        });
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            this.sessionDataService.outputUser({
+              lat: pos.coords.latitude,
+              lon: pos.coords.longitude,
+              tempUnit: 'metric',
+              windSpeed: 'km/h',
+              location: '',
+            });
+            this.loadingService.setLoadingApp(true);
+          },
+          (error) => {
+            this.sessionDataService.outputUser({
+              lat: 18.9261,
+              lon: -99.23075,
+              tempUnit: 'metric',
+              windSpeed: 'km/h',
+              location: '',
+            });
+            this.loadingService.setLoadingApp(true);
+          }
+        );
       } else {
         this.sessionDataService.outputUser({
           lat: 18.9261,
