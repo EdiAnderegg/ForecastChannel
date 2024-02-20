@@ -6,7 +6,6 @@ import { SessionDataService } from 'src/app/shares/services/session-data.service
 import { SoundService } from './sound.service';
 import { LoadingService } from './loading.service';
 import { NearLocationService } from './near-location.service';
-import { error } from 'jquery';
 
 @Injectable({
   providedIn: 'root',
@@ -217,7 +216,6 @@ export class MotherService {
           lat: data?.lat!,
           lon: data?.lon!,
         };
-        /*this.sessionDataService.outputLocation(location);*/
         setTimeout(() => {
           this.loadingService.setLoadingUser(true);
         }, 0);
