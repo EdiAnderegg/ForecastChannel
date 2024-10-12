@@ -44,8 +44,9 @@ export class StartComponent implements OnInit, AfterViewInit {
   }
 
   public btnMenu() {
+
     setTimeout(() => {
-      location.reload();
+      window.location.href = '/';
     }, 700);
   }
 
