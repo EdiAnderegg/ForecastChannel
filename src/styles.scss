@@ -22,3 +22,6 @@ $modal-backdrop-opacity: 0.1; // Adjust the opacity as needed
   font-family: "shippori-antique-b1";
   src: url("assets/fonts/Shippori_Antique_B1/ShipporiAntiqueB1-Regular.ttf");
 }
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
