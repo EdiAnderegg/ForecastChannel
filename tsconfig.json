@@ -1,5 +1,3 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
-
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -19,8 +17,16 @@
     "importHelpers": true,
     "target": "es2022",
     "module": "es2022",
-    "lib": ["es2022", "dom"],
-    "types": ["jquery", "jest", "mocha"]
+    "lib": [
+      "es2022",
+      "dom"
+    ],
+    "types": [
+      "jquery",
+      "jest",
+      "mocha"
+    ],
+    "skipLibCheck": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
