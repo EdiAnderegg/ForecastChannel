@@ -135,6 +135,10 @@ export class MainComponent implements OnInit, AfterViewInit {
     this.router.navigateByUrl('/settings');
   }
 
+  public btnGlobe(): void {
+    this.router.navigateByUrl('/globe');
+  }
+
   public btnSlide(increment: number): void {
     const newIndex = this.currentIndex + increment;
     if (newIndex >= 1 && newIndex < this.actualSite.length) {
