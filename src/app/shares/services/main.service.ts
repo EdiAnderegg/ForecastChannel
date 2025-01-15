@@ -47,8 +47,8 @@ export class MotherService {
         );
       } else {
         this.sessionDataService.outputUser({
-          lat: 18.9261,
-          lon: -99.23075,
+          lat: 18.98622,
+          lon: -99.10051,
           tempUnit: 'metric',
           windSpeed: 'km/h',
           location: '',
