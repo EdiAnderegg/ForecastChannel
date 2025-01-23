@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class UvIndexPipe implements PipeTransform {
   transform(value: number, ...args: string[]): string | number {
     const [system] = args;
-    const rounded = Math.round(value * 10);
+    const rounded = Math.round(value);
 
     if (system === 'string') {
       switch (rounded) {

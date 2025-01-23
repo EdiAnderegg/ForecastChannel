@@ -39,7 +39,7 @@ export class UvIndexService {
       map((res) => {
         const UV: UV = {
           uv: res.result.uv,
-          time: new Date().getTime(),
+          time: new Date(res.result.uv).getTime(),
         };
         return UV;
       })
